@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">1Temiz Supplier</string>
+
+
+    <string name="hint_email">Email or phone</string>
+    <string name="forgot_email">Forgot your email?</string>
+    <string name="next">NEXT</string>
+
+
 </resources>

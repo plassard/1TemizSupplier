@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">1Temiz Supplier</string>
+
+
+    <string name="hint_email">E-posta veya telefon</string>
+    <string name="forgot_email">E-posta adresinizi mi unuttunuz?</string>
+    <string name="next">İLERİ</string>
+
+</resources>
