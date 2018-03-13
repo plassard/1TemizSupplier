@@ -5,6 +5,6 @@
     <string name="hint_email">Email or phone</string>
     <string name="forgot_email">Forgot your email?</string>
     <string name="next">NEXT</string>
-
-
+    <string name="enter_your_password">Enter your password</string>
+    <string name="forgot_password">Forgot your password?</string>
 </resources>

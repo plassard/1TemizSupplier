@@ -7,5 +7,7 @@
     <string name="hint_email">E-posta veya telefon</string>
     <string name="forgot_email">E-posta adresinizi mi unuttunuz?</string>
     <string name="next">İLERİ</string>
+    <string name="enter_your_password">Şifrenizi girin</string>
+    <string name="forgot_password">Şifrenizi mi unuttunuz?</string>
 
 </resources>

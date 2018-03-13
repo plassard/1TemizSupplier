@@ -20,12 +20,75 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+    def supportLibraryVersion = "25.2.0"
+    def retrofitVersion = "2.1.0"
+    def playService = '10.2.0'
+    def jacksonVersion = "2.8.6"
+
+    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex:rxandroid:1.2.1'
+
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile "com.squareup.retrofit2:converter-jackson:2.3.0"
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
+    testCompile 'junit:junit:4.12'
+
+
+
+
+// Jackson
+    compile "com.fasterxml.jackson.core:jackson-core:2.8.6"
+    compile "com.fasterxml.jackson.core:jackson-annotations:2.8.6"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.8.6"
+
+
+
+    /*implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+
+    // retrofit
+    //compile "com.squareup.retrofit2:retrofit:2.1.0"
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+
+   // compile "com.squareup.retrofit2:adapter-rxjava:2.1.0"
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    //this is alternative to "com.squareup.retrofit2:converter-jackson:2.1.0"
+    //compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //RxAndroid
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //Gson
+    compile 'com.google.code.gson:gson:2.4'
+
+    // Jackson
+    compile "com.fasterxml.jackson.core:jackson-core:2.8.6"
+    compile "com.fasterxml.jackson.core:jackson-annotations:2.8.6"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.8.6"
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.0'*/
+
+
+
+
+
+    //delete those later
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
