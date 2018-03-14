@@ -7,4 +7,16 @@
     <string name="next">NEXT</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="forgot_password">Forgot your password?</string>
+
+
+    <!--Main activity-->
+    <string name="main_menu_title">MAIN MENU</string>
+
+
+    <string name="orders">Orders</string>
+
+    <string name="order_history_menu_on_time_title">ON TIME:</string>
+
+
+    <string name="order_history_menu_late_tile">LATE:</string>
 </resources>

@@ -10,4 +10,12 @@
     <string name="enter_your_password">Şifrenizi girin</string>
     <string name="forgot_password">Şifrenizi mi unuttunuz?</string>
 
+
+    <!--Main activity-->
+    <string name="main_menu_title">MENÜ</string>
+
+
+    <string name="orders">Sipariş Geçmişi</string>
+
+    <string name="order_history_menu_on_time_title">ON TIME:</string>
 </resources>

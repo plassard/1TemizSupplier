@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="text_size_toolbar">19sp</dimen>
+    <dimen name="text_size_xxxsmall">10sp</dimen>
+    <dimen name="text_size_xxsmall">13sp</dimen>
+    <dimen name="text_size_xsmall">15sp</dimen>
+    <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_medium">17sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_xxlarge">26sp</dimen>
+
+    <dimen name="padding_text_item_order_history">12dp</dimen>
+
+    <dimen name="sign_in_screen_top_padding">32dp</dimen>
+</resources>

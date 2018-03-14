@@ -1,11 +1,52 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/text_size_toolbar</item>
+        <item name="android:textColor">@color/charcoal</item>
+    </style>
+
+
+    <style name="CardViewStyle">
+        <item name="cardCornerRadius">7dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="cardElevation">0dp</item>
+        <item name="android:translationZ" tools:targetApi="lollipop">0dp</item>
+    </style>
+
+
+    <style name="MainMenuCardContentStyle">
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">16dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">24dp</item>
+    </style>
+
+
+    <style name="CharcoalXLargeText">
+        <item name="android:textColor">@color/textCharcoal</item>
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+    </style>
+
+    <style name="Charcoal40XXSmallText">
+        <item name="android:textColor">@color/textCharcoal40</item>
+        <item name="android:textSize">@dimen/text_size_xxsmall</item>
+    </style>
+
+
+    <style name="AccentXXSmallText">
+        <item name="android:textColor">@color/textColorAccent</item>
+        <item name="android:textSize">@dimen/text_size_xxsmall</item>
     </style>
 
 </resources>

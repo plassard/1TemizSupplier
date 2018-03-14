@@ -14,6 +14,7 @@ import com.digitaldna.supplier.network.StoreCoupons;
 import com.digitaldna.supplier.network.Urls;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.requests.LoginRequest;
+import com.digitaldna.supplier.ui.screens.MainActivity;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -36,8 +37,11 @@ public class EnterEmailActivity extends Activity {
 
         Button btnNext = (Button)findViewById(R.id.buttonNext);
         btnNext.setOnClickListener(view -> {
-            connectToServer();
+            //connectToServer();
+            openMain();
         });
+
+
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -58,6 +62,10 @@ public class EnterEmailActivity extends Activity {
         Log.i("LLL", "error "+ t.toString());
     }
 
+    private void openMain(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     private void connectToServer(){
         LoginRequest loginRequest = new LoginRequest("taylan285@yandex.com", "123456");
