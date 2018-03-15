@@ -7,12 +7,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LoginSupplierBean {
     @Nullable
-    @JsonProperty("UserID")
-    private String mUserId;
+    @JsonProperty("Title")
+    private String mTitle;
+
     @Nullable
-    @JsonProperty("Ticket")
-    private String mTicket;
-    @Nullable
+    @JsonProperty("Email")
+    private String mEmail;
+
+    /* @Nullable
     @JsonProperty("Language")
     private Long mLanguage;
 
@@ -22,18 +24,28 @@ public class LoginSupplierBean {
 
     @Nullable
     @JsonProperty("isPhoneNumberVerified")
-    private Boolean mIsPhoneNumberVerified;
+    private Boolean mIsPhoneNumberVerified;*/
 
     @Nullable
-    public String getUserId() {
-        return mUserId;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public void setUserId(@Nullable String userId) {
-        mUserId = userId;
+    public void setTitle(@Nullable String title) {
+        mTitle = title;
     }
 
     @Nullable
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public void setEmail(@Nullable String email) {
+        mEmail = email;
+    }
+
+
+   /* @Nullable
     public String getTicket() {
         return mTicket;
     }
@@ -67,7 +79,7 @@ public class LoginSupplierBean {
 
     public void setIsPhoneNumberVerified(@Nullable Boolean isPhoneNumberVerified) {
         mIsPhoneNumberVerified = isPhoneNumberVerified;
-    }
+    }*/
 }
 
 

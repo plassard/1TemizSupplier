@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.network.NetworkAPIsInterface;
-import com.digitaldna.supplier.network.StoreCoupons;
+
 import com.digitaldna.supplier.network.Urls;
 
 import io.reactivex.Observable;
@@ -36,7 +36,7 @@ public class EnterPasswordActivity extends Activity {
         Button btnNext = (Button)findViewById(R.id.buttonNextPass);
         btnNext.setOnClickListener(view -> {
             Log.i("EEE", email + etPassword.getText());
-connectToServer();
+            connectToServer();
             /*Intent intent = new Intent(this, EnterPasswordActivity.class);
             intent.putExtra("email", etEmail.getText());
             startActivity(intent);*/
@@ -49,19 +49,19 @@ connectToServer();
                 .build();
     }
 
-    private void handleResult(StoreCoupons storeCoupons){
+   /* private void handleResult(StoreCoupons storeCoupons){
         Log.i("LLL", "store cop" + storeCoupons.toString());
-    }
+    }*/
     private void handleError(Throwable t){
         Log.i("LLL", ""+ t.toString());
     }
 
 
     private void connectToServer(){
-
+/*
 retrofit.create(NetworkAPIsInterface.class).getCoupons("status")
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(this::handleResult, this::handleError);
+        .subscribe(this::handleResult, this::handleError);*/
     }
 }

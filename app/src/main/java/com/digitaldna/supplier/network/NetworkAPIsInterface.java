@@ -2,6 +2,7 @@ package com.digitaldna.supplier.network;
 
 
 import com.digitaldna.supplier.network.beans.GetLoginBean;
+import com.digitaldna.supplier.network.beans.LoginSupplierBean;
 import com.digitaldna.supplier.network.requests.LoginRequest;
 
 import io.reactivex.Observable;
@@ -26,13 +27,6 @@ public interface NetworkAPIsInterface {
      * http://apidocs.1temiz.com/Method/Index/136
      * Api #50.2
      */
-    //@Headers("Content-Type: application/x-www-form-urlencoded")
-  /*  @POST(Urls.SUPPLIER + Urls.LOGIN)
-    Observable<GetLoginBean> login(@NonNull @Body LoginRequest body);
-*/
-
-    @GET("coupons/")
-    Observable<StoreCoupons> getCoupons(@Query("status") String status);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.LOGIN)

@@ -48,23 +48,28 @@
 
             <include
                 android:id="@+id/menu_orders"
+                android:visibility="invisible"
                 layout="@layout/include_menu_orders"/>
 
             <include
                 android:id="@+id/menu_earnings"
-                layout="@layout/include_menu_orders"/>
+                android:visibility="invisible"
+                layout="@layout/include_menu_earnings"/>
 
             <include
                 android:id="@+id/menu_comments_and_ratings"
-                layout="@layout/include_menu_orders"/>
+                android:visibility="invisible"
+                layout="@layout/include_menu_comments_and_rankings"/>
 
             <include
                 android:id="@+id/menu_statistics"
-                layout="@layout/include_menu_orders"/>
+                android:visibility="invisible"
+                layout="@layout/include_menu_statistics"/>
 
             <include
                 android:id="@+id/menu_settings"
-                layout="@layout/include_menu_orders"/>
+                android:visibility="invisible"
+                layout="@layout/include_menu_settings"/>
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

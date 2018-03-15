@@ -1,33 +1,30 @@
 package com.digitaldna.supplier.utils;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
+
+
+
 /**
  * Created by yevgen on 3/13/18.
  */
 
 public class PrefProvider {
+    static SharedPreferences mPreferences;
 
-
-
-
-    public static PrefProvider getInstance() {
-        return Loader.sInstance;
+    static public void saveEmail(Context context, String email){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putString(PreferencesContract.User.EMAIL, email)
+                .commit();
     }
 
-    /**
-     * Get ticket
-     *
-     * @return api ticket
-     */
-    public String getTicket() {
-     //   return mPreferences.getString(PreferencesContract.Network.TICKET, "");
-        return "test";
+    static public String getEmail(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getString(PreferencesContract.User.EMAIL, "");
     }
 
-    private static final class Loader {
-        private static final PrefProvider sInstance = new PrefProvider();
 
-        private Loader() throws IllegalAccessException {
-            throw new IllegalAccessException("Loader class");
-        }
-    }
+
 }
