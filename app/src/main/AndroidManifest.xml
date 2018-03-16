@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".ui.screens.authorization.EnterEmailActivity" />
         <activity android:name=".ui.screens.authorization.EnterPasswordActivity" />
-        <activity android:name=".ui.screens.MainActivity"></activity>
+        <activity android:name=".ui.screens.MainActivity" />
+        <activity android:name=".ui.screens.SettingsActivity"></activity>
     </application>
 
 </manifest>

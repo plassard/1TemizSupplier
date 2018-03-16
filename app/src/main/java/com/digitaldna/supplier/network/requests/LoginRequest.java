@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.digitaldna.supplier.network.Urls;
+import com.digitaldna.supplier.utils.PrefProvider;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LoginRequest {
@@ -17,15 +18,14 @@ public class LoginRequest {
     @JsonProperty("Platform")
     private int mPlatform = Urls.PLATFORM;
 
+    @JsonProperty("Language")
+    private Integer mLanguage;
 
-
-    public LoginRequest(String userId, String password) {
+    public LoginRequest(String userId, String password, Integer langId) {
        // super(ticket, userId);
         mUserID = userId;
         mPassword = password;
-
-        Log.i("LLL4", "userId " + userId);
-        Log.i("LLL4", "password " + password);
+        mLanguage = langId;
     }
 
  /*   public Long getCountryId() {

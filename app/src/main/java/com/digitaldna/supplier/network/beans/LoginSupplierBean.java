@@ -14,11 +14,11 @@ public class LoginSupplierBean {
     @JsonProperty("Email")
     private String mEmail;
 
-    /* @Nullable
-    @JsonProperty("Language")
-    private Long mLanguage;
-
     @Nullable
+    @JsonProperty("ProfilePictureURL")
+    private String mProfilePictureURL;
+
+    /*@Nullable
     @JsonProperty("Countdown")
     private Integer mCountdown;
 
@@ -45,16 +45,16 @@ public class LoginSupplierBean {
     }
 
 
-   /* @Nullable
-    public String getTicket() {
-        return mTicket;
-    }
-
-    public void setTicket(@Nullable String ticket) {
-        mTicket = ticket;
-    }
-
     @Nullable
+    public String getProfilePictureURL() {
+        return mProfilePictureURL;
+    }
+
+    public void setProfilePictureURL(@Nullable String pictureURL) {
+        mProfilePictureURL = pictureURL;
+    }
+
+   /* @Nullable
     public Long getLanguage() {
         return mLanguage;
     }

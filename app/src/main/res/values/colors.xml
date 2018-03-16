@@ -14,5 +14,17 @@
     <color name="charcoal40">#40363b4b</color>
     <color name="textCharcoal">@color/charcoal</color>
     <color name="textCharcoal40">@color/charcoal40</color>
+    <color name="gray">#C4C4C4</color>
 
+    <color name="button">@color/radicalRed</color>
+    <color name="radicalRed">#FFFF3366</color>
+    <color name="textWhite">@android:color/white</color>
+    <color name="textColorFern">@color/fern</color>
+    <color name="fern">#7CC576</color>
+
+
+    <color name="cornflowerBlue">#FF52A3FF</color>
+
+    <color name="textAshGrey">@color/ashGrey</color>
+    <color name="ashGrey">#b7b7b7</color>
 </resources>

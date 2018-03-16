@@ -24,12 +24,15 @@ final class PreferencesContract {
         }
     }
 
-    static final class User {
-        private static final String USER_PREFIX = "user_";
+    static final class Supplier {
+        private static final String USER_PREFIX = "supplier_";
 
         static final String EMAIL = USER_PREFIX + "email";
         static final String LANGUAGE = USER_PREFIX + "language";
         static final String LANGUAGE_ID = USER_PREFIX + "language_id";
+        static final String PROFILE_PICTURE_URL = USER_PREFIX + "profile_picture_url";
+        static final String TITLE = USER_PREFIX + "title";
+
         static final String PUSH_TOKEN = USER_PREFIX + "push_token";
         static final String VERIFIED = USER_PREFIX + "verified";
 
@@ -38,7 +41,7 @@ final class PreferencesContract {
         static final String MY_PHONE_CODE = USER_PREFIX + "phone_code";
         static final String MY_PHONE_NUMBER = USER_PREFIX + "phone_number";
 
-        private User() {
+        private Supplier() {
             //no instance
         }
 

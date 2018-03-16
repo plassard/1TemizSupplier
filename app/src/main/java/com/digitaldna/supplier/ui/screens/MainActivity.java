@@ -1,10 +1,7 @@
 package com.digitaldna.supplier.ui.screens;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.digitaldna.supplier.R;
@@ -16,8 +13,8 @@ public class MainActivity extends FragmentActivity
     /**
      * fields
      */
-    private static final int NUMBER_OF_PAGES = 2;
-    ViewPager pager;
+
+    public ViewPager pager;
 
     /**
      * {@inheritDoc}
@@ -32,6 +29,11 @@ public class MainActivity extends FragmentActivity
         pager.addOnPageChangeListener(this);
 
     }
+
+   public void setPager(){
+        pager.setCurrentItem(1);
+   }
+
 
     /*************************************************************
      * Listeners for ViewPager
@@ -66,47 +68,7 @@ public class MainActivity extends FragmentActivity
     }
 
 
-    /**
-     * Custom PagerAdapter class
-     */
-    private class MyPagerAdapter extends FragmentPagerAdapter{
 
-        /**
-         * Constructor
-         * @param fm
-         */
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        /**
-         * Return fragment based on the position.
-         * @param position
-         * @return
-         */
-        @Override
-        public Fragment getItem(int position) {
-            switch(position) {
-                case 0:
-                    return MainMenuFragment.newInstance("MainMenuFragment, Instance 1");
-                case 1:
-                    return OrdersFragment.newInstance("OrdersFragment, Instance 1");
-                default:
-                    return MainMenuFragment.newInstance("MainMenuFragment, Default");
-            }
-        }
-
-        /**
-         * Return the number of pages.
-         * @return
-         */
-        @Override
-        public int getCount() {
-            return NUMBER_OF_PAGES;
-        }
-
-
-    }
 
 
 }

@@ -2,14 +2,19 @@ package com.digitaldna.supplier.ui.screens;
 
 
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
+import com.digitaldna.supplier.widgets.SimpleOnTabSelectedListener;
 
 
 public class OrdersFragment extends Fragment {
@@ -68,12 +73,53 @@ public class OrdersFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private TabLayout tlTabs;
+    private ViewPager vpPager;
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        tlTabs = (TabLayout) view.findViewById(R.id.tl_tabs);
+        vpPager = (ViewPager) view.findViewById(R.id.vp_pager);
+        tlTabs.addOnTabSelectedListener(mSimpleOnTabSelectedListener);
+        tlTabs.setupWithViewPager(vpPager);
+        vpPager.setOffscreenPageLimit(2);
+    }
 
-  /*  @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_orders, container, false);
-    }*/
+
+    private final SimpleOnTabSelectedListener mSimpleOnTabSelectedListener = new SimpleOnTabSelectedListener() {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            changeTabTextColor(tab.getPosition(), R.color.textWhite, R.color.textWhite);
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+            changeTabTextColor(tab.getPosition(), R.color.textCharcoal, R.color.textAshGrey);
+        }
+    };
+
+
+    private void changeTabTextColor(int tabId, @ColorRes int tabTitleColor, @ColorRes int counterColor) {
+
+        int count = tlTabs.getTabCount();
+        if (tabId > count) {
+            return;
+        }
+        TabLayout.Tab tab = tlTabs.getTabAt(tabId);
+        if (tab != null) {
+            View view = tab.getCustomView();
+            if (view != null) {
+                TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
+                TextView tvCount = (TextView) view.findViewById(R.id.tv_count);
+                if (tvTitle != null) {
+                    tvTitle.setTextColor(ContextCompat.getColor(getContext(), tabTitleColor));
+                }
+
+                if (tvCount != null) {
+                    tvCount.setTextColor(ContextCompat.getColor(getContext(), counterColor));
+                }
+            }
+        }
+    }
 
 }

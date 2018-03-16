@@ -49,4 +49,42 @@
         <item name="android:textSize">@dimen/text_size_xxsmall</item>
     </style>
 
+    <style name="CharcoalMediumText">
+        <item name="android:textColor">@color/textCharcoal</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="Charcoal40XSmallText">
+        <item name="android:textColor">@color/textCharcoal40</item>
+        <item name="android:textSize">@dimen/text_size_xsmall</item>
+    </style>
+
+    <style name="FernXXXSmallText">
+        <item name="android:textColor">@color/textColorFern</item>
+        <item name="android:textSize">@dimen/text_size_xxxsmall</item>
+    </style>
+
+    <style name="CharcoalSmallText">
+        <item name="android:textColor">@color/textCharcoal</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="TemizButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:background">@drawable/button_rounded_pink</item>
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="TabTitleCounter">
+        <item name="android:textSize">@dimen/text_size_xxsmall</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textAshGrey</item>
+    </style>
+
+    <style name="TabTitleText">
+        <item name="android:textSize">@dimen/text_size_xxsmall</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textCharcoal</item>
+    </style>
 </resources>

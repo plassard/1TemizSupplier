@@ -29,7 +29,7 @@ public abstract class BaseJsonBean {
     private Long mStatusSubCode;
     @Nullable
     @JsonProperty(STATUS_TEXT)
-    private String mStatusText;
+    static public String mStatusText;
 
     @Nullable
     public Long getDisplayType() {
