@@ -18,6 +18,11 @@ public class LoginSupplierBean {
     @JsonProperty("ProfilePictureURL")
     private String mProfilePictureURL;
 
+    @Nullable
+    @JsonProperty("Ticket")
+    private String mTicket;
+
+
     /*@Nullable
     @JsonProperty("Countdown")
     private Integer mCountdown;
@@ -52,6 +57,15 @@ public class LoginSupplierBean {
 
     public void setProfilePictureURL(@Nullable String pictureURL) {
         mProfilePictureURL = pictureURL;
+    }
+
+    @Nullable
+    public String getTicket() {
+        return mTicket;
+    }
+
+    public void setTicket(@Nullable String ticket) {
+        mTicket = ticket;
     }
 
    /* @Nullable

@@ -77,12 +77,14 @@ public class MainMenuFragment extends Fragment {
         vMenuSettings = v.findViewById(R.id.menu_settings);
         ivProfilePicture = (ImageView)v.findViewById(R.id.iv_settings);
 
-        Picasso.with(getContext())
-                .load(PrefProvider.getProfilePictureURL(getContext()))
-                .placeholder(R.drawable.svg_ic_commend_rating_blue_40dp)
-                .error(R.drawable.svg_ic_commend_rating_blue_40dp)
-                .transform(new ImageToCircleTransform())
-                .into(ivProfilePicture);
+        try{
+            Picasso.with(getContext())
+                    .load(PrefProvider.getProfilePictureURL(getContext()))
+                    .placeholder(R.drawable.svg_ic_commend_rating_blue_40dp)
+                    .error(R.drawable.svg_ic_commend_rating_blue_40dp)
+                    .transform(new ImageToCircleTransform())
+                    .into(ivProfilePicture);
+        }catch (Exception e) {}
 
         ViewPager pager = (ViewPager)getActivity().findViewById(R.id.viewPager);
         vMenuOrders.setOnClickListener(view -> {

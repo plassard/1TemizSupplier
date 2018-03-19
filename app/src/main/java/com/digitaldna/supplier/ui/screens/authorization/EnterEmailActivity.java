@@ -50,6 +50,7 @@ public class EnterEmailActivity extends Activity {
         PrefProvider.saveProfilePictureURL(this, !TextUtils.isEmpty(mProfilePictureUrl) ? "" + Urls.HOST_URL + "/" + mProfilePictureUrl : "");
 
         PrefProvider.saveSupplierTitle(this, loginSupplierBean.getTitle());
+        PrefProvider.saveTicket(this, loginSupplierBean.getTicket());
 
         openMain();
     }

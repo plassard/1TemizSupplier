@@ -34,4 +34,10 @@
 
     <string name="current_balance">Current balance</string>
 
+    <string name="customer_order_title">Customer:</string>
+
+
+    <string name="district_order_title">District:</string>
+    <string name="order_order_title">Order:</string>
+
 </resources>

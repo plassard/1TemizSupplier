@@ -73,5 +73,16 @@ public class PrefProvider {
         return mPreferences.getString(PreferencesContract.Supplier.TITLE, "");
     }
 
+    static public void saveTicket(Context context, String ticket){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putString(PreferencesContract.Network.TICKET, ticket)
+                .commit();
+    }
+
+    static public String getTicket(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getString(PreferencesContract.Network.TICKET, "");
+    }
 
 }

@@ -19,5 +19,7 @@ public class Urls {
 
     public static final String LOGIN = "Login";
 
+    public static final String GET_ORDERS = "GetSupplierOrders";
+
     public static final Integer PLATFORM = 50;
 }
