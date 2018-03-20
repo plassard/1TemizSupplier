@@ -132,11 +132,14 @@ public class OrdersFragment extends Fragment {
         });
 
     }
-    public static List<OrdersBean> ordersToday = new ArrayList<OrdersBean>();
-    public static List<OrdersBean> ordersThisWeek = new ArrayList<OrdersBean>();
-    public static List<OrdersBean> ordersThisMonth = new ArrayList<OrdersBean>();
+    public static List<OrdersBean> ordersToday;
+    public static List<OrdersBean> ordersThisWeek;
+    public static List<OrdersBean> ordersThisMonth;
 
     private void handleResult(List<OrdersBean> ordersBean){
+        ordersToday = new ArrayList<OrdersBean>();
+        ordersThisWeek = new ArrayList<OrdersBean>();
+        ordersThisMonth = new ArrayList<OrdersBean>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); // your format
         Date dateToday = new Date();
         dateToday.setHours(0);
@@ -157,7 +160,6 @@ public class OrdersFragment extends Fragment {
 
         Date orderDate = null;
         for(int i = 0; i < ordersBean.size(); i++){
-            Log.i("LLL", "iteration " + i + " from " + ordersBean.size() + ordersBean.get(i).getOrderJobDate());
 
             try {
                 orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
@@ -206,6 +208,9 @@ public class OrdersFragment extends Fragment {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             changeTabTextColor(tab.getPosition(), R.color.textWhite, R.color.textWhite);
+           // OrderListAdapter.startAnimation(getContext());
+            //OrderListAdapter.startAnimation(getContext(), tab.getPosition());
+            Log.i("LLL", "posoi" +  tab.getPosition());
         }
 
         @Override

@@ -55,7 +55,9 @@ public class MainActivity extends FragmentActivity
      */
     @Override
     public void onPageSelected(int position) {
-
+if(position == 1){
+   // OrderListAdapter.startAnimation(this, 0);
+}
     }
 
     /**

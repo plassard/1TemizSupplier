@@ -85,4 +85,11 @@ public class PrefProvider {
         return mPreferences.getString(PreferencesContract.Network.TICKET, "");
     }
 
+    static public void logOut(Context context){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .clear()
+                .commit();
+    }
+
 }

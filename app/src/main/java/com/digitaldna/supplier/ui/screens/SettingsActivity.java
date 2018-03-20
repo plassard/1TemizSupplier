@@ -1,11 +1,14 @@
 package com.digitaldna.supplier.ui.screens;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
+import com.digitaldna.supplier.SplashActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
@@ -32,6 +35,13 @@ public class SettingsActivity extends Activity {
         ImageView ivMenu = (ImageView)findViewById(R.id.iv_toolbar_menu);
         ivMenu.setOnClickListener(view -> {
             this.finish();
+        });
+
+        Button btnLogOut = (Button)findViewById(R.id.b_sign_out);
+        btnLogOut.setOnClickListener(view -> {
+            PrefProvider.logOut(this);
+            Intent intent = new Intent(this, SplashActivity.class);
+            startActivity(intent);
         });
     }
 }

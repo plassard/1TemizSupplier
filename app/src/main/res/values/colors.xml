@@ -27,4 +27,5 @@
 
     <color name="textAshGrey">@color/ashGrey</color>
     <color name="ashGrey">#b7b7b7</color>
+    <color name="mayaBlue">#FF5BBAFF</color>
 </resources>

@@ -7,7 +7,7 @@
     <string name="next">NEXT</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="forgot_password">Forgot your password?</string>
-
+    <string name="hint_password">Password</string>
 
     <!--Main activity-->
     <string name="main_menu_title">MAIN MENU</string>

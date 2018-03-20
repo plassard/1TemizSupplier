@@ -103,4 +103,15 @@
         <item name="android:textSize">@dimen/text_size_xsmall</item>
     </style>
 
+
+    <style name="OrderStatusPickUp">
+        <item name="android:textColor">@color/fern</item>
+        <item name="android:textSize">@dimen/text_size_xxxsmall</item>
+    </style>
+
+    <style name="OrderStatusDropOff">
+        <item name="android:textColor">@color/mayaBlue</item>
+        <item name="android:textSize">@dimen/text_size_xxxsmall</item>
+    </style>
+
 </resources>

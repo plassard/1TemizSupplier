@@ -31,6 +31,30 @@ public class OrdersBean {
     private String mOrderJobDate;
 
     @Nullable
+    @JsonProperty("Location")
+    private String mLocation;
+
+    @Nullable
+    @JsonProperty("OrderStatusText")
+    private String mOrderStatusText;
+
+    @Nullable
+    @JsonProperty("OrderNumber")
+    private String mOrderNumber;
+
+    private boolean wasViewed = false;
+
+    @Nullable
+    public boolean setViewed() {
+        wasViewed = true;
+        return wasViewed;
+    }
+
+    @Nullable
+    public boolean getWasViewed() {
+        return wasViewed;
+    }
+    @Nullable
     public Integer getmOrderStatusID() {
         return mOrderStatusID;
     }
@@ -41,18 +65,32 @@ public class OrdersBean {
     }
 
     @Nullable
+    public String getLocation() {
+        return mLocation;
+    }
+
+    @Nullable
+    public String getOrderStatusText() {
+        return mOrderStatusText;
+    }
+
+    @Nullable
+    public String getOrderNumber() {
+        return mOrderNumber;
+    }
+    @Nullable
     public String getCourierImageURL() {
         return mCourierImageURL;
     }
 
     @Nullable
     public String getJobStartTime() {
-        return mJobStartTime;
+        return mJobStartTime.substring(0, 5);
     }
 
     @Nullable
     public String getJobEndTime() {
-        return mJobEndTime;
+        return mJobEndTime.substring(0, 5);
     }
 
     @Nullable

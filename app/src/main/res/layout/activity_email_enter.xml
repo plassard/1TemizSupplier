@@ -47,7 +47,7 @@
         android:layout_height="35dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/editTextEmail"
         android:background="@color/blue"
         android:text="@string/next"
         android:textColor="@color/white" />
