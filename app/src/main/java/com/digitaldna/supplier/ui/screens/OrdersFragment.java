@@ -83,7 +83,7 @@ public class OrdersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_orders, container, false);
 
-        osStatus = (OrderStatusView) v.findViewById(R.id.os_status);
+        //osStatus = (OrderStatusView) v.findViewById(R.id.os_status);
         // TextView textView = (TextView) v.findViewById(R.id.tvFragSecond);
         //textView.setText("HHHHH");
 

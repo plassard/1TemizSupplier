@@ -114,4 +114,23 @@
         <item name="android:textSize">@dimen/text_size_xxxsmall</item>
     </style>
 
+
+    <style name="Toolbar.SubtitleXXSmallGrayText" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textSize">@dimen/text_size_xxsmall</item>
+        <item name="android:textColor">@color/textGray</item>
+    </style>
+    <style name="AccentLargeText">
+        <item name="android:textColor">@color/textColorAccent</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="GreenLargeText">
+        <item name="android:textColor">@color/textColorFern</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="RadicalRedXSmallText">
+        <item name="android:textColor">@color/textRadicalRed</item>
+        <item name="android:textSize">@dimen/text_size_xsmall</item>
+    </style>
 </resources>

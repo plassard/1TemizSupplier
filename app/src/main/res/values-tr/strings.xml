@@ -20,4 +20,6 @@
     <string name="order_history_menu_on_time_title">ON TIME:</string>
 
     <string name="current_balance">Current balance</string>
+
+    <string name="today">Bugün</string>
 </resources>

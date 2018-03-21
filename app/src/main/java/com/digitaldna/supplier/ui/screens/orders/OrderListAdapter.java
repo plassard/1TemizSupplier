@@ -1,6 +1,7 @@
 package com.digitaldna.supplier.ui.screens.orders;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,13 @@ import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.network.beans.OrdersBean;
+import com.digitaldna.supplier.ui.screens.OrderDetailsActivity;
 import com.digitaldna.supplier.widgets.OrderStatusView;
 import com.digitaldna.supplier.widgets.StatusParams;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -89,90 +94,26 @@ public class OrderListAdapter extends BaseAdapter {
         osStatus.setStatusParams(mStatusParams, !orderItem.getWasViewed());
 
 
+        TextView tvOrderJobDate = (TextView) convertView.findViewById(R.id.tv_date);
 
-        //image
-        //holder.imageView = (ImageView) convertView.findViewById(R.id.iv);
+        //we compare date to set "Today" if date is today
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); // your format
+        Date orderDate = null;
+        try {
+            orderDate = format.parse(orderItem.getOrderJobDate());
+        } catch (ParseException e) {            e.printStackTrace();        }
+        Date dateToday = new Date();
+        dateToday.setHours(0);
+        dateToday.setMinutes(0);
+        dateToday.setSeconds(0);
+        if(orderDate.after(dateToday)){
+            tvOrderJobDate.setText(context.getResources().getString(R.string.today));
+        } else {
 
-        //com.squareup.picasso:picasso:2.5.2 for downloadimage
-      //  Picasso.with(parent.getContext()).load(item.getImageUrl()).resize(120, 102).into(holder.imageView);
-
-/*
-
-
-        if(item.getmTitle().length() > 33){
-            lblListHeader.setTextSize(12);
+            tvOrderJobDate.setText(orderDate.toLocaleString());
         }
-        Log.i("TTT", "leng " + item.getmTitle().length());
 
-        if(item.getmTitle().length() > 33){
-            Log.i("TTT", "shortening ");
-            String str =item.getmTitle();
-            try{
-                str = str.substring(0, 50); } catch (Exception e){}
-            lblListHeader.setText(str);
-        }else {
-            lblListHeader.setText(item.getmTitle());
-        }
-        //distance
-        TextView distances = (TextView) convertView
-                .findViewById(R.id.textView14);
-        TextView distances1 = (TextView) convertView
-                .findViewById(R.id.textView13);
-
-        distances.setTypeface(LoginActivity.typeface);
-        distances1.setTypeface(LoginActivity.typeface);
-
-        distances.setTextColor(ContextCompat.getColor(context, R.color.text_gri));
-        distances.setText(" " + item.getmdistance() + " " + item.getCurrency().toLowerCase());
-
-
-        //price
-        TextView price = (TextView) convertView
-                .findViewById(R.id.textView17);
-        price.setTypeface(LoginActivity.typeface);
-
-
-        Float f = Float.parseFloat(item.getmprice());
-        price.setText(context.getResources().getString(R.string.price_range_adapter) + " " + String.format("%.2f", f) + " " + item.getDistanceUnit());
-
-        //rating
-        TextView rating = (TextView) convertView
-                .findViewById(R.id.textView16);
-        rating.setTypeface(LoginActivity.typeface);
-        rating.setText(item.getmrating().substring(0, 3));
-
-
-        //opennow
-        TextView opennow = (TextView) convertView
-                .findViewById(R.id.textView18);
-        opennow.setTypeface(LoginActivity.typeface);
-        opennow.setText(item.getOpenNowStr());
-
-        //organic
-
-        TextView organic = (TextView) convertView
-                .findViewById(R.id.textView128);
-        organic.setTypeface(LoginActivity.typeface);
-        organic.setText(item.getPropertyName());
-
-
-        if (item.getmrating().equals("nul")) {
-            rating.setText(context.getResources().getString(R.string.null_rating));
-            rating.setBackground(context.getResources().getDrawable(R.drawable.transparent_select));
-
-            int heights = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 58, context.getResources().getDisplayMetrics());
-            rating.getLayoutParams().width = heights;
-            SupplierInfoActivity.rating = item.getmrating();
-        }
-        SupplierInfoActivity.title = item.getmTitle();
-        SupplierInfoActivity.distance = item.getmdistance();
-        SupplierInfoActivity.rating = item.getmrating();
-        SupplierInfoActivity.workhoursJson = item.getworkarray();
-        SupplierInfoActivity.profilPicUrl = item.getImageUrl();
-        SupplierInfoActivity.isLiked = item.isFavourite();
-        SupplierInfoActivity.commentCount = item.getCommentCount();
-        HttpPost.memberId = item.getMemberId();
-*/
+        convertView.setOnClickListener(view -> openOrderDetailsScreen(orderItem));
 
 
      /*   LinearLayout linearLayout = (LinearLayout)convertView.findViewById(R.id.linLayOrderRow);
@@ -194,7 +135,11 @@ try {
         return convertView;
     }
 
-
+private void openOrderDetailsScreen(OrdersBean orderItem){
+    Intent intent = new Intent(context, OrderDetailsActivity.class);
+    intent.putExtra("orderID", orderItem.getOrderNumber());
+    context.startActivity(intent);
+}
 
     static LinearLayout[] linOrderToday = new LinearLayout[5];
     static LinearLayout[] linOrderWeek = new LinearLayout[5];

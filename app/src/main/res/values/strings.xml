@@ -40,4 +40,23 @@
     <string name="district_order_title">District:</string>
     <string name="order_order_title">Order:</string>
 
+    <string name="today">Today</string>
+    <string name="order_details_title">ORDER DETAILS</string>
+    <string name="order_details_button_cancel_drop_off">Cancel Drop Off</string>
+    <string name="order_details_paid">Paid</string>
+    <string name="order_details_button_add_items">Add items</string>
+    <string name="order_details_title_drop_off_time_title">DROP-OFF TIME</string>
+    <string name="order_details_title_drop_off_date_title">DROP-OFF DATE</string>
+    <string name="order_details_title_pick_up_time_title">PICK-UP TIME</string>
+    <string name="order_details_title_pick_up_date_title">PICK-UP DATE</string>
+    <string name="order_details_title_customer_title">CUSTOMER</string>
+    <string name="order_details_basket_title">BASKET</string>
+    <string name="order_details_price_title">PRICE</string>
+    <string name="order_details_status_title">STATUS</string>
+    <string name="order_details_notes_title">NOTES</string>
+    <string name="order_details_type_title">ORDER TYPE</string>
+    <string name="address_title">ADDRESS</string>
+    <string name="settings_address_title">ADDRESS</string>
+
+    <string name="courier_label">COURIER</string>
 </resources>

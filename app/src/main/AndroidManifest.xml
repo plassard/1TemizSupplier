@@ -21,7 +21,8 @@
         <activity android:name=".ui.screens.authorization.EnterEmailActivity" />
         <activity android:name=".ui.screens.authorization.EnterPasswordActivity" />
         <activity android:name=".ui.screens.MainActivity" />
-        <activity android:name=".ui.screens.SettingsActivity"></activity>
+        <activity android:name=".ui.screens.SettingsActivity" />
+        <activity android:name=".ui.screens.OrderDetailsActivity"></activity>
     </application>
 
 </manifest>

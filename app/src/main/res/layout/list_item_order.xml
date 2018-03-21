@@ -15,7 +15,7 @@
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:paddingStart="12dp"
-        android:paddingTop="12dp"
+        android:paddingTop="6dp"
         >
 
         <RelativeLayout
@@ -70,7 +70,7 @@
             android:id="@+id/linlay1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal"
             android:weightSum="4">
 
@@ -153,11 +153,11 @@
 
         <com.digitaldna.supplier.widgets.OrderStatusView
             android:id="@+id/os_status"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_alignBottom="@+id/linlay3"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+android:textAlignment="center"
             android:gravity="end" />
     </RelativeLayout>
     </LinearLayout>
