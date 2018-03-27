@@ -42,6 +42,10 @@ public class OrdersBean {
     @JsonProperty("OrderNumber")
     private String mOrderNumber;
 
+    @Nullable
+    @JsonProperty("OrderID")
+    private Integer mOrderID;
+
     private boolean wasViewed = false;
 
     @Nullable
@@ -57,6 +61,11 @@ public class OrdersBean {
     @Nullable
     public Integer getmOrderStatusID() {
         return mOrderStatusID;
+    }
+
+    @Nullable
+    public Integer getOrderID() {
+        return mOrderID;
     }
 
     @Nullable

@@ -128,10 +128,10 @@
 
             <ImageView
                 android:id="@+id/iv_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/svg_ic_calendar_blue_24dp"/>
+                android:src="@drawable/svg_ic_dollar_blue_40dp"/>
 
             <TextView
                 android:id="@+id/tv_price"

@@ -60,4 +60,6 @@
     <string name="settings_address_title">ADDRESS</string>
 
     <string name="courier_label">COURIER</string>
+
+    <string name="order_number">Order #</string>
 </resources>

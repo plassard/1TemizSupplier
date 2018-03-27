@@ -137,7 +137,7 @@ try {
 
 private void openOrderDetailsScreen(OrdersBean orderItem){
     Intent intent = new Intent(context, OrderDetailsActivity.class);
-    intent.putExtra("orderID", orderItem.getOrderNumber());
+    intent.putExtra("orderID", orderItem.getOrderID());
     context.startActivity(intent);
 }
 

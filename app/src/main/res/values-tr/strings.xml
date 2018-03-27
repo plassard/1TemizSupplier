@@ -22,4 +22,5 @@
     <string name="current_balance">Current balance</string>
 
     <string name="today">Bugün</string>
+    <string name="order_number">Order #</string>
 </resources>
