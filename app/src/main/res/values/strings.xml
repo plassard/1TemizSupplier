@@ -48,7 +48,8 @@
     <string name="order_details_title_drop_off_time_title">DROP-OFF TIME</string>
     <string name="order_details_title_drop_off_date_title">DROP-OFF DATE</string>
     <string name="order_details_title_pick_up_time_title">PICK-UP TIME</string>
-    <string name="order_details_title_pick_up_date_title">PICK-UP DATE</string>
+    <string name="order_details_title_pick_up_date_and_time_">PICK-UP DATE AND TIME</string>
+    <string name="order_details_title_drop_off_date_and_time_">DROP-OFF DATE AND TIME</string>
     <string name="order_details_title_customer_title">CUSTOMER</string>
     <string name="order_details_basket_title">BASKET</string>
     <string name="order_details_price_title">PRICE</string>

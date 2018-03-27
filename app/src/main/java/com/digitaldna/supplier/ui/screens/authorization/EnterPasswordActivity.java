@@ -48,6 +48,7 @@ public class EnterPasswordActivity extends Activity {
             startActivity(intent);*/
         });
 
+        //this is probably redundant
         retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.HOST_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

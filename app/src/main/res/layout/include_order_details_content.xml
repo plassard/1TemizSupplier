@@ -164,7 +164,7 @@
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:layout_weight="1"
-            android:text="@string/order_details_title_drop_off_time_title"
+            android:text="@string/order_details_title_pick_up_date_and_time_"
             android:textAllCaps="true"/>
 
         <TextView
@@ -175,8 +175,8 @@
             android:layout_marginLeft="12dp"
             android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:text="@string/order_details_title_drop_off_date_title"
-            android:textAllCaps="true"/>
+            android:text="@string/order_details_title_drop_off_date_and_time_"
+            android:textAllCaps="true" />
     </LinearLayout>
 
     <LinearLayout
