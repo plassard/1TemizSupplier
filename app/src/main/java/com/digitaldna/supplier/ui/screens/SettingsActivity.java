@@ -22,13 +22,14 @@ public class SettingsActivity extends Activity {
 
         ImageView ivProfilePicture = (ImageView)findViewById(R.id.iv_avatar);
 
-        Picasso.with(this)
-                .load(PrefProvider.getProfilePictureURL(this))
-                .placeholder(R.drawable.svg_ic_commend_rating_blue_40dp)
-                .error(R.drawable.svg_ic_commend_rating_blue_40dp)
-                .transform(new ImageToCircleTransform())
-                .into(ivProfilePicture);
-
+        try {
+           Picasso.with(this)
+                   .load(PrefProvider.getProfilePictureURL(this))
+                   .placeholder(R.drawable.svg_ic_commend_rating_blue_40dp)
+                   .error(R.drawable.svg_ic_commend_rating_blue_40dp)
+                   .transform(new ImageToCircleTransform())
+                   .into(ivProfilePicture);
+        }catch (Exception e) {}
         TextView tvSupplierTitle = (TextView)findViewById(R.id.tv_full_name);
         tvSupplierTitle.setText(PrefProvider.getSupplierTitle(this));
 

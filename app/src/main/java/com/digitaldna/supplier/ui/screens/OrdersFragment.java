@@ -21,7 +21,7 @@ import com.digitaldna.supplier.network.RestClient;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
 import com.digitaldna.supplier.network.beans.OrdersBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
-import com.digitaldna.supplier.network.requests.OrdersRequest;
+import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.ui.screens.orders.TabsPagerAdapter;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.widgets.OrderStatusView;
@@ -112,7 +112,7 @@ public class OrdersFragment extends Fragment {
        /* tlTabs.setupWithViewPager(vpPager);
         vpPager.setOffscreenPageLimit(2);*/
 
-        OrdersRequest ordersRequest = new OrdersRequest("eozturk782@gmail.com", PrefProvider.getTicket(getContext()));
+        BasicRequest ordersRequest = new BasicRequest("eozturk782@gmail.com", PrefProvider.getTicket(getContext()));
 
         RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
                 .subscribeOn(Schedulers.io())

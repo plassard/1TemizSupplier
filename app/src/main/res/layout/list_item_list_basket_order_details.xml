@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/CharcoalSmallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Camp shirt"/>
+
+    <TextView
+        android:id="@+id/tv_sub_title"
+        style="@style/Charcoal40XXSmallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        tools:text="2 items"/>
+
+    <TextView
+        android:id="@+id/tv_order_price"
+        style="@style/CharcoalSmallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        tools:text="$3"/>
+
+</RelativeLayout>

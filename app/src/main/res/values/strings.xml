@@ -50,11 +50,19 @@
     <string name="order_details_title_pick_up_time_title">PICK-UP TIME</string>
     <string name="order_details_title_pick_up_date_and_time_">PICK-UP DATE AND TIME</string>
     <string name="order_details_title_drop_off_date_and_time_">DROP-OFF DATE AND TIME</string>
+
+    <string name="order_details_title_pick_up_status">PICK-UP STATUS</string>
+    <string name="order_details_title_drop_off_status">DROP-OFF STATUS</string>
+
+    <string name="order_details_title_payment_method">PAYMENT METHOD</string>
+    <string name="order_details_title_discount">DISCOUNT</string>
+
     <string name="order_details_title_customer_title">CUSTOMER</string>
     <string name="order_details_basket_title">BASKET</string>
     <string name="order_details_price_title">PRICE</string>
     <string name="order_details_status_title">STATUS</string>
-    <string name="order_details_notes_title">NOTES</string>
+    <string name="order_details_notes_title">ADDRESS NOTES</string>
+    <string name="order_details_order_notes_title">ORDER NOTES</string>
     <string name="order_details_type_title">ORDER TYPE</string>
     <string name="address_title">ADDRESS</string>
     <string name="settings_address_title">ADDRESS</string>
@@ -62,4 +70,12 @@
     <string name="courier_label">COURIER</string>
 
     <string name="order_number">Order #</string>
+
+    <string name="order_details_button_cancel">Cancel</string>
+    <string name="order_details_button_save">Save</string>
+
+    <string name="order_details_item">item</string>
+    <string name="order_details_items">items</string>
+
+    <string name="tr_lyra">₺</string>
 </resources>

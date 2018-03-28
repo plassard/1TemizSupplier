@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    >
 
 
 
@@ -25,7 +29,8 @@
             android:layout_marginRight="12dp"
             android:layout_weight="1"
             android:text="Order No # 54354343545"
-            android:textAllCaps="true"/>
+            android:textAllCaps="false"
+            android:textSize="18dp"/>
 
 
     </LinearLayout>
@@ -35,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:weightSum="2">
 
         <TextView
@@ -51,7 +56,8 @@
 
         <Spinner
             android:id="@+id/couriers_spinner"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
+            style="@style/CharcoalSmallText"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
@@ -61,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:weightSum="2">
 
         <TextView
@@ -73,6 +79,7 @@
             android:layout_marginRight="12dp"
             android:layout_weight="1"
             android:text="@string/order_details_status_title"
+
             android:textAllCaps="true"/>
 
         <TextView
@@ -103,10 +110,11 @@
 
             <ImageView
                 android:id="@+id/iv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/svg_ic_clock_blue_24dp"/>
+                android:src="@drawable/cleaning_30_27"
+                />
 
             <TextView
                 android:id="@+id/tv_status"
@@ -116,7 +124,9 @@
                 android:layout_marginStart="4dp"
                 android:layout_toEndOf="@+id/iv_status"
                 android:layout_toRightOf="@+id/iv_status"
-                tools:text="Cleaning"/>
+                tools:text="Cleaning"
+                android:textColor="@color/blue"
+                />
         </RelativeLayout>
 
         <RelativeLayout
@@ -131,7 +141,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/svg_ic_dollar_blue_40dp"/>
+                android:src="@drawable/usd_bag_30_37"/>
 
             <TextView
                 android:id="@+id/tv_price"
@@ -153,12 +163,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:weightSum="2">
 
         <TextView
             android:id="@+id/tv_time_title"
-            style="@style/Charcoal40XSmallText"
+            style="@style/Charcoal40XXSmallText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
@@ -169,7 +179,7 @@
 
         <TextView
             android:id="@+id/tv_date_title"
-            style="@style/Charcoal40XSmallText"
+            style="@style/Charcoal40XXSmallText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
@@ -201,14 +211,16 @@
                 android:src="@drawable/svg_ic_clock_blue_24dp"/>
 
             <TextView
-                android:id="@+id/tv_time"
-                style="@style/TextFieldOrderTime"
+                android:id="@+id/tv_pickup"
+                style="@style/CharcoalSmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:layout_toEndOf="@+id/iv_clock"
                 android:layout_toRightOf="@+id/iv_clock"
-                tools:text="16:00 - 18:00"/>
+                tools:text="12.03.2018 16:00 - 18:00" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -223,11 +235,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/svg_ic_calendar_blue_24dp"/>
+                android:src="@drawable/svg_ic_clock_blue_24dp"/>
 
             <TextView
-                android:id="@+id/tv_date"
-                style="@style/CharcoalMediumText"
+                android:id="@+id/tv_dropoff"
+                style="@style/CharcoalSmallText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -236,42 +248,41 @@
                 android:layout_toEndOf="@+id/iv_calendar"
                 android:layout_toRightOf="@+id/iv_calendar"
                 android:textAllCaps="true"
-                tools:text="Today"/>
+                tools:text="12.03.2018 16:00 - 18:00" />
         </RelativeLayout>
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:orientation="horizontal"
+        android:layout_marginTop="16dp"
         android:weightSum="2">
 
-        <View
+        <TextView
+            android:id="@+id/tv_pickupstatus"
+            style="@style/Charcoal40XSmallText"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:layout_weight="1"
-            android:background="@color/gray"/>
+            android:text="@string/order_details_title_pick_up_status"
+            android:textAllCaps="true"/>
 
-        <View
+        <TextView
+            android:id="@+id/tv_dropoffstatus"
+            style="@style/Charcoal40XSmallText"
             android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:background="@color/gray"/>
-
+            android:text="@string/order_details_title_drop_off_status"
+            android:textAllCaps="true" />
     </LinearLayout>
 
-    <TextView
-        style="@style/Charcoal40XSmallText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/order_details_type_title"
-        android:textAllCaps="true"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -280,32 +291,53 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:layout_weight="1">
 
-            <com.digitaldna.supplier.widgets.OrderStatusView
-                android:id="@+id/os_status"
+
+            <TextView
+                android:id="@+id/tv_status_buttontext"
+                style="@style/CharcoalSmallText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </FrameLayout>
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                tools:text="Late up is not realized"
+                />
+        </RelativeLayout>
 
-        <View
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="@color/gray"
-            android:visibility="gone"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1">
 
+
+
+            <TextView
+                android:id="@+id/tv_dropoffstatus_text"
+                style="@style/CharcoalSmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:textAllCaps="false"
+                tools:text="Drop off is not"/>
+        </RelativeLayout>
     </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/gray"/>
 
     <TextView
@@ -339,12 +371,6 @@
             android:layout_toEndOf="@+id/iv_avatar"
             android:layout_toRightOf="@+id/iv_avatar"
             tools:text="22 Kuhic Crossroad"/>
-
-        <ImageView
-            android:id="@+id/iv_phone_arrow"
-            style="@style/RightArrowStyle"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"/>
 
     </RelativeLayout>
 
@@ -392,7 +418,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@color/gray"
-        android:visibility="visible"/>
+        android:visibility="invisible"/>
 
     <TextView
         style="@style/Charcoal40XSmallText"
@@ -427,11 +453,90 @@
     </RelativeLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:weightSum="2">
+
+        <TextView
+
+            style="@style/Charcoal40XSmallText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:text="@string/order_details_title_payment_method"
+            android:textAllCaps="true"/>
+
+        <TextView
+
+            style="@style/Charcoal40XSmallText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/order_details_title_discount"
+            android:textAllCaps="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1">
+
+
+            <TextView
+                android:id="@+id/tv_payment_method"
+                style="@style/CharcoalSmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                tools:text="Pending"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1">
+
+
+
+            <TextView
+                android:id="@+id/tv_discount"
+                style="@style/CharcoalSmallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:textAllCaps="false"
+                tools:text="Drop off is not"/>
+        </RelativeLayout>
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/rl_basket_row_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+
         android:layout_marginTop="8dp">
 
         <View
@@ -475,6 +580,41 @@
             android:layout_centerVertical="true"
             android:text="@string/order_details_price_title"
             android:textAllCaps="true"/>
+    </RelativeLayout>
+<LinearLayout
+    android:id="@+id/ll_content_products"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingLeft="6dp"
+    >
+
+</LinearLayout>
+
+
+    <TextView
+        style="@style/Charcoal40XSmallText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/order_details_order_notes_title"
+        android:textAllCaps="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+
+
+        <TextView
+            android:id="@+id/tv_notes_to_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            tools:text="Please take care of my silk shirt and Armani suit. Thanks!"/>
     </RelativeLayout>
 
 </LinearLayout>

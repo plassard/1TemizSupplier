@@ -2,7 +2,7 @@ package com.digitaldna.supplier.network.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OrdersRequest {
+public class BasicRequest {
 
     @JsonProperty("UserID")
     private String mUserID;
@@ -10,7 +10,7 @@ public class OrdersRequest {
     @JsonProperty("Ticket")
     private String mTicket;
 
-    public OrdersRequest(String userId, String ticket) {
+    public BasicRequest(String userId, String ticket) {
        // super(ticket, userId);
         mUserID = userId;
         mTicket = ticket;

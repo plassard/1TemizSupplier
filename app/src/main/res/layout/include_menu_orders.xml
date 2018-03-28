@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:src="@drawable/svg_ic_cart_blue_40dp"/>
+            android:src="@drawable/svg_ic_dollar_blue_40dp"/>
 
         <LinearLayout
 

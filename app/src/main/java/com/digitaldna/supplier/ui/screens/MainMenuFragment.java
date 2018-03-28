@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
+import com.digitaldna.supplier.network.NetworkAPIsInterface;
+import com.digitaldna.supplier.network.RestClient;
+import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
+import com.digitaldna.supplier.network.beans.SupplierSummaryBean;
+import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
+import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class MainMenuFragment extends Fragment {
@@ -66,6 +76,7 @@ public class MainMenuFragment extends Fragment {
     }
 
     private Animation anim1, anim2, anim3, anim4, anim5;
+    View viewMain;
 
     @Override
     public void onViewCreated(View v, @Nullable Bundle savedInstanceState) {
@@ -137,8 +148,36 @@ public class MainMenuFragment extends Fragment {
         textView.setText(string);
 
 
+        BasicRequest basicRequest = new BasicRequest(PrefProvider.getEmail(getContext()),
+                PrefProvider.getTicket(getContext()));
+
+        RestClient.getInstance().create(NetworkAPIsInterface.class).getSummary(basicRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .filter(result -> result != null)
+                .subscribe(result -> handleResult(result) , e -> handleError(e));
     }
 
+    private void handleResult(GetSupplierSummaryBean getSupplierSummaryBean){
+        SupplierSummaryBean summaryBean = getSupplierSummaryBean.getData();
+        Log.i("AAAA", summaryBean.getLateJobCount() + " " + summaryBean.getOnTimeJobCount());
+        TextView tvOnTime = (TextView)vMenuOrders.findViewById(R.id.tv_on_time_count);
+        TextView tvLate = (TextView)vMenuOrders.findViewById(R.id.tv_late_count);
+        TextView tvBalanceAmount = (TextView)vMenuEarnings.findViewById(R.id.tv_balance_amount);
+        TextView tvRating = (TextView)vMenuCommentsAndRating.findViewById(R.id.tv_rating);
+        TextView tvCommentsCount = (TextView)vMenuCommentsAndRating.findViewById(R.id.tv_comments_count);
+
+        tvOnTime.setText(String.valueOf(summaryBean.getOnTimeJobCount()));
+        tvLate.setText(String.valueOf(summaryBean.getLateJobCount()));
+        tvBalanceAmount.setText(getResources().getString(R.string.tr_lyra) + " " + String.valueOf(summaryBean.getEarnings()));
+        tvRating.setText(String.valueOf(summaryBean.getAverageRating()));
+        tvCommentsCount.setText(String.valueOf(summaryBean.getCommentCount()));
+
+    }
+
+    private void handleError(Throwable t){
+        Log.i("LLL", "ERRRRRR "+ BaseJsonBean.mStatusText);
+    }
 
 
 }

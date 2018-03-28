@@ -76,6 +76,13 @@
         <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
+    <style name="TemizEmptyButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:background">@drawable/button_rounded_empty_pink</item>
+        <item name="android:textColor">@color/textRadicalRed</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
     <style name="TabTitleCounter">
         <item name="android:textSize">@dimen/text_size_xxsmall</item>
         <item name="android:textStyle">bold</item>

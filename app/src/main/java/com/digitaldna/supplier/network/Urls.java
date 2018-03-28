@@ -22,5 +22,7 @@ public class Urls {
     public static final String GET_ORDERS = "GetSupplierOrders";
     public static final String GET_ORDER_DETAILS = "GetOrderDetails";
 
+    public static final String GET_SUPPLIER_SUMMARY_INFO = "GetSupplierSummaryInfo";
+
     public static final Integer PLATFORM = 50;
 }
