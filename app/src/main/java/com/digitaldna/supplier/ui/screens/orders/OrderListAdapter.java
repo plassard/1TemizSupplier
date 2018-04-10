@@ -14,10 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
+import com.digitaldna.supplier.network.Urls;
 import com.digitaldna.supplier.network.beans.OrdersBean;
 import com.digitaldna.supplier.ui.screens.OrderDetailsActivity;
+import com.digitaldna.supplier.utils.ImageToCircleTransform;
+import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.widgets.OrderStatusView;
 import com.digitaldna.supplier.widgets.StatusParams;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,6 +83,15 @@ public class OrderListAdapter extends BaseAdapter {
         TextView tvOrderNumber = (TextView) convertView.findViewById(R.id.tv_order);
         tvOrderNumber.setText(orderItem.getOrderNumber());
 
+        ImageView ivProfileClock = (ImageView)convertView.findViewById(R.id.iv_clock);
+        try{
+            Picasso.with(context)
+                    .load(Urls.HOST_URL + "/" + orderItem.getCourierImageURL())
+                    .placeholder(R.drawable.svg_ic_clock_blue_24dp)
+                    .error(R.drawable.svg_ic_clock_blue_24dp)
+                    .transform(new ImageToCircleTransform())
+                    .into(ivProfileClock);
+        }catch (Exception e) {}
 
         StatusParams mStatusParams;
         OrderStatusView osStatus;

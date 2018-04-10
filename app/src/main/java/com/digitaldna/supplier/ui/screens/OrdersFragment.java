@@ -98,6 +98,7 @@ public class OrdersFragment extends Fragment {
     private ViewPager vpPager;
     private TextView tvToolbarTitle;
     private ImageView ivToolbarLeft;
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -124,7 +125,9 @@ public class OrdersFragment extends Fragment {
         tvToolbarTitle.setText(getText(R.string.orders));
         ivToolbarLeft.setImageResource(R.drawable.svg_ic_menu_black_24dp);
 
+        ViewPager pager = (ViewPager)getActivity().findViewById(R.id.viewPager);
         ivToolbarLeft.setOnClickListener(v -> {
+            pager.setCurrentItem(0);
            /* if (mMainView != null) {
                 MainActivity.useVpMenuPager = false;
                 mMainView.openMainMenu();

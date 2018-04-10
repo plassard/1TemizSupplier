@@ -177,6 +177,15 @@ public class MainMenuFragment extends Fragment {
 
         earningsAmount = getResources().getString(R.string.tr_lyra) + " " + String.valueOf(summaryBean.getEarnings());
 
+        TextView tvOrdersCount = (TextView)vMenuOrders.findViewById(R.id.tv_orders_count);
+        int ordersCount = summaryBean.getLateJobCount() + summaryBean.getOnTimeJobCount();
+        tvOrdersCount.setText(String.valueOf(ordersCount));
+
+        ImageView ivOrdersCount = (ImageView)vMenuOrders.findViewById(R.id.iv_orders_count);
+        Animation animC = AnimationUtils.loadAnimation(getActivity(), R.anim.circle_attention);
+        ivOrdersCount.startAnimation(animC);
+
+
     }
 
     private void handleError(Throwable t){

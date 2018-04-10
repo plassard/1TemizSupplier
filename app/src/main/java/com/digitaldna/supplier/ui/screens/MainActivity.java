@@ -30,7 +30,12 @@ public class MainActivity extends FragmentActivity
 
     }
 
-   public void setPager(){
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
+    public void setPager(){
         pager.setCurrentItem(1);
    }
 

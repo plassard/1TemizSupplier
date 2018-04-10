@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/1TemizSupplier.iml" filepath="$PROJECT_DIR$/1TemizSupplier.iml" />
+      <module fileurl="file://C:\android_projects\1TemizSupplier\1TemizSupplier.iml" filepath="C:\android_projects\1TemizSupplier\1TemizSupplier.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

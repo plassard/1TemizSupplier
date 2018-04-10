@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -52,7 +53,8 @@ public class OrderDetailsActivity extends Activity {
                 .filter(result -> result != null)
                 .subscribe(result -> handleResult(result) , e -> handleError(e));
 
-
+        ImageView imageView = (ImageView)findViewById(R.id.iv_toolbar_close);
+        imageView.setOnClickListener(view -> onBackPressed());
 
     }
 
