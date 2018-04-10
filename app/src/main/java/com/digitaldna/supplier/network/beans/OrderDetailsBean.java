@@ -83,6 +83,11 @@ public class OrderDetailsBean {
     @JsonProperty("OrderNote")
     private String mOrderNote;
 
+    @Nullable
+    @JsonProperty("CourierImageURL")
+    private String mCourierImageURL;
+
+
     public String getOrderNote() {
         if(mOrderNote == null){
             mOrderNote = "No order note";

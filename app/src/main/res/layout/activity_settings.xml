@@ -46,7 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar_container"
-            android:layout_margin="12dp">
+            android:layout_margin="12dp"
+            android:id="@+id/cardView">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,7 +110,7 @@
                         android:text="@string/current_balance"
                         />
                     <TextView
-                        android:id="@+id/tv_balance_amount"
+                        android:id="@+id/tv_balance_amount_settings"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -179,7 +180,7 @@
                                     android:id="@+id/iv_phone_arrow"
                                     style="@style/RightArrowStyle"
                                     android:layout_gravity="end"
-                                    />
+                                    android:visibility="invisible" />
 
                             </FrameLayout>
 
@@ -189,7 +190,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="verified"
-                                android:textAllCaps="true"/>
+                                android:textAllCaps="true"
+                                android:visibility="invisible" />
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -254,7 +256,8 @@
                                 <ImageView
                                     android:id="@+id/iv_email_arrow"
                                     style="@style/RightArrowStyle"
-                                    android:layout_gravity="end"/>
+                                    android:layout_gravity="end"
+                                    android:visibility="invisible" />
 
                             </FrameLayout>
 
@@ -311,17 +314,9 @@
 
                         <ImageView
                             android:id="@+id/iv_password_arrow"
-                            style="@style/RightArrowStyle"/>
+                            style="@style/RightArrowStyle"
+                            android:visibility="invisible" />
 
-                        <TextView
-                            android:id="@+id/tv_password"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/iv_password"
-                            android:layout_toRightOf="@+id/iv_password"
-                            android:inputType="textPassword"
-                            tools:text="password"/>
                     </RelativeLayout>
 
                 </RelativeLayout>
@@ -433,11 +428,13 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/iv_language"
                             android:layout_toRightOf="@+id/iv_language"
-                            android:text="langae"/>
+                            android:text="langae"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/iv_language_arrow"
-                            style="@style/RightArrowStyle"/>
+                            style="@style/RightArrowStyle"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                 </RelativeLayout>
@@ -462,5 +459,17 @@
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/cardView"
+            android:layout_alignEnd="@+id/cardView"
+            android:layout_alignRight="@+id/cardView"
+            android:layout_marginBottom="179dp"
+            android:inputType="textPassword"
+            android:visibility="invisible"
+            tools:text="password" />
     </RelativeLayout>
 </ScrollView>

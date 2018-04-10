@@ -77,6 +77,7 @@ public class MainMenuFragment extends Fragment {
 
     private Animation anim1, anim2, anim3, anim4, anim5;
     View viewMain;
+    String earningsAmount;
 
     @Override
     public void onViewCreated(View v, @Nullable Bundle savedInstanceState) {
@@ -104,6 +105,7 @@ public class MainMenuFragment extends Fragment {
 
         vMenuSettings.setOnClickListener(view -> {
             Intent intent = new Intent(getContext(), SettingsActivity.class);
+            intent.putExtra("Earnings", earningsAmount);
             startActivity(intent);
         });
 
@@ -172,6 +174,8 @@ public class MainMenuFragment extends Fragment {
         tvBalanceAmount.setText(getResources().getString(R.string.tr_lyra) + " " + String.valueOf(summaryBean.getEarnings()));
         tvRating.setText(String.valueOf(summaryBean.getAverageRating()));
         tvCommentsCount.setText(String.valueOf(summaryBean.getCommentCount()));
+
+        earningsAmount = getResources().getString(R.string.tr_lyra) + " " + String.valueOf(summaryBean.getEarnings());
 
     }
 

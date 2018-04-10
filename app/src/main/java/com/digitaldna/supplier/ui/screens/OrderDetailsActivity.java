@@ -66,7 +66,7 @@ public class OrderDetailsActivity extends Activity {
         tvOrderStatus.setText(orderDetailsBean.getmOrderStatusText());
 
         TextView tvPrice = (TextView)findViewById(R.id.tv_price);
-        tvPrice.setText(orderDetailsBean.getTotalPrice() + "0");
+        tvPrice.setText(getResources().getString(R.string.tr_lyra) + orderDetailsBean.getTotalPrice() + "0");
 
         Spinner spinnerCouriers = (Spinner)findViewById(R.id.couriers_spinner);
         List<String> couriers = new ArrayList<>();
