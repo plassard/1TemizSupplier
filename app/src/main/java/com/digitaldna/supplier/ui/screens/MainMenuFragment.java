@@ -181,11 +181,17 @@ public class MainMenuFragment extends Fragment {
         int ordersCount = summaryBean.getLateJobCount() + summaryBean.getOnTimeJobCount();
         tvOrdersCount.setText(String.valueOf(ordersCount));
 
+
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         ImageView ivOrdersCount = (ImageView)vMenuOrders.findViewById(R.id.iv_orders_count);
         Animation animC = AnimationUtils.loadAnimation(getActivity(), R.anim.circle_attention);
         ivOrdersCount.startAnimation(animC);
-
-
     }
 
     private void handleError(Throwable t){

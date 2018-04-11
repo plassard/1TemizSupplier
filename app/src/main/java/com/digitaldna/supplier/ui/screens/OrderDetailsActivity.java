@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -23,6 +24,7 @@ import com.digitaldna.supplier.network.beans.OrderDetailsBean;
 import com.digitaldna.supplier.network.beans.OrderProductBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
+import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.utils.TextViewUtils;
 
@@ -34,6 +36,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class OrderDetailsActivity extends Activity {
+    Spinner spinnerCouriers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,8 @@ public class OrderDetailsActivity extends Activity {
         ImageView imageView = (ImageView)findViewById(R.id.iv_toolbar_close);
         imageView.setOnClickListener(view -> onBackPressed());
 
+        Button btnCancel = (Button)findViewById(R.id.b_cancel_order);
+        btnCancel.setOnClickListener(view -> finish());
     }
 
     private void handleResult(GetOrderDetailsBean getOrderDetailsBean){
@@ -70,7 +75,7 @@ public class OrderDetailsActivity extends Activity {
         TextView tvPrice = (TextView)findViewById(R.id.tv_price);
         tvPrice.setText(getResources().getString(R.string.tr_lyra) + orderDetailsBean.getTotalPrice() + "0");
 
-        Spinner spinnerCouriers = (Spinner)findViewById(R.id.couriers_spinner);
+        spinnerCouriers = (Spinner)findViewById(R.id.couriers_spinner);
         List<String> couriers = new ArrayList<>();
         if (orderDetailsBean.getmCouriersList() != null) {
             for (CouriersBean bean : orderDetailsBean.getmCouriersList()) {
@@ -86,7 +91,7 @@ public class OrderDetailsActivity extends Activity {
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
-                android.R.layout.simple_spinner_item,
+                R.layout.spinner_item,
                 couriers
         );
         spinnerCouriers.setAdapter(adapter);
@@ -123,6 +128,27 @@ public class OrderDetailsActivity extends Activity {
 
         TextView tvOrderNote = (TextView)findViewById(R.id.tv_notes_to_order);
         tvOrderNote.setText(orderDetailsBean.getOrderNote());
+
+        Button btnSave = (Button)findViewById(R.id.b_save_order);
+        btnSave.setOnClickListener(view -> {
+            Integer selectedCourierId = null;
+            for (CouriersBean bean : orderDetailsBean.getmCouriersList()) {
+                if(bean.getCourierName().equals(spinnerCouriers.getSelectedItem().toString()))
+                    selectedCourierId = bean.getCourierID();
+            }
+            SaveOrderDetailsRequest saveOrderRequest = new SaveOrderDetailsRequest(PrefProvider.getEmail(this),
+                    PrefProvider.getTicket(this),
+                    getIntent().getExtras().getInt("orderID"), selectedCourierId);
+
+            RestClient.getInstance().create(NetworkAPIsInterface.class).saveOrderDetails(saveOrderRequest)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .filter(result -> result != null)
+                    .subscribe(result -> {
+                        finish();
+                    } , e -> {});
+        });
+
     }
 
     private void handleError(Throwable t){

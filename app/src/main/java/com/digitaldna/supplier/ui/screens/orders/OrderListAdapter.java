@@ -18,7 +18,6 @@ import com.digitaldna.supplier.network.Urls;
 import com.digitaldna.supplier.network.beans.OrdersBean;
 import com.digitaldna.supplier.ui.screens.OrderDetailsActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
-import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.widgets.OrderStatusView;
 import com.digitaldna.supplier.widgets.StatusParams;
 import com.squareup.picasso.Picasso;
@@ -149,7 +148,13 @@ try {
     }
 
 private void openOrderDetailsScreen(OrdersBean orderItem){
+
     Intent intent = new Intent(context, OrderDetailsActivity.class);
+    try {
+        this.finalize();
+    } catch (Throwable throwable) {
+        throwable.printStackTrace();
+    }
     intent.putExtra("orderID", orderItem.getOrderID());
     context.startActivity(intent);
 }

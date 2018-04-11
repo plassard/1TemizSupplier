@@ -8,6 +8,7 @@ import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
 import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.network.requests.BasicRequest;
+import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
@@ -45,4 +46,9 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.GET_SUPPLIER_SUMMARY_INFO)
     Observable<GetSupplierSummaryBean> getSummary(@NonNull @Body BasicRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.ACCEPT_ORDER)
+    Observable<GetOrderDetailsBean> saveOrderDetails(@NonNull @Body SaveOrderDetailsRequest body);
+
 }

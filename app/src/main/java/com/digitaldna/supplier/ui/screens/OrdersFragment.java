@@ -113,14 +113,6 @@ public class OrdersFragment extends Fragment {
        /* tlTabs.setupWithViewPager(vpPager);
         vpPager.setOffscreenPageLimit(2);*/
 
-        BasicRequest ordersRequest = new BasicRequest("eozturk782@gmail.com", PrefProvider.getTicket(getContext()));
-
-        RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .filter(result -> result != null)
-                .map(GetOrdersBean::getData)
-                .subscribe(result -> handleResult(result) , e -> handleError(e));
 
         tvToolbarTitle.setText(getText(R.string.orders));
         ivToolbarLeft.setImageResource(R.drawable.svg_ic_menu_black_24dp);
@@ -135,6 +127,24 @@ public class OrdersFragment extends Fragment {
         });
 
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+Log.i("LLL", "onResume");
+        BasicRequest ordersRequest = new BasicRequest("eozturk782@gmail.com", PrefProvider.getTicket(getContext()));
+
+        RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .filter(result -> result != null)
+                .map(GetOrdersBean::getData)
+                .subscribe(result -> handleResult(result) , e -> handleError(e));
+    }
+
+
+
     public static List<OrdersBean> ordersToday;
     public static List<OrdersBean> ordersThisWeek;
     public static List<OrdersBean> ordersThisMonth;

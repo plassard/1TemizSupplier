@@ -32,6 +32,12 @@
         <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">24dp</item>
     </style>
 
+    <style name="MainMenuCardContentOrdersStyle">
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">16dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">24dp</item>
+    </style>
 
     <style name="CharcoalXLargeText">
         <item name="android:textColor">@color/textCharcoal</item>

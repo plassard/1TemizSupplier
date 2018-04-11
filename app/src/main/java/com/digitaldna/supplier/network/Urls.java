@@ -21,6 +21,8 @@ public class Urls {
 
     public static final String GET_ORDERS = "GetSupplierOrders";
     public static final String GET_ORDER_DETAILS = "GetOrderDetails";
+    public static final String ACCEPT_ORDER = "AcceptOrder";
+
 
     public static final String GET_SUPPLIER_SUMMARY_INFO = "GetSupplierSummaryInfo";
 

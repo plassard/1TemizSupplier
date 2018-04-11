@@ -54,11 +54,32 @@
             android:text="@string/courier_label"
             android:textAllCaps="true"/>
 
-        <Spinner
-            android:id="@+id/couriers_spinner"
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            style="@style/CharcoalSmallText"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/spinner_border"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/couriers_spinner"
+                android:layout_width="match_parent"
+                style="@style/CharcoalSmallText"
+                android:background="@drawable/spinner_border"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="right"
+                android:src="@drawable/spinner_down_arrow" />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 
