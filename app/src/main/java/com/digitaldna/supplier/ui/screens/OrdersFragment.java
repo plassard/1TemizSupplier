@@ -6,6 +6,8 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -22,7 +24,7 @@ import com.digitaldna.supplier.network.beans.GetOrdersBean;
 import com.digitaldna.supplier.network.beans.OrdersBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.BasicRequest;
-import com.digitaldna.supplier.ui.screens.orders.TabsPagerAdapter;
+import com.digitaldna.supplier.ui.screens.orders.PageFragment;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.widgets.OrderStatusView;
 import com.digitaldna.supplier.widgets.SimpleOnTabSelectedListener;
@@ -133,7 +135,7 @@ public class OrdersFragment extends Fragment {
     public void onResume() {
         super.onResume();
 Log.i("LLL", "onResume");
-        BasicRequest ordersRequest = new BasicRequest("eozturk782@gmail.com", PrefProvider.getTicket(getContext()));
+        BasicRequest ordersRequest = new BasicRequest(PrefProvider.getEmail(getContext()), PrefProvider.getTicket(getContext()));
 
         RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
                 .subscribeOn(Schedulers.io())
@@ -176,7 +178,7 @@ Log.i("LLL", "onResume");
 
             try {
                 orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
-            } catch (Exception e) { e.printStackTrace();Log.i("LLL", "ERRRRRR " + "ParseException " + i + " " + e); }
+            } catch (Exception e) { e.printStackTrace();Log.i("oginSupplierBean.getEmail()", "ERRRRRR " + "ParseException " + i + " " + e); }
 
             try{
                 if(orderDate.after(dateThisMonth)){
@@ -253,6 +255,42 @@ Log.i("LLL", "onResume");
                     tvCount.setTextColor(ContextCompat.getColor(getContext(), counterColor));
                 }
             }
+        }
+    }
+
+
+
+
+    public class TabsPagerAdapter extends FragmentPagerAdapter {
+
+
+
+        public TabsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            return PageFragment.newInstance(position + 1);
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position){
+                case 0:
+                    return getResources().getString(R.string.tab_today);
+                case 1:
+                    return getResources().getString(R.string.tab_this_week);
+                case 2:
+                    return getResources().getString(R.string.tab_this_month);
+            }
+            return null;
         }
     }
 

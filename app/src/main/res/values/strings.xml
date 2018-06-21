@@ -2,12 +2,16 @@
     <string name="app_name">1Temiz Supplier</string>
 
 
-    <string name="hint_email">Email or phone</string>
-    <string name="forgot_email">Forgot your email?</string>
+    <string name="hint_email">Enter your email</string>
+    <string name="email">EMAIL:</string>
     <string name="next">NEXT</string>
-    <string name="enter_your_password">Enter your password</string>
+    <string name="field_required">This field is required</string>
+    <string name="mail_error">You entered an incorrect mail</string>
+
+    <string name="password">PASSWORD:</string>
     <string name="forgot_password">Forgot your password?</string>
-    <string name="hint_password">Password</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="password_error">Enter a password at least 6 characters</string>
 
     <!--Main activity-->
     <string name="main_menu_title">MAIN MENU</string>
@@ -65,7 +69,6 @@
     <string name="order_details_order_notes_title">ORDER NOTES</string>
     <string name="order_details_type_title">ORDER TYPE</string>
     <string name="address_title">ADDRESS</string>
-    <string name="settings_address_title">ADDRESS</string>
 
     <string name="courier_label">COURIER</string>
 
@@ -78,4 +81,9 @@
     <string name="order_details_items">items</string>
 
     <string name="tr_lyra">₺</string>
+
+    <string name="tab_today">Today</string>
+    <string name="tab_this_week">This week</string>
+    <string name="tab_this_month">This month</string>
+
 </resources>

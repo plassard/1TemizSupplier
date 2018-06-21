@@ -4,23 +4,79 @@
     <string name="app_name">1Temiz Supplier</string>
 
 
-    <string name="hint_email">E-posta veya telefon</string>
-    <string name="forgot_email">E-posta adresinizi mi unuttunuz?</string>
-    <string name="next">İLERİ</string>
-    <string name="enter_your_password">Şifrenizi girin</string>
-    <string name="forgot_password">Şifrenizi mi unuttunuz?</string>
+    <string name="hint_email">Eposta adresini gir</string>
+    <string name="email">EPOSTA ADRESİ:</string>
+    <string name="field_required">Bu alan gereklidir</string>
+    <string name="mail_error">Hatalı eposta girdin</string>
 
+    <string name="next">İLERİ</string>
+    <string name="password">ŞİFRE:</string>
+    <string name="forgot_password">Şifrenizi mi unuttunuz?</string>
+    <string name="hint_password">Şifreni gir</string>
+    <string name="password_error">En az 6 karakterli bir şifre gir</string>
 
     <!--Main activity-->
     <string name="main_menu_title">MENÜ</string>
 
 
-    <string name="orders">Sipariş Geçmişi</string>
+    <string name="orders">Siparişler</string>
 
-    <string name="order_history_menu_on_time_title">ON TIME:</string>
+    <string name="order_history_menu_on_time_title">ZAMANINDA:</string>
+    <string name="order_history_menu_late_tile">GEÇ:</string>
+    <string name="earnings">Kazançlar</string>
+    <string name="main_menu_balance_title">KAZANÇ:</string>
+    <string name="rating_comment_menu_comment_and_rating">Yorum ve Puan</string>
+    <string name="rating_comment_menu_rating_title">PUAN:</string>
+    <string name="rating_comment_menu_comments_title">YORUM:</string>
+
+    <string name="menu_statostocs_title">İstatistik </string>
+    <string name="settings">Ayarlar</string>
 
     <string name="current_balance">Current balance</string>
 
     <string name="today">Bugün</string>
-    <string name="order_number">Order #</string>
+    <string name="order_number">Sipariş #</string>
+    <string name="courier_label">KURYE</string>
+
+    <string name="order_order_title">Sipariş:</string>
+    <string name="order_details_title">SİPARİŞ DETAYI</string>
+    <string name="order_details_button_cancel_drop_off">Cancel Drop Off</string>
+    <string name="order_details_paid">Paid</string>
+    <string name="order_details_button_add_items">Add items</string>
+    <string name="order_details_title_drop_off_time_title">DROP-OFF TIME</string>
+    <string name="order_details_title_drop_off_date_title">DROP-OFF DATE</string>
+    <string name="order_details_title_pick_up_time_title">PICK-UP TIME</string>
+    <string name="order_details_title_pick_up_date_and_time_">ALIM TARİHİ VE ZAMANI</string>
+    <string name="order_details_title_drop_off_date_and_time_">TESLİM TARİHİ VE ZAMANI</string>
+
+    <string name="order_details_title_pick_up_status">ALIM DURUMU</string>
+    <string name="order_details_title_drop_off_status">TESLİM DURUMU</string>
+
+    <string name="order_details_title_payment_method">ÖDEME ŞEKLİ</string>
+    <string name="order_details_title_discount">İNDİRİM</string>
+
+    <string name="order_details_title_customer_title">MÜŞTERİ</string>
+    <string name="order_details_basket_title">SEPET</string>
+    <string name="order_details_price_title">TUTAR</string>
+    <string name="order_details_status_title">DURUM</string>
+    <string name="order_details_notes_title">ADRES NOTLARI</string>
+    <string name="order_details_order_notes_title">SİPARİŞ NOTLARI</string>
+    <string name="order_details_type_title">ORDER TYPE</string>
+
+    <string name="order_details_button_cancel">İptal</string>
+    <string name="order_details_button_save">Kaydet</string>
+
+    <string name="order_details_item">item</string>
+    <string name="order_details_items">items</string>
+
+    <string name="address_title">ADRES</string>
+
+    <string name="tab_today">BUGÜN</string>
+    <string name="tab_this_week">BU HAFTA</string>
+    <string name="tab_this_month">BU AY</string>
+
+
+    <string name="customer_order_title">Müşteri:</string>
+    <string name="district_order_title">Mahalle:</string>
+
 </resources>
