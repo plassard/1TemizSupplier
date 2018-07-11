@@ -1,13 +1,17 @@
 package com.digitaldna.supplier.ui.screens.authorization;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +25,8 @@ import com.digitaldna.supplier.network.beans.LoginSupplierBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.ui.screens.MainActivity;
+import com.digitaldna.supplier.ui.screens.MainMenuFragment;
+import com.digitaldna.supplier.ui.screens.OrdersFragment;
 import com.digitaldna.supplier.utils.PrefProvider;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -77,23 +83,48 @@ public class EnterPasswordActivity extends Activity {
     private void handleResult(GetLoginBean getLoginBean){
         Log.i("LLL", "handleResult" + getLoginBean.toString());
         LoginSupplierBean loginSupplierBean = getLoginBean.getData();
+
+        Log.i("LLL", "handleResult loginSupplierBean.getIsPhoneNumberVerified()" + loginSupplierBean.getIsPhoneNumberVerified());
         PrefProvider.saveEmail(this, loginSupplierBean.getEmail());
         PrefProvider.saveTicket(this, loginSupplierBean.getTicket());
-
-        openMain();
-
         String mProfilePictureUrl = loginSupplierBean.getProfilePictureURL();
         PrefProvider.saveProfilePictureURL(this, !TextUtils.isEmpty(mProfilePictureUrl) ? "" + Urls.HOST_URL + "/" + mProfilePictureUrl : "");
-
         PrefProvider.saveSupplierTitle(this, loginSupplierBean.getTitle());
+
+        PrefProvider.saveCountryID(this, loginSupplierBean.getCountryID());
+        PrefProvider.savePhoneNumber(this, loginSupplierBean.getPhoneNumber());
+
+        if(loginSupplierBean.getIsPhoneNumberVerified())
+            openMain();
+        else {
+            Intent intent = new Intent(this, SmsVerificationActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.transparency_in_screen, R.anim.transparency_out);
+        }
     }
 
     private void handleError(Throwable t){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(R.layout.dialog_info);
+        TextView text = (TextView) dialog.findViewById(R.id.textViewErrorMessage);
+        text.setText(BaseJsonBean.mStatusText);
+        Button dialogButton = (Button) dialog.findViewById(R.id.buttonOK);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
         Log.i("LLL", "ERRRRRR "+ BaseJsonBean.mStatusText);
         Log.i("LLL", "ERRRRRR "+ BaseJsonBean.STATUS_TEXT);
     }
 
     private void openMain(){
+        MainMenuFragment.deleteInstance();
+        OrdersFragment.deleteInstance();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.transparency_in_screen, R.anim.transparency_out);

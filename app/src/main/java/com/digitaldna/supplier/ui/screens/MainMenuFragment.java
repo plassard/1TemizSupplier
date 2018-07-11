@@ -38,8 +38,14 @@ public class MainMenuFragment extends Fragment {
 
     private static MainMenuFragment instance = null;
 
-    public static MainMenuFragment newInstance(String text){
+    public static MainMenuFragment deleteInstance(){
+        instance = null;
+        return null;
+    };
 
+    public static MainMenuFragment newInstance(String text){
+        Log.i("LLL", "MainMenuFragment newInstance" + text);
+        Log.i("LLL", "MainMenuFragment instance" + instance);
         if(instance == null){
             // new instance
             instance = new MainMenuFragment();
@@ -81,7 +87,7 @@ public class MainMenuFragment extends Fragment {
 
     @Override
     public void onViewCreated(View v, @Nullable Bundle savedInstanceState) {
-
+        Log.i("LLL", "MainMenuFragment onViewCreated");
         vMenuOrders = v.findViewById(R.id.menu_orders);
         vMenuEarnings = v.findViewById(R.id.menu_earnings);
         vMenuCommentsAndRating = v.findViewById(R.id.menu_comments_and_ratings);
@@ -102,13 +108,15 @@ public class MainMenuFragment extends Fragment {
         vMenuOrders.setOnClickListener(view -> {
             pager.setCurrentItem(1);
         });
-
+        Log.i("LLL", "MainMenuFragment view pager");
         vMenuSettings.setOnClickListener(view -> {
             Intent intent = new Intent(getContext(), SettingsActivity.class);
             intent.putExtra("Earnings", earningsAmount);
             startActivity(intent);
         });
 
+        anim1 = null;
+        anim2 = null;
         anim1 = AnimationUtils.loadAnimation(getActivity(), R.anim.transparency_in);
         anim2 = AnimationUtils.loadAnimation(getActivity(), R.anim.transparency_in);
         anim3 = AnimationUtils.loadAnimation(getActivity(), R.anim.transparency_in);
@@ -149,7 +157,7 @@ public class MainMenuFragment extends Fragment {
 
         textView.setText(string);
 
-
+        Log.i("LLL", "MainMenuFragment set text" + string);
         BasicRequest basicRequest = new BasicRequest(PrefProvider.getEmail(getContext()),
                 PrefProvider.getTicket(getContext()));
 
@@ -161,6 +169,7 @@ public class MainMenuFragment extends Fragment {
     }
 
     private void handleResult(GetSupplierSummaryBean getSupplierSummaryBean){
+        Log.i("LLL", "MainMenuFragment success");
         SupplierSummaryBean summaryBean = getSupplierSummaryBean.getData();
         Log.i("AAAA", summaryBean.getLateJobCount() + " " + summaryBean.getOnTimeJobCount());
         TextView tvOnTime = (TextView)vMenuOrders.findViewById(R.id.tv_on_time_count);
@@ -182,7 +191,7 @@ public class MainMenuFragment extends Fragment {
         tvOrdersCount.setText(String.valueOf(ordersCount));
 
 
-
+        Log.i("LLL", "MainMenuFragment success");
 
     }
 
@@ -195,6 +204,8 @@ public class MainMenuFragment extends Fragment {
     }
 
     private void handleError(Throwable t){
+
+        Log.i("LLL", "MainMenuFragment onViewCreated");
         Log.i("LLL", "ERRRRRR "+ BaseJsonBean.mStatusText);
     }
 

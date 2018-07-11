@@ -152,12 +152,12 @@
 
         <com.digitaldna.supplier.widgets.OrderStatusView
             android:id="@+id/os_status"
-            android:layout_width="80dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-android:textAlignment="center"
-            android:gravity="end" />
+            android:layout_centerVertical="true"
+            android:gravity="end"
+            android:textAlignment="center" />
     </RelativeLayout>
     </LinearLayout>
 

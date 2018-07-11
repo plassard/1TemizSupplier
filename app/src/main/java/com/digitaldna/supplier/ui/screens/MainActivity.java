@@ -3,6 +3,7 @@ package com.digitaldna.supplier.ui.screens;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.digitaldna.supplier.R;
 
@@ -23,11 +24,14 @@ public class MainActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i("LLL", "MainActivity onViewCreated");
 
         pager = (ViewPager) findViewById(R.id.viewPager);
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         pager.addOnPageChangeListener(this);
 
+        Log.i("LLL", "MainActivity onViewCreated2");
+        Log.i("LLL", "MainActivity onViewCreated2" + pager.toString());
     }
 
     @Override
@@ -60,9 +64,9 @@ public class MainActivity extends FragmentActivity
      */
     @Override
     public void onPageSelected(int position) {
-if(position == 1){
-   // OrderListAdapter.startAnimation(this, 0);
-}
+        if(position == 1){
+           // OrderListAdapter.startAnimation(this, 0);
+        }
     }
 
     /**
@@ -73,9 +77,5 @@ if(position == 1){
     public void onPageScrollStateChanged(int position) {
 
     }
-
-
-
-
 
 }

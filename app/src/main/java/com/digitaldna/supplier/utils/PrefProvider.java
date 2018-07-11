@@ -85,6 +85,32 @@ public class PrefProvider {
         return mPreferences.getString(PreferencesContract.Network.TICKET, "");
     }
 
+    static public void saveCountryID(Context context, Integer CountryID){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putInt(PreferencesContract.Supplier.COUNTRY_ID, CountryID)
+                .commit();
+    }
+
+    static public Integer getCountryID(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getInt(PreferencesContract.Supplier.COUNTRY_ID, -1);
+    }
+
+    static public void savePhoneNumber(Context context, String PhoneNumber){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putString(PreferencesContract.Supplier.PHONE_NUMBER, PhoneNumber)
+                .commit();
+    }
+
+    static public String getPhoneNumber(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getString(PreferencesContract.Supplier.PHONE_NUMBER, "");
+    }
+
+
+
     static public void logOut(Context context){
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
         mPreferences.edit()

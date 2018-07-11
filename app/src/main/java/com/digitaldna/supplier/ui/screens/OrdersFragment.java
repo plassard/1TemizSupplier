@@ -79,6 +79,10 @@ public class OrdersFragment extends Fragment {
         }
     }
 
+    public static OrdersFragment deleteInstance(){
+        instance = null;
+        return null;
+    }
 
     @Nullable
     @Override
@@ -178,7 +182,7 @@ Log.i("LLL", "onResume");
 
             try {
                 orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
-            } catch (Exception e) { e.printStackTrace();Log.i("oginSupplierBean.getEmail()", "ERRRRRR " + "ParseException " + i + " " + e); }
+            } catch (Exception e) { e.printStackTrace();Log.i("oginSuean.getEmail()", "ERRRRRR " + "ParseException " + i + " " + e); }
 
             try{
                 if(orderDate.after(dateThisMonth)){

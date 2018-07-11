@@ -22,10 +22,11 @@ public class LoginRequest {
     private Integer mLanguage;
 
     public LoginRequest(String userId, String password, Integer langId) {
-       // super(ticket, userId);
+
         mUserID = userId;
         mPassword = password;
         mLanguage = langId;
+        Log.i("LoginRequest mLanguage", " " + langId + LoginRequest.this.toString());
     }
 
 }

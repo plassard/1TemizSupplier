@@ -27,7 +27,7 @@ public class SplashActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        if(PrefProvider.getLanguageId(this) == -1){
+        if(PrefProvider.getLanguageId(this) == -1 || PrefProvider.getLanguageId(this) == null){
             if (Locale.getDefault().getLanguage().equals("tr")  || Locale.getDefault().getLanguage().equals("TR")) {
                 PrefProvider.saveLanguage(this, "tr");
                 PrefProvider.saveLanguageId(this, 0);

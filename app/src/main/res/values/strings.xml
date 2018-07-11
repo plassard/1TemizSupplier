@@ -86,4 +86,13 @@
     <string name="tab_this_week">This week</string>
     <string name="tab_this_month">This month</string>
 
+    <string name="ok">OK</string>
+    <string name="sms_verification_correctly">Are you sure you entered SMS verification correctly?</string>
+    <string name="resend">Resend SMS again</string>
+    <string name="verification_label">VERIFICATION</string>
+    <string name="submit">Submit</string>
+    <string name="skip">Skip</string>
+    <string name="information">We sent you a SMS verification code.\n
+Please enter it below:</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -5,13 +5,13 @@ import android.support.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LoginSupplierBean {
-    @Nullable
-    @JsonProperty("Title")
+public class VerificationCodeBean {
+  /*  @Nullable
+    @JsonProperty("Countdown")
     private String mTitle;
 
     @Nullable
-    @JsonProperty("Email")
+    @JsonProperty("isPhoneNumberVerified")
     private String mEmail;
 
     @Nullable
@@ -21,21 +21,17 @@ public class LoginSupplierBean {
     @Nullable
     @JsonProperty("Ticket")
     private String mTicket;
+*/
 
     @Nullable
-    @JsonProperty("CountryID")
-    private Integer mCountryID;
-
-    @Nullable
-    @JsonProperty("PhoneNumber")
-    private String mPhoneNumber;
-
+    @JsonProperty("Countdown")
+    private Integer mCountdown;
 
     @Nullable
     @JsonProperty("isPhoneNumberVerified")
     private Boolean mIsPhoneNumberVerified;
 
-    @Nullable
+  /*  @Nullable
     public String getTitle() {
         return mTitle;
     }
@@ -79,16 +75,15 @@ public class LoginSupplierBean {
 
     public void setLanguage(@Nullable Long language) {
         mLanguage = language;
-    }*/
-
+    }
+*/
     @Nullable
-    public Integer getCountryID() {
-        return mCountryID;
+    public Integer getCountdown() {
+        return mCountdown;
     }
 
-    @Nullable
-    public String getPhoneNumber() {
-        return mPhoneNumber;
+    public void setCountdown(@Nullable Integer countdown) {
+        mCountdown = countdown;
     }
 
     @Nullable

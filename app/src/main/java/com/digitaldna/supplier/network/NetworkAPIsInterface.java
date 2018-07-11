@@ -5,7 +5,9 @@ import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
 import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
+import com.digitaldna.supplier.network.beans.GetVerifCodeBean;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
+import com.digitaldna.supplier.network.requests.GetVerificationCodeRequest;
 import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
@@ -34,6 +36,14 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.LOGIN)
     Observable<GetLoginBean> login(@NonNull @Body LoginRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.MEMBERSHIP +  "/" + Urls.GET_VERIFICATION_CODE)
+    Observable<GetVerifCodeBean> getVerifCode(@NonNull @Body GetVerificationCodeRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.MEMBERSHIP +  "/" + Urls.VERIFY_USER_PHONE_NUMBER)
+    Observable<GetVerifCodeBean> verifyPhoneNumber(@NonNull @Body GetVerificationCodeRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.GET_ORDERS)

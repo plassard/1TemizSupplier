@@ -30,4 +30,8 @@
     <color name="mayaBlue">#FF5BBAFF</color>
     <color name="textGray">@color/gray</color>
     <color name="textRadicalRed">@color/radicalRed</color>
+
+    <color name="wallet_bright_foreground_holo_light">#ff000000</color>
+    <color name="mavi">#52a3ff</color>
+    <color name="buton_gri">#10F2F2F2</color>
 </resources>

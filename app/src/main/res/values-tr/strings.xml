@@ -66,8 +66,8 @@
     <string name="order_details_button_cancel">İptal</string>
     <string name="order_details_button_save">Kaydet</string>
 
-    <string name="order_details_item">item</string>
-    <string name="order_details_items">items</string>
+    <string name="order_details_item">adet</string>
+    <string name="order_details_items">adet</string>
 
     <string name="address_title">ADRES</string>
 
@@ -79,4 +79,15 @@
     <string name="customer_order_title">Müşteri:</string>
     <string name="district_order_title">Mahalle:</string>
 
+    <string name="ok">TAMAM</string>
+
+    <string name="sms_verification_correctly">Aktivasyon kodunu doğru girdiğine emin misin?</string>
+    <string name="resend">Tekrar SMS gönder</string>
+    <string name="verification_label">SMS AKTİVASYONU</string>
+
+    <string name="submit">Kaydet</string>
+    <string name="skip">Atla</string>
+
+    <string name="information">Doğrulama Kodu Gönderildi.</string>
+    <string name="delete">Sil</string>
 </resources>
