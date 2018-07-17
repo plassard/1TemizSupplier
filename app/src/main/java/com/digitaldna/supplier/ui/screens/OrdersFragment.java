@@ -1,6 +1,7 @@
 package com.digitaldna.supplier.ui.screens;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
@@ -149,7 +151,16 @@ Log.i("LLL", "onResume");
                 .subscribe(result -> handleResult(result) , e -> handleError(e));
     }
 
+   /* public static void getOrdersList(Context context){
+        BasicRequest ordersRequest = new BasicRequest(PrefProvider.getEmail(context), PrefProvider.getTicket(context));
 
+        RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .filter(result -> result != null)
+                .map(GetOrdersBean::getData)
+                .subscribe(result -> handleResult(result) , e -> handleError(e));
+    }*/
 
     public static List<OrdersBean> ordersToday;
     public static List<OrdersBean> ordersThisWeek;
@@ -176,10 +187,12 @@ Log.i("LLL", "onResume");
         c.setTime(dateToday);
         c.add(Calendar.WEEK_OF_YEAR, -1);
         dateThisWeek = c.getTime();
-
+        for(int i = 0; i < ordersBean.size(); i++) {
+            if (ordersBean.get(i).getCancelCountdown() > 0)
+                    ordersToday.add(ordersBean.get(i));
+        }
         Date orderDate = null;
         for(int i = 0; i < ordersBean.size(); i++){
-
             try {
                 orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
             } catch (Exception e) { e.printStackTrace();Log.i("oginSuean.getEmail()", "ERRRRRR " + "ParseException " + i + " " + e); }
@@ -192,7 +205,8 @@ Log.i("LLL", "onResume");
                     ordersThisWeek.add(ordersBean.get(i));
                 }
                 if(orderDate.after(dateToday)){
-                    ordersToday.add(ordersBean.get(i));
+                    if(ordersBean.get(i).getCancelCountdown() == 0)
+                        ordersToday.add(ordersBean.get(i));
                 }
             }catch (Exception e) {Log.i("LLL", "ERRRRRR " + "add exc " + e);}
         }

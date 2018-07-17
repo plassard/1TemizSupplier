@@ -1,16 +1,24 @@
 package com.digitaldna.supplier.network;
 
 
+import com.digitaldna.supplier.network.beans.AcceptOrderBean;
+import com.digitaldna.supplier.network.beans.GetCancelReasonsListBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
 import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
 import com.digitaldna.supplier.network.beans.GetVerifCodeBean;
+import com.digitaldna.supplier.network.beans.VerifPhoneNumberBean;
+import com.digitaldna.supplier.network.beans.VerificationCodeBean;
+import com.digitaldna.supplier.network.requests.AcceptOrderRequest;
+import com.digitaldna.supplier.network.requests.GetCancelReasonListRequest;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
 import com.digitaldna.supplier.network.requests.GetVerificationCodeRequest;
 import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.network.requests.BasicRequest;
+import com.digitaldna.supplier.network.requests.RejectOrderRequest;
 import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
+import com.digitaldna.supplier.network.requests.VerifyPhoneRequest;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
@@ -38,12 +46,24 @@ public interface NetworkAPIsInterface {
     Observable<GetLoginBean> login(@NonNull @Body LoginRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.ACCEPT_ORDER)
+    Observable<AcceptOrderBean> acceptOrder(@NonNull @Body AcceptOrderRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.REJECT_ORDER)
+    Observable<AcceptOrderBean> rejectOrder(@NonNull @Body RejectOrderRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.PROPERTY +  "/" + Urls.GET_CANCEL_REASONS_LIST)
+    Observable<GetCancelReasonsListBean> getCancelReasons(@NonNull @Body GetCancelReasonListRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.MEMBERSHIP +  "/" + Urls.GET_VERIFICATION_CODE)
     Observable<GetVerifCodeBean> getVerifCode(@NonNull @Body GetVerificationCodeRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.MEMBERSHIP +  "/" + Urls.VERIFY_USER_PHONE_NUMBER)
-    Observable<GetVerifCodeBean> verifyPhoneNumber(@NonNull @Body GetVerificationCodeRequest body);
+    Observable<VerifPhoneNumberBean> verifyPhoneNumber(@NonNull @Body VerifyPhoneRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.GET_ORDERS)

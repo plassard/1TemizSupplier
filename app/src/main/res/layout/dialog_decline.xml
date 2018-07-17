@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/corners_layout"
+              android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textViewErrorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/are_you_sure_reject"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+                <Button
+                    android:id="@+id/buttonRejectYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/loginbutton"
+                    android:gravity="center"
+                    android:text="@string/yes"
+                    android:textColor="#fff"
+                    android:textSize="42px" />
+
+                <Button
+                    android:id="@+id/buttonRejectNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_rounded_white"
+                    android:gravity="center"
+                    android:text="@string/no"
+                    android:textColor="#000000"
+                    android:textSize="42px" />
+        </LinearLayout>
+
+
+</LinearLayout>

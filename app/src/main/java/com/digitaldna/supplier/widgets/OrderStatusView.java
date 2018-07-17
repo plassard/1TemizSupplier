@@ -64,6 +64,8 @@ public class OrderStatusView extends RelativeLayout {
                 tvStatus.setTextAppearance(getContext(), mStatusParams.getStatusStyleResId());
             }
             tvStatus.setBackgroundResource(mStatusParams.getStatusBackgroundResId());
+            tvStatus.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+            tvStatus.setWidth(140);
             ivNotification.setImageResource(mStatusParams.getNotificationStatusResId());
             ivNotification.setVisibility(showNotification ? VISIBLE : INVISIBLE);
         }

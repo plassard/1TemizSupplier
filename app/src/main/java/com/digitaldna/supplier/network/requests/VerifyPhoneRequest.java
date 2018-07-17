@@ -19,9 +19,11 @@ public class VerifyPhoneRequest {
     @JsonProperty("UserID")
     private String mUserID;
 
-    public VerifyPhoneRequest(String userId, String ticket) {
+    public VerifyPhoneRequest(int countryID, String phoneNumber, String verifCode, String userId, String ticket) {
+        mCountryID = countryID;
+        mPhoneNumber = phoneNumber;
+        mVerificationCode = verifCode;
         mUserID = userId;
-        mVerificationType = 1;
         mTicket = ticket;
     }
 

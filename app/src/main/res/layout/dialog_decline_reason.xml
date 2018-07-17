@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/corners_layout"
+              android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textViewReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reason"
+            android:textColor="@android:color/black"
+            android:textSize="14dp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/spinner_border"
+            android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinnerRejectReasons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/CharcoalSmallText"
+                    android:background="@drawable/spinner_border" />
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:src="@drawable/spinner_down_arrow" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textViewWarningSelectReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/warn_select_reason"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginBottom="15dp"
+            android:visibility="invisible"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/textViewNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/note"
+            android:textColor="@android:color/black"
+            android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/editTextExplanation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/spinner_border"
+        android:cursorVisible="false"
+        android:drawableLeft="@drawable/note_icon_donuk"
+        android:drawablePadding="10dp"
+        android:hint="@string/enter_your_note"
+        android:imeOptions="actionDone"
+        android:maxLength="300"
+        android:paddingLeft="8dp"
+        android:textColorHint="@color/gray"
+        android:textSize="15dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+                <Button
+                    android:id="@+id/buttonRejectCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_rounded_white"
+                    android:gravity="center"
+                    android:text="@string/order_details_button_cancel"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <Button
+                    android:id="@+id/buttonRejectSend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/loginbutton"
+                    android:gravity="center"
+                    android:text="@string/send"
+                    android:textColor="#fff"
+                    android:layout_alignParentRight="true"
+                    android:textSize="18dp" />
+
+
+        </RelativeLayout>
+
+
+</LinearLayout>

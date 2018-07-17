@@ -56,6 +56,7 @@
     <string name="order_details_title_drop_off_date_and_time_">DROP-OFF DATE AND TIME</string>
 
     <string name="order_details_title_pick_up_status">PICK-UP STATUS</string>
+    <string name="pick_up_status">PICK-UP</string>
     <string name="order_details_title_drop_off_status">DROP-OFF STATUS</string>
 
     <string name="order_details_title_payment_method">PAYMENT METHOD</string>
@@ -95,4 +96,14 @@
     <string name="information">We sent you a SMS verification code.\n
 Please enter it below:</string>
     <string name="delete">Delete</string>
+
+    <string name="reason">Reason:</string>
+    <string name="note">Note</string>
+    <string name="enter_your_note">Enter your note</string>
+    <string name="are_you_sure_reject">Are you sure you want to reject this order?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="send">Send</string>
+    <string name="warn_select_reason">Please select the reason</string>
+    <string name="select_reason">Select reason</string>
 </resources>

@@ -87,7 +87,7 @@ public class MainMenuFragment extends Fragment {
 
     @Override
     public void onViewCreated(View v, @Nullable Bundle savedInstanceState) {
-        Log.i("LLL", "MainMenuFragment onViewCreated");
+        Log.i("LLL", "MainMenuFragment onViewCreated " + PrefProvider.getProfilePictureURL(getContext()));
         vMenuOrders = v.findViewById(R.id.menu_orders);
         vMenuEarnings = v.findViewById(R.id.menu_earnings);
         vMenuCommentsAndRating = v.findViewById(R.id.menu_comments_and_ratings);

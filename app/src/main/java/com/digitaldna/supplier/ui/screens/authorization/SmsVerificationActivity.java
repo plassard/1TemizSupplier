@@ -27,10 +27,15 @@ import com.digitaldna.supplier.network.Urls;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetVerifCodeBean;
 import com.digitaldna.supplier.network.beans.LoginSupplierBean;
+import com.digitaldna.supplier.network.beans.VerifPhoneNumberBean;
 import com.digitaldna.supplier.network.beans.VerificationCodeBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.GetVerificationCodeRequest;
 import com.digitaldna.supplier.network.requests.LoginRequest;
+import com.digitaldna.supplier.network.requests.VerifyPhoneRequest;
+import com.digitaldna.supplier.ui.screens.MainActivity;
+import com.digitaldna.supplier.ui.screens.MainMenuFragment;
+import com.digitaldna.supplier.ui.screens.OrdersFragment;
 import com.digitaldna.supplier.utils.PrefProvider;
 
 import org.json.JSONObject;
@@ -483,23 +488,54 @@ public class SmsVerificationActivity extends AppCompatActivity {
     }
 
     private void checkVerifCode(){
-        GetVerificationCodeRequest getVerCodeRequest = new GetVerificationCodeRequest(PrefProvider.getEmail(this), PrefProvider.getTicket(this));
+        VerifyPhoneRequest verCodeRequest = new VerifyPhoneRequest(
+                PrefProvider.getCountryID(this),
+                PrefProvider.getPhoneNumber(this),
+                verificationCode,
+                PrefProvider.getEmail(this),
+                PrefProvider.getTicket(this));
 
-        RestClient.getInstance().create(NetworkAPIsInterface.class).getVerifCode(getVerCodeRequest)
+        RestClient.getInstance().create(NetworkAPIsInterface.class).verifyPhoneNumber(verCodeRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(result -> result != null)
                 .subscribe(result -> handleResultCheckVerCode(result) , e -> handleCheckVerCodeError(e));
     }
 
-    private void handleResultCheckVerCode(GetVerifCodeBean getVerifCodeBean){
-        VerificationCodeBean verificationCodeBean = getVerifCodeBean.getData();
-        Log.i("LLL", "handleResult" + verificationCodeBean.getCountdown());
+    private void handleResultCheckVerCode(VerifPhoneNumberBean verifCodeBean){
+        //VerificationCodeBean verificationCodeBean = verifCodeBean.getData();
+        Log.i("LLL", "verifCodeBean ok");
+        Log.i("LLL", "verifCodeBean " + verifCodeBean.getStatusText());
+        Log.i("LLL", "verifCodeBean " + verifCodeBean.getStatusCode());
 
+        if(verifCodeBean.getStatusCode() == 100) {
+            MainMenuFragment.deleteInstance();
+            OrdersFragment.deleteInstance();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.transparency_in_screen, R.anim.transparency_out);
+        } else {
+            //dialog
+            final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setContentView(R.layout.dialog_info);
+            TextView text = (TextView) dialog.findViewById(R.id.textViewErrorMessage);
+            text.setText(BaseJsonBean.mStatusText);
+            Button dialogButton = (Button) dialog.findViewById(R.id.buttonOK);
+            dialogButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
     }
 
     private void handleCheckVerCodeError(Throwable t){
-
+        Log.i("LLL", "verifCodeBean err");
+        Log.i("LLL", "handleResult" + t);
     }
 
 

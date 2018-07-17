@@ -16,6 +16,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 import okio.Buffer;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Rest client model.
  */
@@ -57,7 +59,12 @@ public class RestClient {
     private static OkHttpClient createHttpClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .build();
         return client;
     }
 

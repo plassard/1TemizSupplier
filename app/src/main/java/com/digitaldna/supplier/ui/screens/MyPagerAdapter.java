@@ -30,11 +30,8 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        Log.i("LLL", "getItem position" + position);
-
         switch(position) {
             case 0:
-
                 return MainMenuFragment.newInstance("MainMenuFragment, Instance 1");
             case 1:
                 return OrdersFragment.newInstance("OrdersFragment, Instance 1");
@@ -50,7 +47,6 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
 
-        Log.i("LLL", "getCount" + NUMBER_OF_PAGES);
         return NUMBER_OF_PAGES;
     }
 
