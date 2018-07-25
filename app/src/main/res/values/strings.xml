@@ -106,4 +106,12 @@ Please enter it below:</string>
     <string name="send">Send</string>
     <string name="warn_select_reason">Please select the reason</string>
     <string name="select_reason">Select reason</string>
+
+
+    <string name="shop_name">Shop name</string>
+
+    <string name="warn_courier_unverified">You cannot choose courier with unverified phone number</string>
+
+    <string name="rating_last_year">Rating for the last 12 months</string>
+
 </resources>

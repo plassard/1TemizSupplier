@@ -27,6 +27,7 @@ final class PreferencesContract {
     static final class Supplier {
         private static final String USER_PREFIX = "supplier_";
 
+        static final String SHOP_NAME = USER_PREFIX + "shop_name";
         static final String EMAIL = USER_PREFIX + "email";
         static final String LANGUAGE = USER_PREFIX + "language";
         static final String LANGUAGE_ID = USER_PREFIX + "language_id";

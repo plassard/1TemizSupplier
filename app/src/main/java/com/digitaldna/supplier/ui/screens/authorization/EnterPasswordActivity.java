@@ -3,6 +3,7 @@ package com.digitaldna.supplier.ui.screens.authorization;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -28,6 +29,8 @@ import com.digitaldna.supplier.ui.screens.MainActivity;
 import com.digitaldna.supplier.ui.screens.MainMenuFragment;
 import com.digitaldna.supplier.ui.screens.OrdersFragment;
 import com.digitaldna.supplier.utils.PrefProvider;
+
+import java.util.Locale;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -90,9 +93,15 @@ public class EnterPasswordActivity extends Activity {
         String mProfilePictureUrl = loginSupplierBean.getProfilePictureURL();
         PrefProvider.saveProfilePictureURL(this, !TextUtils.isEmpty(mProfilePictureUrl) ? "" + Urls.HOST_URL + "/" + mProfilePictureUrl : "");
         PrefProvider.saveSupplierTitle(this, loginSupplierBean.getTitle());
+        PrefProvider.saveShopName(this, loginSupplierBean.getShopName());
 
         PrefProvider.saveCountryID(this, loginSupplierBean.getCountryID());
         PrefProvider.savePhoneNumber(this, loginSupplierBean.getPhoneNumber());
+        PrefProvider.saveLanguageId(this, loginSupplierBean.getLanguageID());
+        if(loginSupplierBean.getLanguageID() == 0)
+            setLanguage("TR");
+        else
+            setLanguage("EN");
 
         if(loginSupplierBean.getIsPhoneNumberVerified())
             openMain();
@@ -158,5 +167,15 @@ public class EnterPasswordActivity extends Activity {
         }
         public void afterTextChanged(Editable editable) {
         }
+    }
+
+    public void setLanguage(String language){
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+        PrefProvider.saveLanguage(this, language);
     }
 }

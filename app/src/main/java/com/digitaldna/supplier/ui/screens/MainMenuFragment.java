@@ -109,11 +109,20 @@ public class MainMenuFragment extends Fragment {
             pager.setCurrentItem(1);
         });
         Log.i("LLL", "MainMenuFragment view pager");
+
+        vMenuCommentsAndRating.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), CommentsAndRatingActivity.class);
+            startActivity(intent);
+        });
+
+
         vMenuSettings.setOnClickListener(view -> {
             Intent intent = new Intent(getContext(), SettingsActivity.class);
             intent.putExtra("Earnings", earningsAmount);
             startActivity(intent);
         });
+
+
 
         anim1 = null;
         anim2 = null;

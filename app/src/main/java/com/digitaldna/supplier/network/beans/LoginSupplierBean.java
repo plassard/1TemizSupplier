@@ -23,6 +23,10 @@ public class LoginSupplierBean {
     private String mTicket;
 
     @Nullable
+    @JsonProperty("Language")
+    private Integer mLanguageID;
+
+    @Nullable
     @JsonProperty("CountryID")
     private Integer mCountryID;
 
@@ -30,10 +34,26 @@ public class LoginSupplierBean {
     @JsonProperty("PhoneNumber")
     private String mPhoneNumber;
 
+    @Nullable
+    @JsonProperty("AreaCode")
+    private String mAreaCode;
 
     @Nullable
     @JsonProperty("isPhoneNumberVerified")
     private Boolean mIsPhoneNumberVerified;
+
+    @Nullable
+    @JsonProperty("ShopName")
+    private String mShopName;
+
+    @Nullable
+    public String getShopName() {
+        return mShopName;
+    }
+
+    public void setShopName(@Nullable String ShopName) {
+        mShopName = ShopName;
+    }
 
     @Nullable
     public String getTitle() {
@@ -52,6 +72,7 @@ public class LoginSupplierBean {
     public void setEmail(@Nullable String email) {
         mEmail = email;
     }
+
 
 
     @Nullable
@@ -87,8 +108,20 @@ public class LoginSupplierBean {
     }
 
     @Nullable
+    public Integer getLanguageID() {
+        if(mLanguageID != null)
+            return mLanguageID;
+        else
+            return 1;
+    }
+
+
+    @Nullable
     public String getPhoneNumber() {
-        return mPhoneNumber;
+        if(mAreaCode != null)
+            return mAreaCode + mPhoneNumber;
+        else
+            return mPhoneNumber;
     }
 
     @Nullable

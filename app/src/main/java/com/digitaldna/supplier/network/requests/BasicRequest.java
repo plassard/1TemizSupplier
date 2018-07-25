@@ -16,28 +16,4 @@ public class BasicRequest {
         mTicket = ticket;
     }
 
- /*   public Long getCountryId() {
-        return mUserID;
-    }
-
-    public void setCountryId(Long countryId) {
-        mCountryId = countryId;
-    }
-
-    public String getPhoneNumber() {
-        return mPhoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        mPhoneNumber = phoneNumber;
-    }
-
-    public String getPassword() {
-        return mPassword;
-    }
-
-    public void setPassword(String password) {
-        mPassword = password;
-    }*/
-
 }

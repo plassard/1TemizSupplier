@@ -25,7 +25,7 @@ import com.digitaldna.supplier.network.beans.GetOrdersBean;
 import com.digitaldna.supplier.network.beans.LoginSupplierBean;
 import com.digitaldna.supplier.network.beans.OrdersBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
-import com.digitaldna.supplier.network.requests.GetCancelReasonListRequest;
+import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.ui.screens.authorization.SmsVerificationActivity;
 import com.digitaldna.supplier.utils.PrefProvider;
@@ -67,7 +67,7 @@ public class MainActivity extends FragmentActivity
     public static int currentPage = 0;
 
     private void getCancelReasons(){
-        GetCancelReasonListRequest cancelReasonListRequest = new GetCancelReasonListRequest(PrefProvider.getEmail(this), PrefProvider.getTicket(this));
+        BasicRequest cancelReasonListRequest = new BasicRequest(PrefProvider.getEmail(this), PrefProvider.getTicket(this));
 
         RestClient.getInstance().create(NetworkAPIsInterface.class).getCancelReasons(cancelReasonListRequest)
                 .subscribeOn(Schedulers.io())

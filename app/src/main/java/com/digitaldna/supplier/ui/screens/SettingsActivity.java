@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.SplashActivity;
+import com.digitaldna.supplier.network.beans.LoginSupplierBean;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
@@ -20,6 +21,9 @@ public class SettingsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        Log.i("consolesss", "ShopName" + PrefProvider.getShopName(this));
+        Log.i("consolesss", "ShopName" + PrefProvider.getSupplierTitle(this));
 
         ImageView ivProfilePicture = (ImageView)findViewById(R.id.iv_avatar);
 
@@ -34,10 +38,26 @@ public class SettingsActivity extends Activity {
             Log.i("LLL", "Picasso exc " + e);
         }
         TextView tvSupplierTitle = (TextView)findViewById(R.id.tv_full_name);
-        tvSupplierTitle.setText(PrefProvider.getSupplierTitle(this));
+        tvSupplierTitle.setText(PrefProvider.getShopName(this));
+
+        TextView tvShopName = (TextView)findViewById(R.id.tv_shop_name);
+        tvShopName.setText(PrefProvider.getSupplierTitle(this));
+
+        TextView tvEmail = (TextView)findViewById(R.id.tv_email);
+        tvEmail.setText(PrefProvider.getEmail(this));
+
+        TextView tvPhone = (TextView)findViewById(R.id.tv_phonenumber);
+        tvPhone.setText(PrefProvider.getPhoneNumber(this));
+
+        Log.i("LANGGG", " " + PrefProvider.getLanguageId(this));
+        TextView tvLanguage = (TextView)findViewById(R.id.tv_language);
+        if(PrefProvider.getLanguageId(this) == 0){
+            tvLanguage.setText("Türkçe");
+        } else {
+            tvLanguage.setText("English");
+        }
 
         TextView tvBalanceAmount = (TextView)findViewById(R.id.tv_balance_amount_settings);
-
         tvBalanceAmount.setText(getIntent().getExtras().getString("Earnings"));
 
 

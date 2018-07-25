@@ -102,4 +102,11 @@
     <string name="send">Göndermek</string>
     <string name="warn_select_reason">Lütfen sebebi seçin</string>
     <string name="select_reason">Nedeni seçin</string>
+
+    <string name="shop_name">Mağaza adı</string>
+
+    <string name="warn_courier_unverified">Doğrulanmamış telefon numarasıyla kurye seçemezsiniz</string>
+
+    <string name="rating_last_year">Son 12 ay için değerlendirme</string>
+
 </resources>

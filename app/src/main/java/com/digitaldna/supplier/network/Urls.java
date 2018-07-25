@@ -31,6 +31,7 @@ public class Urls {
     public static final String REJECT_ORDER = "RejectOrder";
 
     public static final String GET_SUPPLIER_SUMMARY_INFO = "GetSupplierSummaryInfo";
+    public static final String RATE_AVERAGE = "RepSupplierRateAverages";
 
     public static final Integer PLATFORM = 50;
 }

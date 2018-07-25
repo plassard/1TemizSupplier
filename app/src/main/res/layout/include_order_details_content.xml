@@ -80,6 +80,18 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/tv_courier_unverified_warning"
+            style="@style/RadicalRedXSmallText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:textSize="14dp"
+            android:text="@string/warn_courier_unverified"
+            android:visibility="gone"
+            />
 
     </LinearLayout>
 

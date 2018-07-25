@@ -14,6 +14,9 @@ public class CouriersBean {
     @JsonProperty("CourierID")
     private Integer mCourierID;
 
+    @JsonProperty("isPhoneNumberVerified")
+    private boolean misPhoneNumberVerified;
+
     public String getCourierName() {
         return mCourierName;
     }
@@ -21,6 +24,11 @@ public class CouriersBean {
     public Integer getCourierID() {
         return mCourierID;
     }
+
+    public boolean getPhoneVerified() {
+        return misPhoneNumberVerified;
+    }
+
     /*@JsonProperty("UnitID")
     private Long mUnitId;
     @JsonProperty("Unit")

@@ -24,6 +24,18 @@ public class PrefProvider {
         return mPreferences.getString(PreferencesContract.Supplier.EMAIL, "");
     }
 
+    static public void saveShopName(Context context, String shopName){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putString(PreferencesContract.Supplier.SHOP_NAME, shopName)
+                .commit();
+    }
+
+    static public String getShopName(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getString(PreferencesContract.Supplier.SHOP_NAME, "");
+    }
+
     static public void saveLanguage(Context context, String language){
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
         mPreferences.edit()

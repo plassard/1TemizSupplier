@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,6 +38,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class OrderDetailsActivity extends Activity {
     Spinner spinnerCouriers;
+    Integer selectedCourierId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +48,9 @@ public class OrderDetailsActivity extends Activity {
        // String orderID = getIntent().getExtras().getInt("orderID");
 
 
-        GetOrderDetailsRequest orderDetailsRequest = new GetOrderDetailsRequest(PrefProvider.getEmail(this),
-                PrefProvider.getTicket(this),
-                getIntent().getExtras().getInt("orderID"));
+        GetOrderDetailsRequest orderDetailsRequest = new GetOrderDetailsRequest(getIntent().getExtras().getInt("orderID"),
+                PrefProvider.getEmail(this),
+                PrefProvider.getTicket(this));
 
         RestClient.getInstance().create(NetworkAPIsInterface.class).getOrderDetails(orderDetailsRequest)
                 .subscribeOn(Schedulers.io())
@@ -96,7 +98,6 @@ public class OrderDetailsActivity extends Activity {
         );
         spinnerCouriers.setAdapter(adapter);
 
-
         TextView tvPickup = (TextView)findViewById(R.id.tv_pickup);
         tvPickup.setText(orderDetailsBean.getPickUpDateDescription());
 
@@ -129,24 +130,58 @@ public class OrderDetailsActivity extends Activity {
         TextView tvOrderNote = (TextView)findViewById(R.id.tv_notes_to_order);
         tvOrderNote.setText(orderDetailsBean.getOrderNote());
 
+        TextView tvCourierUnverWarning = (TextView)findViewById(R.id.tv_courier_unverified_warning);
+
+        spinnerCouriers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                for (CouriersBean bean : orderDetailsBean.getmCouriersList()) {
+                    if(bean.getCourierName().equals(spinnerCouriers.getSelectedItem().toString()))
+                        if(bean.getPhoneVerified()){
+                            selectedCourierId = bean.getCourierID();
+                            tvCourierUnverWarning.setVisibility(View.GONE);
+                        } else {
+                            //show unverified warning
+                            tvCourierUnverWarning.setVisibility(View.VISIBLE);
+                        }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
+
         Button btnSave = (Button)findViewById(R.id.b_save_order);
         btnSave.setOnClickListener(view -> {
-            Integer selectedCourierId = null;
+
             for (CouriersBean bean : orderDetailsBean.getmCouriersList()) {
                 if(bean.getCourierName().equals(spinnerCouriers.getSelectedItem().toString()))
-                    selectedCourierId = bean.getCourierID();
-            }
-            SaveOrderDetailsRequest saveOrderRequest = new SaveOrderDetailsRequest(PrefProvider.getEmail(this),
-                    PrefProvider.getTicket(this),
-                    getIntent().getExtras().getInt("orderID"), selectedCourierId);
+                    if(bean.getPhoneVerified()){
+                        selectedCourierId = bean.getCourierID();
+                        tvCourierUnverWarning.setVisibility(View.GONE);
 
-            RestClient.getInstance().create(NetworkAPIsInterface.class).saveOrderDetails(saveOrderRequest)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .filter(result -> result != null)
-                    .subscribe(result -> {
-                        finish();
-                    } , e -> {});
+                        SaveOrderDetailsRequest saveOrderRequest = new SaveOrderDetailsRequest(PrefProvider.getEmail(this),
+                                PrefProvider.getTicket(this),
+                                getIntent().getExtras().getInt("orderID"), selectedCourierId);
+
+                        RestClient.getInstance().create(NetworkAPIsInterface.class).saveOrderDetails(saveOrderRequest)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .filter(result -> result != null)
+                                .subscribe(result -> {
+                                    finish();
+                                } , e -> {});
+
+                    } else {
+                        //show unverified warning
+                        tvCourierUnverWarning.setVisibility(View.VISIBLE);
+                    }
+            }
+
+
+
         });
 
     }
