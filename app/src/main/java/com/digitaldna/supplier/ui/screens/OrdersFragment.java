@@ -151,6 +151,17 @@ Log.i("LLL", "onResume");
                 .subscribe(result -> handleResult(result) , e -> handleError(e));
     }
 
+   /* public static void getOrdersList(Context context){
+        BasicRequest ordersRequest = new BasicRequest(PrefProvider.getEmail(context), PrefProvider.getTicket(context));
+
+        RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .filter(result -> result != null)
+                .map(GetOrdersBean::getData)
+                .subscribe(result -> handleResult(result) , e -> handleError(e));
+    }*/
+
     public static List<OrdersBean> ordersToday;
     public static List<OrdersBean> ordersThisWeek;
     public static List<OrdersBean> ordersThisMonth;

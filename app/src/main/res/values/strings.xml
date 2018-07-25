@@ -18,6 +18,7 @@
 
 
     <string name="orders">Orders</string>
+    <string name="order">Order</string>
     <string name="order_history_menu_on_time_title">ON TIME:</string>
     <string name="order_history_menu_late_tile">LATE:</string>
 
@@ -28,8 +29,9 @@
     <string name="rating_comment_menu_comment_and_rating">Comment and Rating</string>
 
     <string name="rating_comment_menu_rating_title">RATING:</string>
+    <string name="rating">Rating:</string>
     <string name="rating_comment_menu_comments_title">COMMENTS:</string>
-
+    <string name="comments">Comments:</string>
     <string name="menu_statostocs_title">Statistics</string>
     <string name="settings">Settings</string>
     <string name="settings_title">SETTINGS</string>
@@ -113,5 +115,12 @@ Please enter it below:</string>
     <string name="warn_courier_unverified">You cannot choose courier with unverified phone number</string>
 
     <string name="rating_last_year">Rating for the last 12 months</string>
+
+    <string name="accepted_orders">Accepted</string>
+    <string name="completed_orders">Completed</string>
+    <string name="incompleted_orders">Incompleted</string>
+    <string name="percentage">Percenrage</string>
+
+    <string name="success_rate">Success Rate</string>
 
 </resources>

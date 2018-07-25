@@ -115,6 +115,10 @@ public class MainMenuFragment extends Fragment {
             startActivity(intent);
         });
 
+        vMenuStatistics.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), StatisticsActivity.class);
+            startActivity(intent);
+        });
 
         vMenuSettings.setOnClickListener(view -> {
             Intent intent = new Intent(getContext(), SettingsActivity.class);

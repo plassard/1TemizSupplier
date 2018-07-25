@@ -2,12 +2,12 @@ package com.digitaldna.supplier.network.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GetSupplierRateAveragesRequest extends BasicRequest {
+public class GetSupplierCommentsRequest extends BasicRequest {
 
     @JsonProperty("Filter")
     private int mFilter;
 
-    public GetSupplierRateAveragesRequest(String userId, String ticket) {
+    public GetSupplierCommentsRequest(String userId, String ticket) {
         super(userId, ticket);
         mFilter = 10;
     }

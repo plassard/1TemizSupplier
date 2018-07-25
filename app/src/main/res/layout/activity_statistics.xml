@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/colorPrimary">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <RelativeLayout
+            android:id="@+id/toolbar_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_inside_title"
+                style="@style/Toolbar.TitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="16dp"
+                android:text="@string/rating_comment_menu_comment_and_rating"
+                android:textAllCaps="true"
+                />
+
+            <ImageView
+                android:id="@+id/iv_toolbar_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:padding="16dp"
+                android:src="@drawable/svg_ic_menu_black_24dp"
+                />
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            style="@style/CardViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar_container"
+            android:layout_margin="12dp"
+            android:id="@+id/cardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                >
+
+                <TextView
+                    android:id="@+id/tv_rating_title"
+                    style="@style/CharcoalMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/rating_comment_menu_rating_title"/>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAlignment="center"
+                    android:text="@string/rating_last_year" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/section_with_grey_border"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/orders"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        style="@style/CharcoalSmallText"
+                        android:textAllCaps="false"/>
+
+                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:padding="10dp"
+                        android:stretchColumns="*"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+
+                        >
+
+                        <TableRow >
+
+                            <ProgressBar
+                                android:id="@+id/progress_bar_accepted_orders"
+                                style="@android:style/Widget.ProgressBar.Horizontal"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="80dp"
+                                android:max="100"
+                                android:progress="90"
+                                android:progressDrawable="@drawable/progress_vertical_accepted_orders" />
+
+                            <ProgressBar
+                                android:id="@+id/progress_bar_completed_orders"
+                                style="@android:style/Widget.ProgressBar.Horizontal"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:max="100"
+                                android:progress="90"
+                                android:progressDrawable="@drawable/progress_vertical_completed_orders" />
+
+                            <ProgressBar
+                                android:id="@+id/progress_bar_incompleted"
+                                style="@android:style/Widget.ProgressBar.Horizontal"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:max="100"
+                                android:progress="90"
+                                android:progressDrawable="@drawable/progress_vertical_incompleted" />
+
+                            <ProgressBar
+                                android:id="@+id/progress_bar_percentage"
+                                style="@android:style/Widget.ProgressBar.Horizontal"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:max="100"
+                                android:progress="90"
+                                android:progressDrawable="@drawable/progress_vertical_percentage" />
+
+                        </TableRow>
+
+                        <TableRow >
+                            <TextView
+                                android:id="@+id/tv_accepted_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="92"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_completed_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="92"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_incompleted_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="92"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_percentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="92"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                />
+                        </TableRow>
+
+                        <TableRow >
+                            <TextView
+                                android:id="@+id/tv_accepted_count_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/accepted_orders"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                                android:textSize="10dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_completed_count_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/completed_orders"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                                android:textSize="10dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_incompleted_count_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/incompleted_orders"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                                android:textSize="10dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_percentage_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/percentage"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                                android:textSize="10dp"
+                                />
+                        </TableRow>
+
+                    </TableLayout>
+
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/section_with_grey_border"
+                >
+
+                <TextView
+                    style="@style/CharcoalSmallText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="@string/success_rate"
+                    android:textAllCaps="false" />
+
+                    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:padding="10dp"
+                        android:stretchColumns="*"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        >
+
+                        <TableRow >
+                            <ProgressBar
+                                android:id="@+id/progressBar"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="40dp"
+                                android:layout_height="70dp"
+                                android:layout_centerInParent="true"
+                                android:indeterminate="false"
+                                android:max="100"
+                                android:progress="90"
+                                android:progressDrawable="@drawable/progressbar_circle_red" />
+
+                            <ProgressBar
+                                android:id="@+id/progressBar2"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="40dp"
+                                android:layout_height="70dp"
+                                android:layout_centerInParent="true"
+                                android:indeterminate="false"
+                                android:max="100"
+                                android:progress="90"
+                                android:progressDrawable="@drawable/progressbar_circle_orange" />
+
+                            <ProgressBar
+                                android:id="@+id/progressBar3"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="40dp"
+                                android:layout_height="70dp"
+                                android:layout_centerInParent="true"
+                                android:indeterminate="false"
+                                android:max="100"
+                                android:progress="90"
+                                android:progressDrawable="@drawable/progressbar_circle_blue" />
+                        </TableRow >
+                        <TableRow >
+                        <TextView
+                            android:id="@+id/tv_completed_count4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="92"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_incompleted_count5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="92"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_percentage6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="92"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            />
+                        </TableRow >
+                        <TableRow >
+                            <TextView
+                                android:id="@+id/tv_completed_count_label1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/completed_orders"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                                android:textSize="10dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_incompleted_count_label2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/incompleted_orders"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                                android:textSize="10dp"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_percentage_label3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/percentage"
+                                android:gravity="center"
+                                android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"
+                                android:textSize="10dp"
+                                />
+                        </TableRow >
+
+
+
+                    </TableLayout>
+            </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+</ScrollView>

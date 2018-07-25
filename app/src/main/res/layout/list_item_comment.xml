@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:id="@+id/linLayOrderRow"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+
+        android:paddingTop="6dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/svg_ic_clock_blue_24dp" />
+
+            <TextView
+                android:id="@+id/tv_CustomerName"
+                style="@style/TextFieldOrderTime"
+                android:textSize="12dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/iv_avatar"
+                android:layout_toRightOf="@+id/iv_avatar"
+                tools:text="Yevgen Paaaa" />
+
+            <TextView
+                android:id="@+id/tv_OrderNumber"
+                style="@style/CharcoalSmallText"
+                android:textSize="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/blue"
+                android:gravity="end"
+                tools:text="ORDER # 54646546545" />
+        </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_CommentText"
+        style="@style/CharcoalSmallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Auf wiedersehen Auf wiedersehen Auf wiedersehen Auf wiedersehen Auf wiedersehen Auf wiedersehen" />
+</LinearLayout>
+
+

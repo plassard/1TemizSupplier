@@ -20,6 +20,7 @@
 
 
     <string name="orders">Siparişler</string>
+    <string name="order">Sipariş</string>
 
     <string name="order_history_menu_on_time_title">ZAMANINDA:</string>
     <string name="order_history_menu_late_tile">GEÇ:</string>
@@ -27,7 +28,9 @@
     <string name="main_menu_balance_title">KAZANÇ:</string>
     <string name="rating_comment_menu_comment_and_rating">Yorum ve Puan</string>
     <string name="rating_comment_menu_rating_title">PUAN:</string>
+    <string name="rating">Puan:</string>
     <string name="rating_comment_menu_comments_title">YORUM:</string>
+    <string name="comments">Yorum:</string>
 
     <string name="menu_statostocs_title">İstatistik </string>
     <string name="settings">Ayarlar</string>
@@ -108,5 +111,12 @@
     <string name="warn_courier_unverified">Doğrulanmamış telefon numarasıyla kurye seçemezsiniz</string>
 
     <string name="rating_last_year">Son 12 ay için değerlendirme</string>
+
+    <string name="accepted_orders">Kabul edilmiş</string>
+    <string name="completed_orders">Tamamlanan</string>
+    <string name="incompleted_orders">Yapmadı</string>
+    <string name="percentage">Yüzde</string>
+
+    <string name="success_rate">Başarı oranı</string>
 
 </resources>

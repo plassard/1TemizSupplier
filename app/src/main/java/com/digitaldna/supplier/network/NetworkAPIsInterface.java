@@ -3,16 +3,18 @@ package com.digitaldna.supplier.network;
 
 import com.digitaldna.supplier.network.beans.AcceptOrderBean;
 import com.digitaldna.supplier.network.beans.GetCancelReasonsListBean;
+import com.digitaldna.supplier.network.beans.GetCommentsBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
 import com.digitaldna.supplier.network.beans.GetSupplierRateAverageBean;
+import com.digitaldna.supplier.network.beans.GetSupplierSuccessRate;
 import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
 import com.digitaldna.supplier.network.beans.GetVerifCodeBean;
 import com.digitaldna.supplier.network.beans.VerifPhoneNumberBean;
 import com.digitaldna.supplier.network.requests.AcceptOrderRequest;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
-import com.digitaldna.supplier.network.requests.GetSupplierRateAveragesRequest;
+import com.digitaldna.supplier.network.requests.BaseWithFilterRequest;
 import com.digitaldna.supplier.network.requests.GetVerificationCodeRequest;
 import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.network.requests.BasicRequest;
@@ -79,7 +81,15 @@ public interface NetworkAPIsInterface {
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.RATE_AVERAGE)
-    Observable<GetSupplierRateAverageBean> getRateAverage(@NonNull @Body GetSupplierRateAveragesRequest body);
+    Observable<GetSupplierRateAverageBean> getRateAverage(@NonNull @Body BaseWithFilterRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.SUPPLIER_COMMENTS)
+    Observable<GetCommentsBean> getSupplierComments(@NonNull @Body BaseWithFilterRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.STATISTICS)
+    Observable<GetSupplierSuccessRate> getStatistics(@NonNull @Body BaseWithFilterRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.ACCEPT_ORDER)

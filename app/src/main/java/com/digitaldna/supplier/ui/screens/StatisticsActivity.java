@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -14,24 +13,22 @@ import com.digitaldna.supplier.network.NetworkAPIsInterface;
 import com.digitaldna.supplier.network.RestClient;
 import com.digitaldna.supplier.network.beans.CommentsBean;
 import com.digitaldna.supplier.network.beans.GetCommentsBean;
-import com.digitaldna.supplier.network.beans.GetOrdersBean;
 import com.digitaldna.supplier.network.beans.GetSupplierRateAverageBean;
-import com.digitaldna.supplier.network.beans.OrdersBean;
+import com.digitaldna.supplier.network.beans.GetSupplierSuccessRate;
 import com.digitaldna.supplier.network.beans.SupplierRateAverageBean;
+import com.digitaldna.supplier.network.beans.SupplierSuccessRate;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.BaseWithFilterRequest;
 import com.digitaldna.supplier.ui.screens.adapters.CommentsListAdapter;
-import com.digitaldna.supplier.ui.screens.orders.OrderListAdapter;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.widgets.NonScrollListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class CommentsAndRatingActivity extends Activity {
+public class StatisticsActivity extends Activity {
     private RatingBar rbRatingStars;
     private TextView tvRatingBigNumber;
     private TextView tvR1, tvR2, tvR3, tvR4, tvR5;
@@ -41,7 +38,7 @@ public class CommentsAndRatingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comments_and_rating);
+        setContentView(R.layout.activity_statistics);
 
 
         rbRatingStars = (RatingBar) findViewById(R.id.rb_courier_rating);
@@ -68,30 +65,22 @@ public class CommentsAndRatingActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        BaseWithFilterRequest rateRequest = new BaseWithFilterRequest(PrefProvider.getEmail(this),
+        BaseWithFilterRequest statRequest = new BaseWithFilterRequest(PrefProvider.getEmail(this),
                 PrefProvider.getTicket(this));
 
-        RestClient.getInstance().create(NetworkAPIsInterface.class).getRateAverage(rateRequest)
+        RestClient.getInstance().create(NetworkAPIsInterface.class).getStatistics(statRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(result -> result != null)
-                .subscribe(result -> handleRateAverageResult(result) , e -> handleError(e));
-
-        //request is the same, so we use it once again
-        RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierComments(rateRequest)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .filter(result -> result != null)
-                .map(GetCommentsBean::getData)
-                .subscribe(result -> handleCommentsResult(result) , e -> handleError(e));
+                .subscribe(result -> handleStatResult(result) , e -> handleError(e));
     }
 
-    private void handleRateAverageResult(GetSupplierRateAverageBean getSupplierRateAverageBean) {
-        SupplierRateAverageBean rateAaverageBean = getSupplierRateAverageBean.getData();
-        rbRatingStars.setRating(rateAaverageBean.getAverageRate().floatValue());
-        tvRatingBigNumber.setText(rateAaverageBean.getAverageRate().toString());
-        Log.i("LLL", "getAverageRate "+ rateAaverageBean.getAverageRate());
+    private void handleStatResult(GetSupplierSuccessRate getSupplierSuccessRate) {
+        SupplierSuccessRate supplierSuccessRate = getSupplierSuccessRate.getData();
 
+        Log.i("LLL", "getTotalOrderCount "+ supplierSuccessRate.getTotalOrderCount());
+        /*rbRatingStars.setRating(rateAaverageBean.getAverageRate().floatValue());
+        tvRatingBigNumber.setText(rateAaverageBean.getAverageRate().toString());
         tvR1.setText(rateAaverageBean.getR1().toString() + "%");
         tvR2.setText(rateAaverageBean.getR2().toString() + "%");
         tvR3.setText(rateAaverageBean.getR3().toString() + "%");
@@ -102,7 +91,7 @@ public class CommentsAndRatingActivity extends Activity {
         pbR2.setProgress(Integer.valueOf(rateAaverageBean.getR2().intValue()));
         pbR3.setProgress(Integer.valueOf(rateAaverageBean.getR3().intValue()));
         pbR4.setProgress(Integer.valueOf(rateAaverageBean.getR4().intValue()));
-        pbR5.setProgress(Integer.valueOf(rateAaverageBean.getR5().intValue()));
+        pbR5.setProgress(Integer.valueOf(rateAaverageBean.getR5().intValue()));*/
     }
 
     private void handleCommentsResult(List<CommentsBean> getCommentsBean) {

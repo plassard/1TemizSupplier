@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@color/colorPrimary">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         >
 
         <RelativeLayout
@@ -67,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="12dp"
+                    android:layout_marginTop="12dp"
                     android:text="@string/rating_comment_menu_rating_title"/>
 
                 <TextView
@@ -76,9 +78,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="12dp"
-                    android:textSize="36dp"
-                    android:text="5.0"/>
+                    android:layout_marginBottom="12dp"
+                    android:text="0.0"
+                    android:textSize="58dp" />
 
                 <RatingBar
                     android:id="@+id/rb_courier_rating"
@@ -106,6 +108,14 @@
                     android:orientation="vertical"
                     android:background="@drawable/section_with_grey_border"
                     >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rating"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        style="@style/CharcoalSmallText"
+                        android:textAllCaps="false"/>
 
                     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:padding="10dp"
@@ -122,22 +132,23 @@
                                 android:gravity="center_vertical"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 />
+
                             <ProgressBar
-                                style="?android:attr/progressBarStyleHorizontal"
                                 android:id="@+id/pb_rate1"
+                                style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="5dp"
                                 android:max="100"
-                                android:progress="45"/>
+                                android:padding="5dp"
+                                android:progress="0" />
 
-                            <TextView android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <TextView
                                 android:id="@+id/tv_rate1_percentage"
-                                style="@style/CharcoalMediumText"
-                                android:text="40%"
+                                style="@style/CharcoalSmallText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
-                                />
+                                android:text="0%" />
                         </TableRow>
 
                         <TableRow >
@@ -147,22 +158,23 @@
                                 android:gravity="center_vertical"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 />
+
                             <ProgressBar
+                                android:id="@+id/pb_rate2"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/pb_rate2"
-                                android:padding="5dp"
                                 android:max="100"
-                                android:progress="45"/>
+                                android:padding="5dp"
+                                android:progress="0" />
 
-                            <TextView android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <TextView
                                 android:id="@+id/tv_rate2_percentage"
-                                android:text="40%"
+                                style="@style/CharcoalSmallText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
-                                style="@style/CharcoalMediumText"
-                                />
+                                android:text="0%" />
                         </TableRow>
 
                         <TableRow >
@@ -172,22 +184,23 @@
                                 android:gravity="center_vertical"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 />
+
                             <ProgressBar
+                                android:id="@+id/pb_rate3"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/pb_rate3"
-                                android:padding="5dp"
                                 android:max="100"
-                                android:progress="45"/>
+                                android:padding="5dp"
+                                android:progress="0" />
 
-                            <TextView android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <TextView
                                 android:id="@+id/tv_rate3_percentage"
-                                android:text="40%"
+                                style="@style/CharcoalSmallText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
-                                style="@style/CharcoalMediumText"
-                                />
+                                android:text="0%" />
                         </TableRow>
 
                         <TableRow >
@@ -197,22 +210,23 @@
                                 android:gravity="center_vertical"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 />
+
                             <ProgressBar
+                                android:id="@+id/pb_rate4"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/pb_rate4"
-                                android:padding="5dp"
                                 android:max="100"
-                                android:progress="45"/>
+                                android:padding="5dp"
+                                android:progress="0" />
 
-                            <TextView android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <TextView
                                 android:id="@+id/tv_rate4_percentage"
-                                android:text="40%"
+                                style="@style/CharcoalSmallText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
-                                style="@style/CharcoalMediumText"
-                                />
+                                android:text="0%" />
                         </TableRow>
 
                         <TableRow >
@@ -222,26 +236,51 @@
                                 android:gravity="center_vertical"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 />
+
                             <ProgressBar
+                                android:id="@+id/pb_rate5"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/pb_rate5"
-                                android:padding="5dp"
                                 android:max="100"
-                                android:progress="45"/>
+                                android:padding="5dp"
+                                android:progress="0" />
 
-                            <TextView android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <TextView
                                 android:id="@+id/tv_rate5_percentage"
-                                android:text="40%"
+                                style="@style/CharcoalSmallText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
-                                style="@style/CharcoalMediumText"
-                                />
+                                android:text="0%" />
                         </TableRow>
                     </TableLayout>
 
                 </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/section_with_grey_border"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/comments"
+
+                    style="@style/CharcoalSmallText"
+                    android:textAllCaps="false"/>
+
+                <com.digitaldna.supplier.widgets.NonScrollListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:id="@+id/lvComments" />
+            </LinearLayout>
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,21 +29,14 @@ import com.digitaldna.supplier.network.NetworkAPIsInterface;
 import com.digitaldna.supplier.network.RestClient;
 import com.digitaldna.supplier.network.Urls;
 import com.digitaldna.supplier.network.beans.AcceptOrderBean;
-import com.digitaldna.supplier.network.beans.AcceptOrderData;
-import com.digitaldna.supplier.network.beans.CouriersBean;
-import com.digitaldna.supplier.network.beans.GetLoginBean;
-import com.digitaldna.supplier.network.beans.LoginSupplierBean;
 import com.digitaldna.supplier.network.beans.OrdersBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.AcceptOrderRequest;
-import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.network.requests.RejectOrderRequest;
 import com.digitaldna.supplier.ui.screens.MainActivity;
 import com.digitaldna.supplier.ui.screens.MainMenuFragment;
-import com.digitaldna.supplier.ui.screens.MyPagerAdapter;
 import com.digitaldna.supplier.ui.screens.OrderDetailsActivity;
 import com.digitaldna.supplier.ui.screens.OrdersFragment;
-import com.digitaldna.supplier.ui.screens.authorization.SmsVerificationActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.widgets.OrderStatusView;
@@ -55,11 +47,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
 
 /**
  * Created by yevgen on 3/19/18.
