@@ -77,49 +77,6 @@
                     android:layout_margin="12dp"
                     tools:text="Scott Freeman"/>
 
-                <TextView
-                    style="@style/Charcoal40XSmallText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text=""
-                    android:textAllCaps="true"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    >
-
-                    <ImageView
-                        android:id="@+id/iv_address"
-                        android:layout_width="25dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="24dp"
-                        android:layout_marginRight="24dp"
-                        android:src="@drawable/svg_ic_dollar_blue_40dp" />
-
-                    <TextView
-                        android:id="@+id/tv_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/iv_address"
-                        android:layout_toRightOf="@+id/iv_address"
-                        android:text="@string/current_balance"
-                        />
-                    <TextView
-                        android:id="@+id/tv_balance_amount_settings"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"
-                        android:gravity="end"
-                        android:text="$ 520"
-                         />
-                </RelativeLayout>
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -130,7 +87,7 @@
                     android:visibility="visible"/>
 
                 <RelativeLayout
-                    android:id="@+id/rl_phone_container"
+                    android:id="@+id/rl_shopname_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -275,7 +232,7 @@
                     android:visibility="visible"/>
 
                 <RelativeLayout
-                    android:id="@+id/rl_password_container"
+                    android:id="@+id/rl_phone_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp">
@@ -390,6 +347,79 @@
                     </RelativeLayout>
 
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gray"
+                    android:visibility="visible"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/rl_password_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:id="@+id/tv_password_label"
+                        style="@style/Charcoal40XSmallText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PASSWORD"
+                        android:textAllCaps="true" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_password_label"
+                        android:layout_marginTop="8dp"
+                        >
+                        <ImageView
+                            android:id="@+id/iv_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginRight="24dp"
+                            android:src="@drawable/svg_unlock_blue_24dp"/>
+                        <LinearLayout
+                            android:id="@+id/ll_password_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_toRightOf="@+id/iv_password"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tv_password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textMultiLine"
+                                    android:paddingEnd="30dp"
+                                    android:text="******" />
+
+                                <ImageView
+                                    android:id="@+id/iv_password_arrow"
+                                    style="@style/RightArrowStyle"
+                                    android:layout_gravity="end"
+                                    android:visibility="invisible" />
+
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
 
                 <View
                     android:layout_width="match_parent"

@@ -7,6 +7,7 @@ import com.digitaldna.supplier.network.beans.GetCommentsBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
+import com.digitaldna.supplier.network.beans.GetStatisticOrdersBean;
 import com.digitaldna.supplier.network.beans.GetSupplierRateAverageBean;
 import com.digitaldna.supplier.network.beans.GetSupplierSuccessRate;
 import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
@@ -90,6 +91,10 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.STATISTICS)
     Observable<GetSupplierSuccessRate> getStatistics(@NonNull @Body BaseWithFilterRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.SUPPLIER_ORDERS)
+    Observable<GetStatisticOrdersBean> getStatisticsOnOrders(@NonNull @Body BaseWithFilterRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.ACCEPT_ORDER)

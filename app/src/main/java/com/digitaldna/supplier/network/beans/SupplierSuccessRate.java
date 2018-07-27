@@ -42,36 +42,36 @@ public class SupplierSuccessRate {
     @JsonProperty("LateRate")
     private Double mLateRate;
 
-    public Double getTotalOrderCount() {
-        return mTotalOrderCount;
+    public int getTotalOrderCount() {
+        return Integer.valueOf(mTotalOrderCount.intValue());
     }
 
     public Double getCompletedOrderCount() {
         return mCompletedOrderCount;
     }
 
-    public Double getCanceledOrderCount() {
-        return mCanceledOrderCount;
+    public int getCanceledOrderCount() {
+        return Integer.valueOf(mCanceledOrderCount.intValue());
     }
 
     public Double getCanceledRate() {
-        return mCanceledRate;
+        return mCanceledRate * 100;
     }
 
-    public Double getCompletedJobCount() {
-        return mCompletedJobCount;
+    public int getCompletedJobCount() {
+        return Integer.valueOf(mCompletedJobCount.intValue());
     }
 
-    public Double getOnTimeJobCount() {
-        return mOnTimeJobCount;
+    public int getOnTimeJobCount() {
+        return Integer.valueOf(mOnTimeJobCount.intValue());
     }
 
     public Double getOnTimeRate() {
         return mOnTimeRate;
     }
 
-    public Double getLateJobCount() {
-        return mLateJobCount;
+    public int getLateJobCount() {
+        return Integer.valueOf(mLateJobCount.intValue());
     }
 
     public Double getLateRate() {

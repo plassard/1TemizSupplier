@@ -2,6 +2,7 @@ package com.digitaldna.supplier.network.beans;
 
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -84,9 +85,12 @@ public class OrderDetailsBean {
     private String mOrderNote;
 
     @Nullable
-    @JsonProperty("CourierImageURL")
-    private String mCourierImageURL;
+    @JsonProperty("CustomerProfilePictureURL")
+    private String mCustomerProfilePictureURL;
 
+    public String getProfilePictureURL() {
+        return mCustomerProfilePictureURL;
+    }
 
     public String getOrderNote() {
         if(mOrderNote == null){

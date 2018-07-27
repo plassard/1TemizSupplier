@@ -119,4 +119,8 @@
 
     <string name="success_rate">Başarı oranı</string>
 
+    <string name="cancelled_count">İptal / Sipariş Sayısı</string>
+    <string name="late_count">Geç / İş Sayısı</string>
+    <string name="ontime_count">Zaman / İş Sayımında</string>
+
 </resources>

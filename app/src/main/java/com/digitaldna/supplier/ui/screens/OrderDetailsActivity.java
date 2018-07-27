@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.network.NetworkAPIsInterface;
 import com.digitaldna.supplier.network.RestClient;
+import com.digitaldna.supplier.network.Urls;
 import com.digitaldna.supplier.network.beans.CouriersBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.OrderDetailsBean;
@@ -26,8 +27,10 @@ import com.digitaldna.supplier.network.beans.OrderProductBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
 import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
+import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.utils.TextViewUtils;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,6 +112,18 @@ public class OrderDetailsActivity extends Activity {
 
         TextView tvDropOffStatus = (TextView)findViewById(R.id.tv_dropoffstatus_text);
         tvDropOffStatus.setText(orderDetailsBean.getmDropOffStatusText());
+
+
+        ImageView ivCustomerPicture = (ImageView)findViewById(R.id.iv_avatar);
+        try{
+            Picasso.with(this)
+                    .load(Urls.HOST_URL + "/" + orderDetailsBean.getProfilePictureURL())
+                    .placeholder(R.drawable.svg_ic_clock_blue_24dp)
+                    .error(R.drawable.svg_ic_clock_blue_24dp)
+                    .transform(new ImageToCircleTransform())
+                    .into(ivCustomerPicture);
+        }catch (Exception e) {}
+        Log.i("DDDDDDDDDD", "DDDDDDDDD " + Urls.HOST_URL + "/" + orderDetailsBean.getProfilePictureURL());
 
         TextView tvCustomerName = (TextView)findViewById(R.id.tv_full_name);
         tvCustomerName.setText(orderDetailsBean.getCustomerName());

@@ -123,4 +123,8 @@ Please enter it below:</string>
 
     <string name="success_rate">Success Rate</string>
 
+    <string name="cancelled_count">Cancelled / Order Count</string>
+    <string name="late_count">Late / Job Count</string>
+    <string name="ontime_count">On Time / Job Count</string>
+
 </resources>

@@ -57,10 +57,6 @@ public class SettingsActivity extends Activity {
             tvLanguage.setText("English");
         }
 
-        TextView tvBalanceAmount = (TextView)findViewById(R.id.tv_balance_amount_settings);
-        tvBalanceAmount.setText(getIntent().getExtras().getString("Earnings"));
-
-
         ImageView ivMenu = (ImageView)findViewById(R.id.iv_toolbar_menu);
         ivMenu.setOnClickListener(view -> {
             this.finish();
