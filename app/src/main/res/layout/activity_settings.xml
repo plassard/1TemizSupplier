@@ -316,11 +316,11 @@
                         android:textAllCaps="true"/>
 
                     <RelativeLayout
+                        android:id="@+id/rlLanguage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_title_language"
-                        android:layout_marginTop="8dp"
-                        >
+                        android:layout_marginTop="8dp">
 
                         <ImageView
                             android:id="@+id/iv_language"
@@ -329,7 +329,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="24dp"
                             android:layout_marginRight="24dp"
-                            android:src="@drawable/svg_ic_language_blue_24dp"/>
+                            android:src="@drawable/svg_ic_language_blue_24dp" />
 
                         <TextView
                             android:id="@+id/tv_language"

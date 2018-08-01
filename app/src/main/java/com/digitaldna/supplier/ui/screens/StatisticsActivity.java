@@ -135,9 +135,9 @@ public class StatisticsActivity extends Activity {
         pbLate.setProgress(Integer.valueOf(supplierSuccessRate.getLateRate().intValue()));
         pbOnTime.setProgress(Integer.valueOf(supplierSuccessRate.getOnTimeRate().intValue()));
 
-        tvCancelledPercentage.setText(supplierSuccessRate.getCanceledRate() + "%");
-        tvLatePercentage.setText(supplierSuccessRate.getLateRate() + "%");
-        tvOnTimePercentage.setText(supplierSuccessRate.getOnTimeRate() + "%");
+        tvCancelledPercentage.setText(String.format("%.2f", supplierSuccessRate.getCanceledRate()) + "%");
+        tvLatePercentage.setText(String.format("%.2f", supplierSuccessRate.getLateRate()) + "%");
+        tvOnTimePercentage.setText(String.format("%.2f", supplierSuccessRate.getOnTimeRate()) + "%");
 
 
         tvCancelledCount.setText(supplierSuccessRate.getCanceledOrderCount() + " / " + supplierSuccessRate.getTotalOrderCount());

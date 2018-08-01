@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.SplashActivity;
 import com.digitaldna.supplier.network.beans.LoginSupplierBean;
+import com.digitaldna.supplier.ui.screens.settings.ChangeLanguageActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
@@ -24,6 +27,15 @@ public class SettingsActivity extends Activity {
 
         Log.i("consolesss", "ShopName" + PrefProvider.getShopName(this));
         Log.i("consolesss", "ShopName" + PrefProvider.getSupplierTitle(this));
+
+        RelativeLayout rlLanugae = (RelativeLayout)findViewById(R.id.rlLanguage);
+        rlLanugae.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, ChangeLanguageActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ImageView ivProfilePicture = (ImageView)findViewById(R.id.iv_avatar);
 

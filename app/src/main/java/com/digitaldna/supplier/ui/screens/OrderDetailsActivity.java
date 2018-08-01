@@ -54,12 +54,12 @@ public class OrderDetailsActivity extends Activity {
         GetOrderDetailsRequest orderDetailsRequest = new GetOrderDetailsRequest(getIntent().getExtras().getInt("orderID"),
                 PrefProvider.getEmail(this),
                 PrefProvider.getTicket(this));
-
+        Log.i("CCCC", "oncreate ");
         RestClient.getInstance().create(NetworkAPIsInterface.class).getOrderDetails(orderDetailsRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(result -> result != null)
-                .subscribe(result -> handleResult(result) , e -> handleError(e));
+                .subscribe(result -> handleResult(result), e -> handleError(e));
 
         ImageView imageView = (ImageView)findViewById(R.id.iv_toolbar_close);
         imageView.setOnClickListener(view -> onBackPressed());
@@ -68,8 +68,14 @@ public class OrderDetailsActivity extends Activity {
         btnCancel.setOnClickListener(view -> finish());
     }
 
+
+
+
+    OrderDetailsBean orderDetailsBean;
     private void handleResult(GetOrderDetailsBean getOrderDetailsBean){
-        OrderDetailsBean orderDetailsBean = getOrderDetailsBean.getData();
+        Log.i("CCCC", "handleResult ");
+        orderDetailsBean = null;
+        orderDetailsBean = getOrderDetailsBean.getData();
 
         TextView tvOrderNumber = (TextView)findViewById(R.id.tv_order_number);
         tvOrderNumber.setText(this.getResources().getString(R.string.order_number) + orderDetailsBean.getOrderNumber());
@@ -123,7 +129,7 @@ public class OrderDetailsActivity extends Activity {
                     .transform(new ImageToCircleTransform())
                     .into(ivCustomerPicture);
         }catch (Exception e) {}
-        Log.i("DDDDDDDDDD", "DDDDDDDDD " + Urls.HOST_URL + "/" + orderDetailsBean.getProfilePictureURL());
+        Log.i("CCCC", "DDDDDDDDD " + Urls.HOST_URL + "/" + orderDetailsBean.getProfilePictureURL());
 
         TextView tvCustomerName = (TextView)findViewById(R.id.tv_full_name);
         tvCustomerName.setText(orderDetailsBean.getCustomerName());
@@ -140,13 +146,14 @@ public class OrderDetailsActivity extends Activity {
         TextView tvDiscount = (TextView)findViewById(R.id.tv_discount);
         tvDiscount.setText(orderDetailsBean.getDiscount());
 
-        addBasketProducts(orderDetailsBean.getProducts());
+        if(orderDetailsBean.getProducts() != null)
+            addBasketProducts(orderDetailsBean.getProducts());
 
         TextView tvOrderNote = (TextView)findViewById(R.id.tv_notes_to_order);
         tvOrderNote.setText(orderDetailsBean.getOrderNote());
 
         TextView tvCourierUnverWarning = (TextView)findViewById(R.id.tv_courier_unverified_warning);
-
+        Log.i("CCCC", "spinner ");
         spinnerCouriers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -167,13 +174,15 @@ public class OrderDetailsActivity extends Activity {
             }
         });
 
-
+        Log.i("CCCC", "btnSave ");
         Button btnSave = (Button)findViewById(R.id.b_save_order);
         btnSave.setOnClickListener(view -> {
-
+            Log.i("CCCC", "click");
             for (CouriersBean bean : orderDetailsBean.getmCouriersList()) {
-                if(bean.getCourierName().equals(spinnerCouriers.getSelectedItem().toString()))
-                    if(bean.getPhoneVerified()){
+                if(bean.getCourierName().equals(spinnerCouriers.getSelectedItem().toString())) {
+                    Log.i("CCCC", "bean.getCourierName() " + bean.getCourierName());
+                    Log.i("CCCC", "bean.getPhoneVerified() " + bean.getPhoneVerified());
+                    if (bean.getPhoneVerified()) {
                         selectedCourierId = bean.getCourierID();
                         tvCourierUnverWarning.setVisibility(View.GONE);
 
@@ -187,12 +196,14 @@ public class OrderDetailsActivity extends Activity {
                                 .filter(result -> result != null)
                                 .subscribe(result -> {
                                     finish();
-                                } , e -> {});
+                                }, e -> { Log.i("CCCC", "error save btn " + BaseJsonBean.mStatusText );
+                                });
 
                     } else {
                         //show unverified warning
                         tvCourierUnverWarning.setVisibility(View.VISIBLE);
                     }
+                }
             }
 
 
@@ -202,12 +213,15 @@ public class OrderDetailsActivity extends Activity {
     }
 
     private void handleError(Throwable t){
-        Log.i("LLL", "ERRRRRR "+ BaseJsonBean.mStatusText);
+        Log.i("CCCC", "ERRRRRR "+ BaseJsonBean.mStatusText);
+        Log.i("CCCC", "getCause "+ t.getCause());
+        Log.i("CCCC", "getLocalizedMessage "+ t.getLocalizedMessage());
+        Log.i("CCCC", "getStackTrace "+ t.getStackTrace());
     }
 
     private void addBasketProducts(@NonNull List<OrderProductBean> productModels) {
         Log.i("AAAA", "pr name " + "add");
-        Log.i("AAAA", "pr name " + productModels.size());
+
             LinearLayout llContent = (LinearLayout) findViewById(R.id.ll_content_products);
             for (OrderProductBean model : productModels) {
                 Log.i("AAAA", "pr name " + "iterat");

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -59,7 +60,7 @@ public class OrderListAdapter extends BaseAdapter {
 
     Context context;
     private List<OrdersBean> orders;
-
+    private TextView tvWarningSelectReason;
 
     public OrderListAdapter(Context context, List<OrdersBean> orders) {
         this.orders = orders;
@@ -176,6 +177,20 @@ public class OrderListAdapter extends BaseAdapter {
                             ArrayAdapter aa = new ArrayAdapter(context, R.layout.spinner_item, reasons);
                             spinnerReason.setAdapter(aa);
 
+                            spinnerReason.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                    if(position > 0) {
+                                        tvWarningSelectReason.setVisibility(View.INVISIBLE);
+                                    }
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
+
+                                }
+                            });
+
                             Button cancelButton = (Button) dialogRejectReason.findViewById(R.id.buttonRejectCancel);
                             cancelButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -191,7 +206,7 @@ public class OrderListAdapter extends BaseAdapter {
 
                                     int position = spinnerReason.getSelectedItemPosition();
                                     if(position == 0){
-                                        TextView tvWarningSelectReason = (TextView) dialogRejectReason.findViewById(R.id.textViewWarningSelectReason);
+                                        tvWarningSelectReason = (TextView) dialogRejectReason.findViewById(R.id.textViewWarningSelectReason);
                                         tvWarningSelectReason.setVisibility(View.VISIBLE);
                                     } else {
                                         int CancelReasonID = MainActivity.cancelReasons.get(position - 1).getCancelReasonID();
@@ -280,6 +295,8 @@ public class OrderListAdapter extends BaseAdapter {
                             R.style.OrderStatusPickUp : R.style.OrderStatusDropOff);
 
             orderStatusView.setStatusParams(mStatusParams, !orderItem.getWasViewed());
+
+            convertView.setOnClickListener(view -> openOrderDetailsScreen(orderItem));
         }
 
         TextView tvOrderJobDate = (TextView) convertView.findViewById(R.id.tv_date);
@@ -301,7 +318,7 @@ public class OrderListAdapter extends BaseAdapter {
             tvOrderJobDate.setText(orderDate.toLocaleString());
         }
 
-        convertView.setOnClickListener(view -> openOrderDetailsScreen(orderItem));
+
 
 
      /*   LinearLayout linearLayout = (LinearLayout)convertView.findViewById(R.id.linLayOrderRow);

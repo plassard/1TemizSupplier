@@ -11,29 +11,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.screens.authorization.EnterEmailActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.screens.authorization.EnterPasswordActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.screens.authorization.SmsVerificationActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.screens.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.screens.CommentsAndRatingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.screens.StatisticsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.screens.SettingsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.screens.OrderDetailsActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.screens.authorization.EnterEmailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.screens.authorization.EnterPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.screens.authorization.SmsVerificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.screens.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.screens.CommentsAndRatingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.screens.StatisticsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.screens.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.screens.OrderDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.settings.ChangeLanguageActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

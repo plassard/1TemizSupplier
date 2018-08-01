@@ -22,6 +22,7 @@ public class Urls {
     public static final String LOGIN = "Login";
     public static final String GET_VERIFICATION_CODE = "GetUserVerificationCode";
     public static final String VERIFY_USER_PHONE_NUMBER = "VerifyUserPhoneNumber";
+    public static final String SET_LANGUAGE = "SetLanguage";
 
     public static final String GET_CANCEL_REASONS_LIST = "GetCancelReasonList";
 

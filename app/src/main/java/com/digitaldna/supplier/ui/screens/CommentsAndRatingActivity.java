@@ -114,10 +114,16 @@ public class CommentsAndRatingActivity extends Activity {
         Log.i("LLL", "commentsArray "+ getCommentsBean.get(0).getName());
         Log.i("LLL", "commentsArray "+ getCommentsBean.get(1).getName());
 
+        List<CommentsBean> filteredCommentsBean = new ArrayList<>();
 
+        for (CommentsBean oneComment : getCommentsBean){
+            if(oneComment.getCommentText() != null){
+                filteredCommentsBean.add(oneComment);
+            }
+        }
 
         CommentsListAdapter commentsAdapter = null;
-        commentsAdapter = new CommentsListAdapter(this, getCommentsBean);
+        commentsAdapter = new CommentsListAdapter(this, filteredCommentsBean);
         lvComments.setAdapter(commentsAdapter);
     }
 

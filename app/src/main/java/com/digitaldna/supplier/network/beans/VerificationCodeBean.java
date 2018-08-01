@@ -6,22 +6,6 @@ import android.support.annotation.Nullable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class VerificationCodeBean {
-  /*  @Nullable
-    @JsonProperty("Countdown")
-    private String mTitle;
-
-    @Nullable
-    @JsonProperty("isPhoneNumberVerified")
-    private String mEmail;
-
-    @Nullable
-    @JsonProperty("ProfilePictureURL")
-    private String mProfilePictureURL;
-
-    @Nullable
-    @JsonProperty("Ticket")
-    private String mTicket;
-*/
 
     @Nullable
     @JsonProperty("Countdown")

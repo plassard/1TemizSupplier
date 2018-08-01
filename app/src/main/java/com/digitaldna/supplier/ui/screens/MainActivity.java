@@ -55,13 +55,17 @@ public class MainActivity extends FragmentActivity
         Log.i("LLL", "MainActivity onViewCreated");
 
         pager = (ViewPager) findViewById(R.id.viewPager);
-        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-        pager.addOnPageChangeListener(this);
-        pager.setCurrentItem(currentPage);
+        setPager();
         Log.i("LLL", "MainActivity onViewCreated2");
         Log.i("LLL", "MainActivity onViewCreated2" + pager.toString());
 
         getCancelReasons();
+    }
+
+    public void setPager(){
+        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        pager.addOnPageChangeListener(this);
+        pager.setCurrentItem(currentPage);
     }
 
     public static int currentPage = 0;
@@ -98,11 +102,13 @@ public class MainActivity extends FragmentActivity
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
+        currentPage = 0;
+        pager.setCurrentItem(currentPage);
     }
 
-    public void setPager(){
+    /*public void setPager(){
         pager.setCurrentItem(1);
-   }
+   }*/
 
 
     /*************************************************************
@@ -116,17 +122,25 @@ public class MainActivity extends FragmentActivity
      */
     @Override
     public void onPageScrolled(int position, float v, int i) {
-
+        Log.i("LLL", "onPageScrolled");
     }
 
     /**
      * When a new page becomes selected
      * @param position
      */
+    boolean needUpdate = false;
     @Override
     public void onPageSelected(int position) {
         if(position == 1){
            // OrderListAdapter.startAnimation(this, 0);
+            Log.i("LLL", "onPageSelected");
+            currentPage = 1;
+            if(OrdersFragment.fragmentIsCreated) {
+                OrdersFragment.fragmentIsCreated = false;
+                setPager();
+            }
+
         }
     }
 
@@ -136,7 +150,19 @@ public class MainActivity extends FragmentActivity
      */
     @Override
     public void onPageScrollStateChanged(int position) {
-
+        Log.i("LLL", "onPageScrollStateChanged");
     }
 
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        Log.i("LLL", "onResumeFragments");
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        Log.i("LLL", "onWindowFocusChanged");
+    }
 }

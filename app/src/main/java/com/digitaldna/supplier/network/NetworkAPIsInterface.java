@@ -2,6 +2,7 @@ package com.digitaldna.supplier.network;
 
 
 import com.digitaldna.supplier.network.beans.AcceptOrderBean;
+import com.digitaldna.supplier.network.beans.EmptyBean;
 import com.digitaldna.supplier.network.beans.GetCancelReasonsListBean;
 import com.digitaldna.supplier.network.beans.GetCommentsBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
@@ -14,6 +15,7 @@ import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
 import com.digitaldna.supplier.network.beans.GetVerifCodeBean;
 import com.digitaldna.supplier.network.beans.VerifPhoneNumberBean;
 import com.digitaldna.supplier.network.requests.AcceptOrderRequest;
+import com.digitaldna.supplier.network.requests.BaseWithLangIdRequest;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
 import com.digitaldna.supplier.network.requests.BaseWithFilterRequest;
 import com.digitaldna.supplier.network.requests.GetVerificationCodeRequest;
@@ -99,5 +101,9 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.ACCEPT_ORDER)
     Observable<GetOrderDetailsBean> saveOrderDetails(@NonNull @Body SaveOrderDetailsRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.SET_LANGUAGE)
+    Observable<EmptyBean> changeLanguage(@NonNull @Body BaseWithLangIdRequest body);
 
 }

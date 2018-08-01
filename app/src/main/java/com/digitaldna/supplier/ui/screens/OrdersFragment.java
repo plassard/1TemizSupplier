@@ -11,8 +11,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -54,7 +56,7 @@ public class OrdersFragment extends Fragment {
      * @return
      */
 
-
+    static boolean fragmentIsCreated = false;
 
     /**
      * Returns new instance.
@@ -116,7 +118,7 @@ public class OrdersFragment extends Fragment {
         ivToolbarLeft = (ImageView) view.findViewById(R.id.iv_toolbar_left);
         tlTabs.addOnTabSelectedListener(mSimpleOnTabSelectedListener);
 
-
+    fragmentIsCreated = true;
 
        /* tlTabs.setupWithViewPager(vpPager);
         vpPager.setOffscreenPageLimit(2);*/
@@ -140,7 +142,7 @@ public class OrdersFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-Log.i("LLL", "onResume");
+        Log.i("LLL", "onResume");
         BasicRequest ordersRequest = new BasicRequest(PrefProvider.getEmail(getContext()), PrefProvider.getTicket(getContext()));
 
         RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
@@ -151,16 +153,51 @@ Log.i("LLL", "onResume");
                 .subscribe(result -> handleResult(result) , e -> handleError(e));
     }
 
-   /* public static void getOrdersList(Context context){
-        BasicRequest ordersRequest = new BasicRequest(PrefProvider.getEmail(context), PrefProvider.getTicket(context));
 
-        RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .filter(result -> result != null)
-                .map(GetOrdersBean::getData)
-                .subscribe(result -> handleResult(result) , e -> handleError(e));
-    }*/
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.i("LLL", "onHiddenChanged");
+    }
+
+    @Override
+    public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
+        super.onInflate(context, attrs, savedInstanceState);
+        Log.i("LLL", "onInflate");
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        Log.i("LLL", "onViewStateRestored");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("LLL", "onPause");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.i("LLL", "onOptionsItemSelected");
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        Log.i("LLL", "onContextItemSelected");
+        return super.onContextItemSelected(item);
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        Log.i("LLL", "onAttach");
+        super.onAttach(context);
+    }
 
     public static List<OrdersBean> ordersToday;
     public static List<OrdersBean> ordersThisWeek;

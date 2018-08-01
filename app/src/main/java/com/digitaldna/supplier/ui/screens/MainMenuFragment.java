@@ -208,12 +208,64 @@ public class MainMenuFragment extends Fragment {
 
     }
 
+    public void animateNewOrder(){
+        ImageView ivOrdersCount = (ImageView)vMenuOrders.findViewById(R.id.iv_orders_count);
+        ImageView ivOrdersCountStable = (ImageView)vMenuOrders.findViewById(R.id.iv_orders_count_stable);
+
+
+        Animation animCZoomInStable = AnimationUtils.loadAnimation(getActivity(), R.anim.circle_stable_zoom_in);
+        Animation animCZoomOutStable = AnimationUtils.loadAnimation(getActivity(), R.anim.circle_stable_zoom_out);
+        Animation animC = AnimationUtils.loadAnimation(getActivity(), R.anim.circle_attention);
+
+        //animCZoomInStable.setFillAfter(true);
+        animC.setFillAfter(true);
+        animCZoomInStable.setAnimationListener((new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                ivOrdersCountStable.startAnimation(animCZoomOutStable);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        }));
+
+        animCZoomOutStable.setAnimationListener((new Animation.AnimationListener() {
+
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        animateNewOrder();
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                }));
+        ivOrdersCount.startAnimation(animC);
+        ivOrdersCountStable.startAnimation(animCZoomInStable);
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        ImageView ivOrdersCount = (ImageView)vMenuOrders.findViewById(R.id.iv_orders_count);
-        Animation animC = AnimationUtils.loadAnimation(getActivity(), R.anim.circle_attention);
-        ivOrdersCount.startAnimation(animC);
+
+        animateNewOrder();
+
+
     }
 
     private void handleError(Throwable t){
