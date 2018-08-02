@@ -32,11 +32,11 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position){
             case 0:
-                return "Today";
+                return "This Week";
             case 1:
-                return "Week";
+                return "This Month";
             case 2:
-                return "This month";
+                return "All";
         }
         return null;
     }

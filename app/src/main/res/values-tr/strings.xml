@@ -74,9 +74,9 @@
 
     <string name="address_title">ADRES</string>
 
-    <string name="tab_today">BUGÜN</string>
-    <string name="tab_this_week">BU HAFTA</string>
-    <string name="tab_this_month">BU AY</string>
+    <string name="tab_week">BU HAFTA</string>
+    <string name="tab_month">BU AY</string>
+    <string name="tab_all">Herşey</string>
 
 
     <string name="customer_order_title">Müşteri:</string>

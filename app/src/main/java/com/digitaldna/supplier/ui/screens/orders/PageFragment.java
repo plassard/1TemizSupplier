@@ -53,11 +53,11 @@ public class PageFragment extends Fragment {
         lvOrders = (ListView) rootView.findViewById(R.id.lvOrders);
         OrderListAdapter ordersAdapter = null;
         if(page == 1){
-            ordersAdapter = new OrderListAdapter(getContext(), OrdersFragment.ordersToday);
+            ordersAdapter = new OrderListAdapter(getContext(), OrdersFragment.ordersAll);
         } else if(page == 2){
-            ordersAdapter = new OrderListAdapter(getContext(), OrdersFragment.ordersThisWeek);
-        } else if(page == 3){
             ordersAdapter = new OrderListAdapter(getContext(), OrdersFragment.ordersThisMonth);
+        } else if(page == 3){
+            ordersAdapter = new OrderListAdapter(getContext(), OrdersFragment.ordersThisWeek);
         }
         lvOrders.setAdapter(ordersAdapter);
 

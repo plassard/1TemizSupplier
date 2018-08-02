@@ -85,9 +85,9 @@
 
     <string name="tr_lyra">₺</string>
 
-    <string name="tab_today">Today</string>
-    <string name="tab_this_week">This week</string>
-    <string name="tab_this_month">This month</string>
+    <string name="tab_week">This week</string>
+    <string name="tab_month">This month</string>
+    <string name="tab_all">All</string>
 
     <string name="ok">OK</string>
     <string name="sms_verification_correctly">Are you sure you entered SMS verification correctly?</string>

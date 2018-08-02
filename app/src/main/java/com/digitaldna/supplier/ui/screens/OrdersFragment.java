@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
@@ -33,6 +32,7 @@ import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.widgets.OrderStatusView;
 import com.digitaldna.supplier.widgets.SimpleOnTabSelectedListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -199,35 +199,74 @@ public class OrdersFragment extends Fragment {
         super.onAttach(context);
     }
 
-    public static List<OrdersBean> ordersToday;
+    public static List<OrdersBean> ordersAll;
     public static List<OrdersBean> ordersThisWeek;
     public static List<OrdersBean> ordersThisMonth;
 
     private void handleResult(List<OrdersBean> ordersBean){
-        ordersToday = new ArrayList<OrdersBean>();
+        ordersAll = new ArrayList<OrdersBean>();
         ordersThisWeek = new ArrayList<OrdersBean>();
         ordersThisMonth = new ArrayList<OrdersBean>();
+
+        List<Integer> addedIds= new ArrayList<Integer>();
+
+        //fill "all" array, first "fresh" orders that needs to be accepted within 30 minutes(countdown)
+        for(int i = 0; i < ordersBean.size(); i++) {
+            if (ordersBean.get(i).getCancelCountdown() > 0){
+                ordersAll.add(ordersBean.get(i));
+                addedIds.add(ordersBean.get(i).getOrderID());
+            }
+        }
+        //then we add all other orders to this array after "fresh" orders
+        for(int i = 0; i < ordersBean.size(); i++) {
+            if (!ordersBean.contains(ordersBean.get(i).getOrderID()))
+                ordersAll.add(ordersBean.get(i));
+        }
+
+        //then we fill this month array
+        //first, we are getting today date to compare in backend format
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); // your format
         Date dateToday = new Date();
-        dateToday.setHours(0);
-        dateToday.setMinutes(0);
-        dateToday.setSeconds(0);
+        Calendar calendarWithTodayDate = Calendar.getInstance();
+        calendarWithTodayDate.setTime(dateToday);
+        int thisMonthNumber = calendarWithTodayDate.get(Calendar.MONTH);
+        int thisWeekOfYearNumber = calendarWithTodayDate.get(Calendar.WEEK_OF_YEAR);
 
-        Date dateThisMonth;
-        Calendar c = Calendar.getInstance();
-        c.setTime(dateToday);
-        c.add(Calendar.MONTH, -1);
-        dateThisMonth = c.getTime();
+        Calendar calendarTempDate = Calendar.getInstance();
+        Date orderDate;
+        for(int i = 0; i < ordersBean.size(); i++) {
+            orderDate = null;
+            try {
+                orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
+                calendarTempDate.setTime(orderDate);
+                if (calendarTempDate.get(Calendar.MONTH) == thisMonthNumber)
+                    ordersThisMonth.add(ordersBean.get(i));
+                if (calendarTempDate.get(Calendar.WEEK_OF_YEAR) == thisWeekOfYearNumber)
+                    ordersThisWeek.add(ordersBean.get(i));
+            } catch (ParseException e) {  e.printStackTrace();   }
+        }
+
+
+        for(int i = 0; i < ordersBean.size(); i++) {
+            orderDate = null;
+            try {
+                orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
+                calendarTempDate.setTime(orderDate);
+                if (calendarTempDate.get(Calendar.MONTH) == thisMonthNumber)
+                    ordersThisMonth.add(ordersBean.get(i));
+            } catch (ParseException e) {  e.printStackTrace();   }
+        }
+
+
+        /*calendarWithTodayDate.add(Calendar.MONTH, -1);
+        dateThisMonth = calendarWithTodayDate.getTime();
 
         Date dateThisWeek;
-        c = Calendar.getInstance();
-        c.setTime(dateToday);
-        c.add(Calendar.WEEK_OF_YEAR, -1);
-        dateThisWeek = c.getTime();
-        for(int i = 0; i < ordersBean.size(); i++) {
-            if (ordersBean.get(i).getCancelCountdown() > 0)
-                    ordersToday.add(ordersBean.get(i));
-        }
+        calendarWithTodayDate = Calendar.getInstance();
+        calendarWithTodayDate.setTime(dateToday);
+        calendarWithTodayDate.add(Calendar.WEEK_OF_YEAR, -1);
+        dateThisWeek = calendarWithTodayDate.getTime();
+
         Date orderDate = null;
         for(int i = 0; i < ordersBean.size(); i++){
             try {
@@ -243,16 +282,16 @@ public class OrdersFragment extends Fragment {
                 }
                 if(orderDate.after(dateToday)){
                     if(ordersBean.get(i).getCancelCountdown() == 0)
-                        ordersToday.add(ordersBean.get(i));
+                        ordersAll.add(ordersBean.get(i));
                 }
             }catch (Exception e) {Log.i("LLL", "ERRRRRR " + "add exc " + e);}
         }
-
+*/
         try {
             Log.i("LLL", "ERRRRRR " + "ordersThisMonth " + ordersThisMonth.size());
             Log.i("LLL", "ERRRRRR " + "ordersThisWeek " + ordersThisWeek.size());
-            Log.i("LLL", "ERRRRRR " + "ordersToday " + ordersToday.size());
-        }catch (Exception e) {Log.i("LLL", "ERRRRRR " + "ordersToday exc" + e);}
+            Log.i("LLL", "ERRRRRR " + "ordersAll " + ordersAll.size());
+        }catch (Exception e) {Log.i("LLL", "ERRRRRR " + "ordersAll exc" + e);}
 
         TabsPagerAdapter adapter = new TabsPagerAdapter(getFragmentManager());
 
@@ -339,11 +378,11 @@ public class OrdersFragment extends Fragment {
         public CharSequence getPageTitle(int position) {
             switch (position){
                 case 0:
-                    return getResources().getString(R.string.tab_today);
+                    return getResources().getString(R.string.tab_all);
                 case 1:
-                    return getResources().getString(R.string.tab_this_week);
+                    return getResources().getString(R.string.tab_month);
                 case 2:
-                    return getResources().getString(R.string.tab_this_month);
+                    return getResources().getString(R.string.tab_week);
             }
             return null;
         }

@@ -46,6 +46,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -302,23 +303,27 @@ public class OrderListAdapter extends BaseAdapter {
         TextView tvOrderJobDate = (TextView) convertView.findViewById(R.id.tv_date);
 
         //we compare date to set "Today" if date is today
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); // your format
+       /* SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); // your format
         Date orderDate = null;
         try {
             orderDate = format.parse(orderItem.getOrderJobDate());
         } catch (ParseException e) {            e.printStackTrace();        }
         Date dateToday = new Date();
-        dateToday.setHours(0);
-        dateToday.setMinutes(0);
-        dateToday.setSeconds(0);
-        if(orderDate.after(dateToday)){
+
+        Calendar calendarToday = Calendar.getInstance();
+        calendarToday.setTime(dateToday);
+        int todayNumber = calendarToday.get(Calendar.DAY_OF_YEAR);
+
+        Calendar calendarOrderDay = Calendar.getInstance();
+        calendarOrderDay.setTime(orderDate);
+        int dayOfOrder = calendarOrderDay.get(Calendar.DAY_OF_YEAR);
+        if(todayNumber == dayOfOrder){
             tvOrderJobDate.setText(context.getResources().getString(R.string.today));
         } else {
+            tvOrderJobDate.setText(orderItem.getDateDescription());
+        }*/
 
-            tvOrderJobDate.setText(orderDate.toLocaleString());
-        }
-
-
+        tvOrderJobDate.setText(orderItem.getDateDescription());
 
 
      /*   LinearLayout linearLayout = (LinearLayout)convertView.findViewById(R.id.linLayOrderRow);
@@ -326,7 +331,7 @@ public class OrderListAdapter extends BaseAdapter {
             linearLayout.setVisibility(View.INVISIBLE);
         }
 try {
-    if (orders.equals(OrdersFragment.ordersToday)) {
+    if (orders.equals(OrdersFragment.ordersAll)) {
         linOrderToday[position] = linearLayout;
     } else if (orders.equals(OrdersFragment.ordersThisWeek)) {
         linOrderWeek[position] = linearLayout;

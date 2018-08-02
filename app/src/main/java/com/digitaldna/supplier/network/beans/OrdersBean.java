@@ -31,6 +31,10 @@ public class OrdersBean {
     private String mOrderJobDate;
 
     @Nullable
+    @JsonProperty("JobDateDescription")
+    private String mJobDateDescription;
+
+    @Nullable
     @JsonProperty("Location")
     private String mLocation;
 
@@ -116,6 +120,10 @@ public class OrdersBean {
         return mOrderJobDate;
     }
 
+    @Nullable
+    public String getDateDescription() {
+        return mJobDateDescription;
+    }
 
 
 
