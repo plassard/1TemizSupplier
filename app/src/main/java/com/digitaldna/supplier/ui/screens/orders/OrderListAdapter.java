@@ -182,6 +182,7 @@ public class OrderListAdapter extends BaseAdapter {
                                 @Override
                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                     if(position > 0) {
+                                        tvWarningSelectReason = (TextView) dialogRejectReason.findViewById(R.id.textViewWarningSelectReason);
                                         tvWarningSelectReason.setVisibility(View.INVISIBLE);
                                     }
                                 }

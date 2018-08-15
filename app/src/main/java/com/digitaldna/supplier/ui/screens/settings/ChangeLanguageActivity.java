@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.digitaldna.supplier.R;
@@ -61,7 +62,8 @@ public class ChangeLanguageActivity extends Activity {
 
                 RestClient.getInstance().create(NetworkAPIsInterface.class).changeLanguage(changeLanguageRequest)
                         .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(result -> Log.i("ChangeLanguageResult", result.toString()) , e -> Log.i("ChangeLanguageResult", "error" + e.toString()));;
 
                 PrefProvider.saveLanguage(ChangeLanguageActivity.this, chosenLangShortName);
                 PrefProvider.saveLanguageId(ChangeLanguageActivity.this, chosenLangId);
@@ -77,6 +79,8 @@ public class ChangeLanguageActivity extends Activity {
             }
         });
 
+        ImageView imageView = (ImageView)findViewById(R.id.iv_toolbar_close);
+        imageView.setOnClickListener(view -> onBackPressed());
     }
 
 

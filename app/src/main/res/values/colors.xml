@@ -34,4 +34,6 @@
     <color name="wallet_bright_foreground_holo_light">#ff000000</color>
     <color name="mavi">#52a3ff</color>
     <color name="buton_gri">#10F2F2F2</color>
+
+    <color name="silver">#50000000</color>
 </resources>

@@ -12,11 +12,21 @@ import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.SplashActivity;
+import com.digitaldna.supplier.network.NetworkAPIsInterface;
+import com.digitaldna.supplier.network.RestClient;
+import com.digitaldna.supplier.network.beans.GetLoginBean;
+import com.digitaldna.supplier.network.beans.GetShopInfoBean;
 import com.digitaldna.supplier.network.beans.LoginSupplierBean;
+import com.digitaldna.supplier.network.requests.BasicRequest;
+import com.digitaldna.supplier.network.requests.SetShopInformationRequest;
 import com.digitaldna.supplier.ui.screens.settings.ChangeLanguageActivity;
+import com.digitaldna.supplier.ui.screens.settings.ChangeNameActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class SettingsActivity extends Activity {
 
@@ -33,6 +43,15 @@ public class SettingsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SettingsActivity.this, ChangeLanguageActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        RelativeLayout rlShopName = (RelativeLayout)findViewById(R.id.rl_shopname_container);
+        rlShopName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, ChangeNameActivity.class);
                 startActivity(intent);
             }
         });
@@ -80,5 +99,20 @@ public class SettingsActivity extends Activity {
             Intent intent = new Intent(this, SplashActivity.class);
             startActivity(intent);
         });
+
+        BasicRequest getInfoRequest = new BasicRequest(PrefProvider.getEmail(getApplicationContext()),
+                PrefProvider.getTicket(getApplicationContext()));
+
+        RestClient.getInstance().create(NetworkAPIsInterface.class).getShopInfo(getInfoRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .filter(result -> result != null)
+                .subscribe(result -> handleResult(result) , e -> handleError(e));
+    }
+    private void handleResult(GetShopInfoBean res){
+
+    }
+    private void handleError(Throwable t){
+
     }
 }

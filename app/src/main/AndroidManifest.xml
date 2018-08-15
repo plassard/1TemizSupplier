@@ -44,8 +44,11 @@
         <activity
             android:name=".ui.screens.OrderDetailsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.screens.settings.ChangeLanguageActivity"
+        <activity
+            android:name=".ui.screens.settings.ChangeLanguageActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.settings.ChangeNameActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

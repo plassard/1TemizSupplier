@@ -1,9 +1,11 @@
 package com.digitaldna.supplier.network.beans;
 
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.digitaldna.supplier.R;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -92,16 +94,16 @@ public class OrderDetailsBean {
         return mCustomerProfilePictureURL;
     }
 
-    public String getOrderNote() {
+    public String getOrderNote(Context context) {
         if(mOrderNote == null){
-            mOrderNote = "No order note";
+            mOrderNote = context.getResources().getString(R.string.no_order_note);
         }
         return mOrderNote;
     }
 
-    public String getPaymentType() {
+    public String getPaymentType(Context context) {
         if(mPaymentType == null){
-            mPaymentType = "Pending";
+            mPaymentType = context.getResources().getString(R.string.pending_payment);
         }
         return mPaymentType;
     }
@@ -126,29 +128,29 @@ public class OrderDetailsBean {
             return String.valueOf(mDiscount) + "0";}
     }
 
-    public String getmPickUpStatusText() {
+    public String getmPickUpStatusText(Context context) {
         String text;
         if(mOrderStatusID < 400){
-            text = "Pick up is not realized";
+            text = context.getResources().getString(R.string.pick_up_is_not_realized); //"Pick up is not realized";
         } else {
             if(misPickUpLate){
-                text = "Late";
+                text = context.getResources().getString(R.string.late_status);
             } else {
-                text = "On time";
+                text = context.getResources().getString(R.string.ontime_status);
             }
         }
         return text;
     }
 
-    public String getmDropOffStatusText() {
+    public String getmDropOffStatusText(Context context) {
         String text;
         if(mOrderStatusID < 600){
-            text = "drop off is not realized";
+            text = context.getResources().getString(R.string.drop_off_is_not_realized); //"drop off is not realized";
         } else {
             if(misPickUpLate){
-                text = "late";
+                text = context.getResources().getString(R.string.late_status);
             } else {
-                text = "on time";
+                text = context.getResources().getString(R.string.ontime_status);
             }
         }
         return text;

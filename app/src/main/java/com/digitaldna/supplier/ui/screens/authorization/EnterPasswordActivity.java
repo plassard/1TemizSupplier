@@ -140,14 +140,15 @@ public class EnterPasswordActivity extends Activity {
     }
 
     private boolean validatePassword() {
-        String password = etPassword.getText().toString();
+       /* String password = etPassword.getText().toString();
         if (password.trim().isEmpty() || password.length() < 6) {
             tvError.setText(getResources().getString(R.string.password_error));
             return false;
         } else {
             tvError.setText("");
             return true;
-        }
+        }*/
+       return true;
 
     }
 

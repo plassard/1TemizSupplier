@@ -75,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:weightSum="2">
 
                 <LinearLayout
@@ -88,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/order_history_menu_on_time_title"
-                        android:textAllCaps="true"/>
+                        android:textAllCaps="true" />
 
                     <TextView
                         android:id="@+id/tv_on_time_count"
@@ -97,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
                         android:layout_marginStart="4dp"
-                        tools:text="9"/>
+                        tools:text="9" />
 
                 </LinearLayout>
 
@@ -112,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/order_history_menu_late_tile"
-                        android:textAllCaps="true"/>
+                        android:textAllCaps="true" />
 
                     <TextView
                         android:id="@+id/tv_late_count"
@@ -121,7 +122,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
                         android:layout_marginStart="4dp"
-                        tools:text="3"/>
+                        tools:text="3" />
 
                 </LinearLayout>
             </LinearLayout>

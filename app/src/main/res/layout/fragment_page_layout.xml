@@ -7,6 +7,15 @@
     android:paddingBottom="4dp"
     tools:context="com.digitaldna.supplier.ui.screens.comments.PageFragment">
 
+    <TextView
+        android:id="@+id/tvNoOrders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+
+        android:text="@string/no_orders"
+        android:textSize="16dp"
+        android:visibility="invisible" />
 
     <ListView
         android:layout_width="match_parent"

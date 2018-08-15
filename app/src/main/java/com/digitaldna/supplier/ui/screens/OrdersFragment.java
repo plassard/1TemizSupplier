@@ -208,18 +208,15 @@ public class OrdersFragment extends Fragment {
         ordersThisWeek = new ArrayList<OrdersBean>();
         ordersThisMonth = new ArrayList<OrdersBean>();
 
-        List<Integer> addedIds= new ArrayList<Integer>();
-
         //fill "all" array, first "fresh" orders that needs to be accepted within 30 minutes(countdown)
         for(int i = 0; i < ordersBean.size(); i++) {
             if (ordersBean.get(i).getCancelCountdown() > 0){
                 ordersAll.add(ordersBean.get(i));
-                addedIds.add(ordersBean.get(i).getOrderID());
             }
         }
         //then we add all other orders to this array after "fresh" orders
         for(int i = 0; i < ordersBean.size(); i++) {
-            if (!ordersBean.contains(ordersBean.get(i).getOrderID()))
+            if (!(ordersBean.get(i).getCancelCountdown() > 0))
                 ordersAll.add(ordersBean.get(i));
         }
 
@@ -234,20 +231,44 @@ public class OrdersFragment extends Fragment {
 
         Calendar calendarTempDate = Calendar.getInstance();
         Date orderDate;
+
         for(int i = 0; i < ordersBean.size(); i++) {
             orderDate = null;
             try {
                 orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
                 calendarTempDate.setTime(orderDate);
                 if (calendarTempDate.get(Calendar.MONTH) == thisMonthNumber)
-                    ordersThisMonth.add(ordersBean.get(i));
+                    if (ordersBean.get(i).getCancelCountdown() > 0) {
+                        ordersThisMonth.add(ordersBean.get(i));
+                    }
                 if (calendarTempDate.get(Calendar.WEEK_OF_YEAR) == thisWeekOfYearNumber)
-                    ordersThisWeek.add(ordersBean.get(i));
+                    if (ordersBean.get(i).getCancelCountdown() > 0) {
+                        ordersThisWeek.add(ordersBean.get(i));
+                    }
             } catch (ParseException e) {  e.printStackTrace();   }
         }
 
-
         for(int i = 0; i < ordersBean.size(); i++) {
+            orderDate = null;
+            try {
+                orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
+                calendarTempDate.setTime(orderDate);
+                if (calendarTempDate.get(Calendar.MONTH) == thisMonthNumber) {
+                    if (!(ordersBean.get(i).getCancelCountdown() > 0)) {
+                        ordersThisMonth.add(ordersBean.get(i));
+                    }
+                }
+                if (calendarTempDate.get(Calendar.WEEK_OF_YEAR) == thisWeekOfYearNumber) {
+                    Log.i("THISWEEK", "This week" + calendarTempDate.get(Calendar.WEEK_OF_YEAR));
+                    if (!(ordersBean.get(i).getCancelCountdown() > 0)) {
+                        Log.i("THISWEEK", "This week here");
+                        ordersThisWeek.add(ordersBean.get(i));
+                    }
+                }
+            } catch (ParseException e) {  e.printStackTrace();   }
+        }
+
+       /* for(int i = 0; i < ordersBean.size(); i++) {
             orderDate = null;
             try {
                 orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
@@ -255,7 +276,7 @@ public class OrdersFragment extends Fragment {
                 if (calendarTempDate.get(Calendar.MONTH) == thisMonthNumber)
                     ordersThisMonth.add(ordersBean.get(i));
             } catch (ParseException e) {  e.printStackTrace();   }
-        }
+        }*/
 
 
         /*calendarWithTodayDate.add(Calendar.MONTH, -1);
@@ -288,9 +309,9 @@ public class OrdersFragment extends Fragment {
         }
 */
         try {
-            Log.i("LLL", "ERRRRRR " + "ordersThisMonth " + ordersThisMonth.size());
-            Log.i("LLL", "ERRRRRR " + "ordersThisWeek " + ordersThisWeek.size());
-            Log.i("LLL", "ERRRRRR " + "ordersAll " + ordersAll.size());
+            Log.i("LLL", "CONTROl " + "ordersThisMonth " + ordersThisMonth.size());
+            Log.i("LLL", "CONTROl " + "ordersThisWeek " + ordersThisWeek.size());
+            Log.i("LLL", "CONTROl " + "ordersAll " + ordersAll.size());
         }catch (Exception e) {Log.i("LLL", "ERRRRRR " + "ordersAll exc" + e);}
 
         TabsPagerAdapter adapter = new TabsPagerAdapter(getFragmentManager());

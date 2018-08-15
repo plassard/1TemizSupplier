@@ -114,10 +114,10 @@ public class OrderDetailsActivity extends Activity {
         tvDropoff.setText(orderDetailsBean.getDropOffDateDescription());
 
         TextView tvPickupStatus = (TextView)findViewById(R.id.tv_status_buttontext);
-        tvPickupStatus.setText(orderDetailsBean.getmPickUpStatusText());
+        tvPickupStatus.setText(orderDetailsBean.getmPickUpStatusText(this));
 
         TextView tvDropOffStatus = (TextView)findViewById(R.id.tv_dropoffstatus_text);
-        tvDropOffStatus.setText(orderDetailsBean.getmDropOffStatusText());
+        tvDropOffStatus.setText(orderDetailsBean.getmDropOffStatusText(this));
 
 
         ImageView ivCustomerPicture = (ImageView)findViewById(R.id.iv_avatar);
@@ -141,7 +141,7 @@ public class OrderDetailsActivity extends Activity {
         tvAddressNote.setText(orderDetailsBean.getmAddressNote());
 
         TextView tvPaymentType = (TextView)findViewById(R.id.tv_payment_method);
-        tvPaymentType.setText(orderDetailsBean.getPaymentType());
+        tvPaymentType.setText(orderDetailsBean.getPaymentType(this));
 
         TextView tvDiscount = (TextView)findViewById(R.id.tv_discount);
         tvDiscount.setText(orderDetailsBean.getDiscount());
@@ -150,7 +150,7 @@ public class OrderDetailsActivity extends Activity {
             addBasketProducts(orderDetailsBean.getProducts());
 
         TextView tvOrderNote = (TextView)findViewById(R.id.tv_notes_to_order);
-        tvOrderNote.setText(orderDetailsBean.getOrderNote());
+        tvOrderNote.setText(orderDetailsBean.getOrderNote(this));
 
         TextView tvCourierUnverWarning = (TextView)findViewById(R.id.tv_courier_unverified_warning);
         Log.i("CCCC", "spinner ");

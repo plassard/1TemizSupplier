@@ -5,12 +5,13 @@
 
 
     <string name="hint_email">Eposta adresini gir</string>
-    <string name="email">EPOSTA ADRESİ:</string>
+    <string name="email">E-POSTA ADRESİ</string>
     <string name="field_required">Bu alan gereklidir</string>
     <string name="mail_error">Hatalı eposta girdin</string>
 
-    <string name="next">İLERİ</string>
-    <string name="password">ŞİFRE:</string>
+    <string name="next">İleri</string>
+    <string name="next_password_screen">Giriş Yap</string>
+    <string name="password">ŞİFRE</string>
     <string name="forgot_password">Şifrenizi mi unuttunuz?</string>
     <string name="hint_password">Şifreni gir</string>
     <string name="password_error">En az 6 karakterli bir şifre gir</string>
@@ -31,9 +32,15 @@
     <string name="rating">Puan:</string>
     <string name="rating_comment_menu_comments_title">YORUM:</string>
     <string name="comments">Yorum:</string>
+    <string name="comments_no_comments">Yorum: Yok</string>
 
-    <string name="menu_statostocs_title">İstatistik </string>
+    <string name="menu_statostocs_title">İSTATİSTİKLER</string>
     <string name="settings">Ayarlar</string>
+    <string name="settings_title">AYARLAR</string>
+    <string name="phone_number">TELEFON NUMARASI</string>
+    <string name="language">DİL</string>
+    <string name="password_label">ŞİFRE</string>
+    <string name="auth_button_log_out">Çıkış Yap</string>
 
     <string name="current_balance">Current balance</string>
 
@@ -76,7 +83,7 @@
 
     <string name="tab_week">BU HAFTA</string>
     <string name="tab_month">BU AY</string>
-    <string name="tab_all">Herşey</string>
+    <string name="tab_all">TÜMÜ</string>
 
 
     <string name="customer_order_title">Müşteri:</string>
@@ -112,17 +119,28 @@
 
     <string name="rating_last_year">Son 12 ay için değerlendirme</string>
 
-    <string name="accepted_orders">Kabul edilmiş</string>
+    <string name="accepted_orders">Kabul Edilen</string>
     <string name="completed_orders">Tamamlanan</string>
-    <string name="incompleted_orders">Yapmadı</string>
+    <string name="incompleted_orders">Tamamlanmayan</string>
     <string name="percentage">Yüzde</string>
 
     <string name="success_rate">Başarı oranı</string>
 
-    <string name="cancelled_count">İptal / Sipariş Sayısı</string>
-    <string name="late_count">Geç / İş Sayısı</string>
-    <string name="ontime_count">Zaman / İş Sayımında</string>
+    <string name="cancelled_count">Ret / Sipariş Sayısı</string>
+    <string name="late_count">Geç / Görev Sayısı</string>
+    <string name="ontime_count">Zaman / Görev Sayısı</string>
 
     <string name="change_language">DİL SEÇ</string>
+
+    <string name="pick_up_is_not_realized">Alım işlemi tamamlanmadı</string>
+    <string name="drop_off_is_not_realized">Teslim işlemi tamamlanmadı</string>
+    <string name="late_status">Geç</string>
+    <string name="ontime_status">Zamanında</string>
+    <string name="pending_payment">Beklemede</string>
+    <string name="no_order_note">Yok</string>
+
+    <string name="no_orders">Henüz aktif siparişiniz yok</string>
+
+    <string name="change_name">Change name</string>
 
 </resources>

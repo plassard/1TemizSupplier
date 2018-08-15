@@ -8,6 +8,7 @@ import com.digitaldna.supplier.network.beans.GetCommentsBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
+import com.digitaldna.supplier.network.beans.GetShopInfoBean;
 import com.digitaldna.supplier.network.beans.GetStatisticOrdersBean;
 import com.digitaldna.supplier.network.beans.GetSupplierRateAverageBean;
 import com.digitaldna.supplier.network.beans.GetSupplierSuccessRate;
@@ -23,6 +24,7 @@ import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.network.requests.RejectOrderRequest;
 import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
+import com.digitaldna.supplier.network.requests.SetShopInformationRequest;
 import com.digitaldna.supplier.network.requests.VerifyPhoneRequest;
 
 import io.reactivex.Observable;
@@ -49,6 +51,14 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.LOGIN)
     Observable<GetLoginBean> login(@NonNull @Body LoginRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.SET_SHOP_INFO)
+    Observable<GetLoginBean> setShopInfo(@NonNull @Body SetShopInformationRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.GET_SHOP_INFO)
+    Observable<GetShopInfoBean> getShopInfo(@NonNull @Body BasicRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.ACCEPT_ORDER)

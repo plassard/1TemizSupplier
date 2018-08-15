@@ -119,7 +119,7 @@ public class StatisticsActivity extends Activity {
         tvAccepted.setText(String.valueOf(totalOrders));
         tvCompleted.setText(String.valueOf(completedOrders));
         tvIncompleted.setText(String.valueOf(incompletedOrders));
-        tvPercentage.setText(String.valueOf(new DecimalFormat("##.##").format(percentage)) + "%");
+        tvPercentage.setText(String.valueOf(new DecimalFormat("##.##").format(percentage)).replace(",", ".") + "%");
 
         pbAccepted.setProgress(totalOrders);
         pbCompleted.setProgress(completedOrders);
@@ -135,9 +135,9 @@ public class StatisticsActivity extends Activity {
         pbLate.setProgress(Integer.valueOf(supplierSuccessRate.getLateRate().intValue()));
         pbOnTime.setProgress(Integer.valueOf(supplierSuccessRate.getOnTimeRate().intValue()));
 
-        tvCancelledPercentage.setText(String.format("%.2f", supplierSuccessRate.getCanceledRate()) + "%");
-        tvLatePercentage.setText(String.format("%.2f", supplierSuccessRate.getLateRate()) + "%");
-        tvOnTimePercentage.setText(String.format("%.2f", supplierSuccessRate.getOnTimeRate()) + "%");
+        tvCancelledPercentage.setText(String.format("%.2f", supplierSuccessRate.getCanceledRate()).replace(",", ".") + "%");
+        tvLatePercentage.setText(String.format("%.2f", supplierSuccessRate.getLateRate()).replace(",", ".") + "%");
+        tvOnTimePercentage.setText(String.format("%.2f", supplierSuccessRate.getOnTimeRate()).replace(",", ".") + "%");
 
 
         tvCancelledCount.setText(supplierSuccessRate.getCanceledOrderCount() + " / " + supplierSuccessRate.getTotalOrderCount());

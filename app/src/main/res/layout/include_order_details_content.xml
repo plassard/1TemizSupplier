@@ -143,11 +143,10 @@
 
             <ImageView
                 android:id="@+id/iv_status"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/cleaning_30_27"
-                />
+                android:src="@drawable/order_details_status_icon" />
 
             <TextView
                 android:id="@+id/tv_status"
@@ -171,10 +170,10 @@
 
             <ImageView
                 android:id="@+id/iv_price"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/usd_bag_30_37"/>
+                android:src="@drawable/usd_bag" />
 
             <TextView
                 android:id="@+id/tv_price"

@@ -111,8 +111,6 @@ public class CommentsAndRatingActivity extends Activity {
         for(int i = 0; i < getCommentsBean.size(); i++) {
                 commentsArray.add(getCommentsBean.get(i));
         }*/
-        Log.i("LLL", "commentsArray "+ getCommentsBean.get(0).getName());
-        Log.i("LLL", "commentsArray "+ getCommentsBean.get(1).getName());
 
         List<CommentsBean> filteredCommentsBean = new ArrayList<>();
 
@@ -125,9 +123,16 @@ public class CommentsAndRatingActivity extends Activity {
         CommentsListAdapter commentsAdapter = null;
         commentsAdapter = new CommentsListAdapter(this, filteredCommentsBean);
         lvComments.setAdapter(commentsAdapter);
+
+        if(filteredCommentsBean.size() == 0){
+            TextView tvComments = (TextView)findViewById(R.id.TextViewComments);
+            tvComments.setText(getResources().getString(R.string.comments_no_comments));
+        }
     }
 
     private void handleError(Throwable t){
         Log.i("LLL", "ERRRRRR "+ BaseJsonBean.mStatusText);
+        TextView tvComments = (TextView)findViewById(R.id.TextViewComments);
+        tvComments.setText(getResources().getString(R.string.comments_no_comments));
     }
 }

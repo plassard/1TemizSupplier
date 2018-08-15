@@ -61,6 +61,7 @@
         android:layout_below="@+id/editTextEmail"
         android:background="@color/blue"
         android:text="@string/next"
+        android:textAllCaps="false"
         android:textColor="@color/white" />
 
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.ui.screens.OrdersFragment;
@@ -54,18 +55,26 @@ public class PageFragment extends Fragment {
         OrderListAdapter ordersAdapter = null;
         if(page == 1){
             ordersAdapter = new OrderListAdapter(getContext(), OrdersFragment.ordersAll);
+            setNoOrdersLabel(rootView, OrdersFragment.ordersAll.size());
         } else if(page == 2){
             ordersAdapter = new OrderListAdapter(getContext(), OrdersFragment.ordersThisMonth);
+            setNoOrdersLabel(rootView, OrdersFragment.ordersThisMonth.size());
         } else if(page == 3){
             ordersAdapter = new OrderListAdapter(getContext(), OrdersFragment.ordersThisWeek);
+            setNoOrdersLabel(rootView, OrdersFragment.ordersThisWeek.size());
         }
         lvOrders.setAdapter(ordersAdapter);
 
-        /*lvOrders.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-        }*/
-
         return rootView;
+    }
+
+    public void setNoOrdersLabel(View view, int ordersSize){
+        TextView textView = (TextView)view.findViewById(R.id.tvNoOrders);
+        if(ordersSize == 0){
+            textView.setVisibility(View.VISIBLE);
+        } else {
+            textView.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
