@@ -19,8 +19,10 @@ import com.digitaldna.supplier.network.beans.GetShopInfoBean;
 import com.digitaldna.supplier.network.beans.LoginSupplierBean;
 import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.network.requests.SetShopInformationRequest;
+import com.digitaldna.supplier.ui.screens.settings.ChangeEmailActivity;
 import com.digitaldna.supplier.ui.screens.settings.ChangeLanguageActivity;
 import com.digitaldna.supplier.ui.screens.settings.ChangeNameActivity;
+import com.digitaldna.supplier.ui.screens.settings.ChangePasswordActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
@@ -29,6 +31,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class SettingsActivity extends Activity {
+    TextView tvSupplierTitle;
+    TextView tvShopName;
+    TextView tvEmail;
+    TextView tvPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,24 @@ public class SettingsActivity extends Activity {
 
         Log.i("consolesss", "ShopName" + PrefProvider.getShopName(this));
         Log.i("consolesss", "ShopName" + PrefProvider.getSupplierTitle(this));
+
+        RelativeLayout rlShopName = (RelativeLayout)findViewById(R.id.rl_shopname_container);
+        rlShopName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, ChangeNameActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        RelativeLayout rlEmail = (RelativeLayout)findViewById(R.id.rv_email_container);
+        rlEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, ChangeEmailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         RelativeLayout rlLanugae = (RelativeLayout)findViewById(R.id.rlLanguage);
         rlLanugae.setOnClickListener(new View.OnClickListener() {
@@ -47,11 +71,11 @@ public class SettingsActivity extends Activity {
             }
         });
 
-        RelativeLayout rlShopName = (RelativeLayout)findViewById(R.id.rl_shopname_container);
-        rlShopName.setOnClickListener(new View.OnClickListener() {
+        RelativeLayout rlPassword = (RelativeLayout)findViewById(R.id.rlPassword);
+        rlPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingsActivity.this, ChangeNameActivity.class);
+                Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -68,17 +92,11 @@ public class SettingsActivity extends Activity {
         }catch (Exception e) {
             Log.i("LLL", "Picasso exc " + e);
         }
-        TextView tvSupplierTitle = (TextView)findViewById(R.id.tv_full_name);
-        tvSupplierTitle.setText(PrefProvider.getShopName(this));
+        tvSupplierTitle = (TextView)findViewById(R.id.tv_full_name);
+        tvShopName = (TextView)findViewById(R.id.tv_shop_name);
+        tvEmail = (TextView)findViewById(R.id.tv_email);
+        tvPhone = (TextView)findViewById(R.id.tv_phonenumber);
 
-        TextView tvShopName = (TextView)findViewById(R.id.tv_shop_name);
-        tvShopName.setText(PrefProvider.getSupplierTitle(this));
-
-        TextView tvEmail = (TextView)findViewById(R.id.tv_email);
-        tvEmail.setText(PrefProvider.getEmail(this));
-
-        TextView tvPhone = (TextView)findViewById(R.id.tv_phonenumber);
-        tvPhone.setText(PrefProvider.getPhoneNumber(this));
 
         Log.i("LANGGG", " " + PrefProvider.getLanguageId(this));
         TextView tvLanguage = (TextView)findViewById(R.id.tv_language);
@@ -109,8 +127,19 @@ public class SettingsActivity extends Activity {
                 .filter(result -> result != null)
                 .subscribe(result -> handleResult(result) , e -> handleError(e));
     }
-    private void handleResult(GetShopInfoBean res){
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tvSupplierTitle.setText(PrefProvider.getShopName(this));
+        tvShopName.setText(PrefProvider.getSupplierTitle(this));
+        tvEmail.setText(PrefProvider.getEmail(this));
+        tvPhone.setText(PrefProvider.getPhoneNumber(this));
+    }
+
+    private void handleResult(GetShopInfoBean res){
+        PrefProvider.saveGsmNumberCountryID(this, res.getData().getGsmNumberCountryID());
+        PrefProvider.saveGsmNumber(this, res.getData().getGsmNumber());
     }
     private void handleError(Throwable t){
 

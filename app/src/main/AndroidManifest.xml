@@ -47,8 +47,12 @@
         <activity
             android:name=".ui.screens.settings.ChangeLanguageActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.screens.settings.ChangeNameActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.screens.settings.ChangeNameActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.settings.ChangeEmailActivity" />
+        <activity android:name=".ui.screens.settings.ChangePhoneActivity" />
+        <activity android:name=".ui.screens.settings.ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

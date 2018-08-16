@@ -31,7 +31,6 @@ public class SetShopInformationRequest extends BasicRequest {
     public SetShopInformationRequest(String title, String ShopName, String email, int countryID, String number, String userId, String ticket) {
         super(userId, ticket);
         mTitle = title;
-        mEmail = email;
         mShopName = ShopName;
         mEmail = email;
         mGsmNumberCountryID = countryID;

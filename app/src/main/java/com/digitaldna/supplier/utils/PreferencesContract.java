@@ -34,7 +34,9 @@ final class PreferencesContract {
         static final String PROFILE_PICTURE_URL = USER_PREFIX + "profile_picture_url";
         static final String TITLE = USER_PREFIX + "title";
         static final String COUNTRY_ID = USER_PREFIX + "country_id";
+        static final String GSM_NUMBER_COUNTRY_ID = USER_PREFIX + "gsm_number_country_id";
         static final String PHONE_NUMBER = USER_PREFIX + "phone_number";
+        static final String GSM_NUMBER = USER_PREFIX + "gsm_number";
 
         static final String PUSH_TOKEN = USER_PREFIX + "push_token";
         static final String VERIFIED = USER_PREFIX + "verified";

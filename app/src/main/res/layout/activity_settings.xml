@@ -123,6 +123,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/iv_shop_name"
                             android:layout_toRightOf="@+id/iv_shop_name"
+                            android:layout_marginEnd="35dp"
                              />
 
                         <ImageView
@@ -172,36 +173,19 @@
                             android:layout_marginRight="24dp"
                             android:src="@drawable/email_icon"/>
 
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/tv_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/iv_email"
                             android:layout_toRightOf="@+id/iv_email"
-                            android:orientation="vertical">
+                            />
 
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical">
-
-                                <TextView
-                                    android:id="@+id/tv_email"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-
-                                    android:text="sdfdsfsdfsdf"/>
-
-                                <ImageView
-                                    android:id="@+id/iv_email_arrow"
-                                    style="@style/RightArrowStyle"
-                                    android:layout_gravity="end"
-                                    android:visibility="invisible" />
-
-                            </FrameLayout>
-
-                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/iv_email_arrow"
+                            style="@style/RightArrowStyle"
+                            android:visibility="visible" />
                     </RelativeLayout>
 
                 </RelativeLayout>
@@ -357,11 +341,12 @@
                         android:textAllCaps="true" />
 
                     <RelativeLayout
+                        android:id="@+id/rlPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_password_label"
-                        android:layout_marginTop="8dp"
-                        >
+                        android:layout_marginTop="8dp">
+
                         <ImageView
                             android:id="@+id/iv_password"
                             android:layout_width="wrap_content"
@@ -369,36 +354,21 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="24dp"
                             android:layout_marginRight="24dp"
-                            android:src="@drawable/svg_unlock_blue_24dp"/>
-                        <LinearLayout
-                            android:id="@+id/ll_password_container"
+                            android:src="@drawable/svg_unlock_blue_24dp" />
+
+                        <TextView
+                            android:id="@+id/tv_password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/iv_password"
                             android:layout_toRightOf="@+id/iv_password"
-                            android:orientation="vertical">
+                            android:text="******" />
 
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/tv_password"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="textMultiLine"
-                                    android:paddingEnd="30dp"
-                                    android:text="******" />
-
-                                <ImageView
-                                    android:id="@+id/iv_password_arrow"
-                                    style="@style/RightArrowStyle"
-                                    android:layout_gravity="end"
-                                    android:visibility="invisible" />
-
-                            </FrameLayout>
-
-                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/iv_password_arrow"
+                            style="@style/RightArrowStyle"
+                            android:visibility="visible" />
 
                     </RelativeLayout>
 

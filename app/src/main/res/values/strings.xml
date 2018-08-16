@@ -147,6 +147,7 @@ Please enter it below:</string>
 
     <string name="change_name">CHANGE SHOP NAME</string>
     <string name="official_name">Short shop name</string>
-
+    <string name="change_email">CHANGE EMAIL</string>
+    <string name="change_password">CHANGE PASSWORD</string>
 
 </resources>

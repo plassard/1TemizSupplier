@@ -115,6 +115,12 @@ public class StatisticsActivity extends Activity {
             incompletedOrders = incompletedOrders + ordersInDayBeans.get(i).getInCompletedOrders();
         }
         Double percentage = (Double.valueOf(completedOrders) / Double.valueOf(totalOrders)) * 100;
+        Log.i("NNNNN", "completedOrders" + completedOrders);
+        Log.i("NNNNN", "totalOrders" + totalOrders);
+        Log.i("NNNNN", "percentage" + percentage);
+        if(totalOrders == 0) {
+            percentage = 0D;
+        }
 
         tvAccepted.setText(String.valueOf(totalOrders));
         tvCompleted.setText(String.valueOf(completedOrders));

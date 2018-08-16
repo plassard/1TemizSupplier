@@ -21,28 +21,25 @@ import com.digitaldna.supplier.utils.PrefProvider;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class ChangeNameActivity extends Activity {
-    EditText etShortName;
-    EditText etFullShopName;
+public class ChangePhoneActivity extends Activity {
+    EditText etPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_name);
+        setContentView(R.layout.activity_change_phone);
 
-        etShortName = (EditText)findViewById(R.id.et_short_name);
-        etFullShopName = (EditText)findViewById(R.id.et_new_shop_name);
+        etPhone = (EditText)findViewById(R.id.et_phone);
 
-        etShortName.setText(PrefProvider.getShopName(this));
-        etFullShopName.setText(PrefProvider.getSupplierTitle(this));
+        etPhone.setText(PrefProvider.getEmail(this));
 
         Button btnSave = (Button)findViewById(R.id.b_save);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SetShopInformationRequest setInfroRequest = new SetShopInformationRequest(etFullShopName.getText().toString(),
-                        etShortName.getText().toString(),
-                        PrefProvider.getEmail(getApplicationContext()),
+                SetShopInformationRequest setInfroRequest = new SetShopInformationRequest(PrefProvider.getSupplierTitle(getApplicationContext()),
+                        PrefProvider.getShopName(getApplicationContext()),
+                        etPhone.getText().toString(),
                         PrefProvider.getGsmNumberCountryID(getApplicationContext()),
                         PrefProvider.getGsmNumber(getApplicationContext()),
                         PrefProvider.getEmail(getApplicationContext()),
@@ -60,8 +57,9 @@ public class ChangeNameActivity extends Activity {
     }
     private void handleResult(GetLoginBean res){
         PrefProvider.saveTicket(this, res.getData().getTicket());
-        PrefProvider.saveShopName(this, etShortName.getText().toString());
-        PrefProvider.saveSupplierTitle(this, etFullShopName.getText().toString());
+        PrefProvider.saveEmail(this, etPhone.getText().toString());
+        // PrefProvider.saveShopName(this, etShortName.getText().toString());
+        //  PrefProvider.saveSupplierTitle(this, etFullShopName.getText().toString());
         Log.i("SSSSSS", "success" + res.getData().getTicket());
 
         this.finish();

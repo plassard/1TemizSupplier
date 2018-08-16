@@ -24,6 +24,7 @@ import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.network.requests.RejectOrderRequest;
 import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
+import com.digitaldna.supplier.network.requests.SetShopInfoPasswordRequest;
 import com.digitaldna.supplier.network.requests.SetShopInformationRequest;
 import com.digitaldna.supplier.network.requests.VerifyPhoneRequest;
 
@@ -55,6 +56,10 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.SET_SHOP_INFO)
     Observable<GetLoginBean> setShopInfo(@NonNull @Body SetShopInformationRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.SET_SHOP_INFO)
+    Observable<GetLoginBean> setPassword(@NonNull @Body SetShopInfoPasswordRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.GET_SHOP_INFO)

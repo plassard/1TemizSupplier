@@ -31,6 +31,14 @@ public class ShopInfoBean {
     private Integer mCountryID;
 
     @Nullable
+    @JsonProperty("GsmNumber")
+    private String mGsmNumber;
+
+    @Nullable
+    @JsonProperty("GsmNumberCountryID")
+    private int mGsmNumberCountryID;
+
+    @Nullable
     @JsonProperty("PhoneNumber")
     private String mPhoneNumber;
 
@@ -93,18 +101,19 @@ public class ShopInfoBean {
         mTicket = ticket;
     }
 
-   /* @Nullable
-    public Long getLanguage() {
-        return mLanguage;
-    }
-
-    public void setLanguage(@Nullable Long language) {
-        mLanguage = language;
-    }*/
-
     @Nullable
     public Integer getCountryID() {
         return mCountryID;
+    }
+
+    @Nullable
+    public Integer getGsmNumberCountryID() {
+        return mGsmNumberCountryID;
+    }
+
+    @Nullable
+    public String getGsmNumber() {
+        return mGsmNumber;
     }
 
     @Nullable

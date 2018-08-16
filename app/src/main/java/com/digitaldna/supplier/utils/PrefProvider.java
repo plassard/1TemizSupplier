@@ -109,6 +109,19 @@ public class PrefProvider {
         return mPreferences.getInt(PreferencesContract.Supplier.COUNTRY_ID, -1);
     }
 
+    static public void saveGsmNumberCountryID(Context context, Integer CountryID){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putInt(PreferencesContract.Supplier.GSM_NUMBER_COUNTRY_ID, CountryID)
+                .commit();
+    }
+
+    static public Integer getGsmNumberCountryID(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getInt(PreferencesContract.Supplier.GSM_NUMBER_COUNTRY_ID, -1);
+    }
+
+
     static public void savePhoneNumber(Context context, String PhoneNumber){
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
         mPreferences.edit()
@@ -121,7 +134,17 @@ public class PrefProvider {
         return mPreferences.getString(PreferencesContract.Supplier.PHONE_NUMBER, "");
     }
 
+    static public void saveGsmNumber(Context context, String PhoneNumber){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putString(PreferencesContract.Supplier.GSM_NUMBER, PhoneNumber)
+                .commit();
+    }
 
+    static public String getGsmNumber(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getString(PreferencesContract.Supplier.GSM_NUMBER, "");
+    }
 
     static public void logOut(Context context){
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
