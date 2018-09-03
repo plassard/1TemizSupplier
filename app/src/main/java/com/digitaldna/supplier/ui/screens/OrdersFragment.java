@@ -204,6 +204,7 @@ public class OrdersFragment extends Fragment {
     public static List<OrdersBean> ordersThisMonth;
 
     private void handleResult(List<OrdersBean> ordersBean){
+        Log.i("HANDLEE", "hand");
         ordersAll = new ArrayList<OrdersBean>();
         ordersThisWeek = new ArrayList<OrdersBean>();
         ordersThisMonth = new ArrayList<OrdersBean>();
@@ -268,46 +269,6 @@ public class OrdersFragment extends Fragment {
             } catch (ParseException e) {  e.printStackTrace();   }
         }
 
-       /* for(int i = 0; i < ordersBean.size(); i++) {
-            orderDate = null;
-            try {
-                orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
-                calendarTempDate.setTime(orderDate);
-                if (calendarTempDate.get(Calendar.MONTH) == thisMonthNumber)
-                    ordersThisMonth.add(ordersBean.get(i));
-            } catch (ParseException e) {  e.printStackTrace();   }
-        }*/
-
-
-        /*calendarWithTodayDate.add(Calendar.MONTH, -1);
-        dateThisMonth = calendarWithTodayDate.getTime();
-
-        Date dateThisWeek;
-        calendarWithTodayDate = Calendar.getInstance();
-        calendarWithTodayDate.setTime(dateToday);
-        calendarWithTodayDate.add(Calendar.WEEK_OF_YEAR, -1);
-        dateThisWeek = calendarWithTodayDate.getTime();
-
-        Date orderDate = null;
-        for(int i = 0; i < ordersBean.size(); i++){
-            try {
-                orderDate = format.parse(ordersBean.get(i).getOrderJobDate());
-            } catch (Exception e) { e.printStackTrace();Log.i("oginSuean.getEmail()", "ERRRRRR " + "ParseException " + i + " " + e); }
-
-            try{
-                if(orderDate.after(dateThisMonth)){
-                    ordersThisMonth.add(ordersBean.get(i));
-                }
-                if(orderDate.after(dateThisWeek)){
-                    ordersThisWeek.add(ordersBean.get(i));
-                }
-                if(orderDate.after(dateToday)){
-                    if(ordersBean.get(i).getCancelCountdown() == 0)
-                        ordersAll.add(ordersBean.get(i));
-                }
-            }catch (Exception e) {Log.i("LLL", "ERRRRRR " + "add exc " + e);}
-        }
-*/
         try {
             Log.i("LLL", "CONTROl " + "ordersThisMonth " + ordersThisMonth.size());
             Log.i("LLL", "CONTROl " + "ordersThisWeek " + ordersThisWeek.size());
@@ -331,7 +292,13 @@ public class OrdersFragment extends Fragment {
         openMain();*/
     }
     private void handleError(Throwable t){
-        Log.i("LLL", "ERRRRRR "+ BaseJsonBean.mStatusText);
+        Log.i("HANDLEE", "error" + BaseJsonBean.mStatusText);
+        ordersAll = new ArrayList<OrdersBean>();
+        ordersThisWeek = new ArrayList<OrdersBean>();
+        ordersThisMonth = new ArrayList<OrdersBean>();
+        TabsPagerAdapter adapter = new TabsPagerAdapter(getFragmentManager());
+        vpPager.setAdapter(adapter);
+        tlTabs.setupWithViewPager(vpPager);
     }
 
     private final SimpleOnTabSelectedListener mSimpleOnTabSelectedListener = new SimpleOnTabSelectedListener() {

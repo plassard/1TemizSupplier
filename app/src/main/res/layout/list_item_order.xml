@@ -169,7 +169,7 @@
             android:textSize="12dp"
             android:background="@drawable/button_rounded_empty_pink"
             android:gravity="center"
-            android:text="Accept"/>
+            android:text="@string/accept"/>
 
         <Button
             android:id="@+id/button_decline"
@@ -181,7 +181,7 @@
             android:background="@drawable/button_rounded_pink"
             android:gravity="center"
             android:textColor="@color/white"
-            android:text="Decline"/>
+            android:text="@string/decline"/>
         <TextView
             android:id="@+id/textViewCountDown"
             android:layout_width="wrap_content"

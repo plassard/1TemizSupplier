@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/reason"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/darker_gray"
             android:textSize="14dp" />
 
 
@@ -51,13 +51,13 @@
             android:visibility="invisible"
             android:textSize="14dp" />
 
-        <TextView
-            android:id="@+id/textViewNote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/note"
-            android:textColor="@android:color/black"
-            android:textSize="14dp" />
+    <TextView
+        android:id="@+id/textViewNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/note"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14dp" />
 
     <EditText
         android:id="@+id/editTextExplanation"

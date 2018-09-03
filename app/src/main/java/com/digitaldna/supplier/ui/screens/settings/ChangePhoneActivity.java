@@ -16,6 +16,7 @@ import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.network.requests.SetShopInformationRequest;
 import com.digitaldna.supplier.ui.screens.SettingsActivity;
+import com.digitaldna.supplier.ui.screens.authorization.SmsVerificationActivity;
 import com.digitaldna.supplier.utils.PrefProvider;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -31,7 +32,7 @@ public class ChangePhoneActivity extends Activity {
 
         etPhone = (EditText)findViewById(R.id.et_phone);
 
-        etPhone.setText(PrefProvider.getEmail(this));
+        etPhone.setText(PrefProvider.getPhoneNumber(this));
 
         Button btnSave = (Button)findViewById(R.id.b_save);
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -39,9 +40,9 @@ public class ChangePhoneActivity extends Activity {
             public void onClick(View v) {
                 SetShopInformationRequest setInfroRequest = new SetShopInformationRequest(PrefProvider.getSupplierTitle(getApplicationContext()),
                         PrefProvider.getShopName(getApplicationContext()),
-                        etPhone.getText().toString(),
+                        PrefProvider.getEmail(getApplicationContext()),
                         PrefProvider.getGsmNumberCountryID(getApplicationContext()),
-                        PrefProvider.getGsmNumber(getApplicationContext()),
+                        etPhone.getText().toString(),
                         PrefProvider.getEmail(getApplicationContext()),
                         PrefProvider.getTicket(getApplicationContext()));
 
@@ -57,15 +58,16 @@ public class ChangePhoneActivity extends Activity {
     }
     private void handleResult(GetLoginBean res){
         PrefProvider.saveTicket(this, res.getData().getTicket());
-        PrefProvider.saveEmail(this, etPhone.getText().toString());
+        PrefProvider.savePhoneNumber(this, etPhone.getText().toString());
+
         // PrefProvider.saveShopName(this, etShortName.getText().toString());
         //  PrefProvider.saveSupplierTitle(this, etFullShopName.getText().toString());
         Log.i("SSSSSS", "success" + res.getData().getTicket());
 
         this.finish();
 
-        /* Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(this, SmsVerificationActivity.class);
+        startActivity(intent);
     }
     private void handleError(Throwable t){
         Log.i("SSSSSS", "error" + t.getMessage());

@@ -19,13 +19,22 @@ import android.widget.TextView;
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.network.NetworkAPIsInterface;
 import com.digitaldna.supplier.network.RestClient;
+import com.digitaldna.supplier.network.beans.GetOrdersBean;
 import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
+import com.digitaldna.supplier.network.beans.OrdersBean;
 import com.digitaldna.supplier.network.beans.SupplierSummaryBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -107,6 +116,7 @@ public class MainMenuFragment extends Fragment {
         ViewPager pager = (ViewPager)getActivity().findViewById(R.id.viewPager);
         vMenuOrders.setOnClickListener(view -> {
             pager.setCurrentItem(1);
+            PrefProvider.saveSeenOrderID(getContext(), futureLastSeenOrder);
         });
         Log.i("LLL", "MainMenuFragment view pager");
 
@@ -167,7 +177,7 @@ public class MainMenuFragment extends Fragment {
 
         TextView textView = (TextView)vMenuSettings.findViewById(R.id.tv_email);
         String string = PrefProvider.getEmail(getContext());
-
+        ivOrdersCount = (ImageView)vMenuOrders.findViewById(R.id.iv_orders_count);
         textView.setText(string);
 
         Log.i("LLL", "MainMenuFragment set text" + string);
@@ -179,7 +189,45 @@ public class MainMenuFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(result -> result != null)
                 .subscribe(result -> handleResult(result) , e -> handleError(e));
+
+        BasicRequest ordersRequest = new BasicRequest(PrefProvider.getEmail(getContext()), PrefProvider.getTicket(getContext()));
+
+        RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .filter(result -> result != null)
+                .map(GetOrdersBean::getData)
+                .subscribe(result -> handleOrdersListResult(result) , e -> handleOrdersListError(e));
     }
+
+    int futureLastSeenOrder;
+    private void handleOrdersListResult(List<OrdersBean> ordersBean){
+        int lastSeenOrder = PrefProvider.getSeenOrderID(getContext());
+        int newOrdersCount = 0;
+        futureLastSeenOrder = lastSeenOrder;
+        //fill "all" array, first "fresh" orders that needs to be accepted within 30 minutes(countdown)
+        for(int i = 0; i < ordersBean.size(); i++) {
+            if (ordersBean.get(i).getOrderID() > lastSeenOrder){
+                newOrdersCount++;
+                if(futureLastSeenOrder < ordersBean.get(i).getOrderID()){
+                    futureLastSeenOrder = ordersBean.get(i).getOrderID();
+                }
+            }
+        }
+        TextView tvOrdersCount = (TextView)vMenuOrders.findViewById(R.id.tv_orders_count);
+        tvOrdersCount.setText(String.valueOf(newOrdersCount));
+        if(newOrdersCount > 0) {
+            ivOrdersCount.setVisibility(View.VISIBLE);
+            animateNewOrder();
+        } else {
+            ivOrdersCount.setVisibility(View.INVISIBLE);
+        }
+    }
+    private void handleOrdersListError(Throwable t){
+        Log.i("HANDLEE", "error" + BaseJsonBean.mStatusText);
+
+    }
+
 
     private void handleResult(GetSupplierSummaryBean getSupplierSummaryBean){
         Log.i("LLL", "MainMenuFragment success");
@@ -199,17 +247,15 @@ public class MainMenuFragment extends Fragment {
 
         earningsAmount = getResources().getString(R.string.tr_lyra) + " " + String.valueOf(summaryBean.getEarnings());
 
-        TextView tvOrdersCount = (TextView)vMenuOrders.findViewById(R.id.tv_orders_count);
-        int ordersCount = summaryBean.getLateJobCount() + summaryBean.getOnTimeJobCount();
-        tvOrdersCount.setText(String.valueOf(ordersCount));
+
 
 
         Log.i("LLL", "MainMenuFragment success");
 
     }
-
+    ImageView ivOrdersCount;
     public void animateNewOrder(){
-        ImageView ivOrdersCount = (ImageView)vMenuOrders.findViewById(R.id.iv_orders_count);
+
         ImageView ivOrdersCountStable = (ImageView)vMenuOrders.findViewById(R.id.iv_orders_count_stable);
 
 
@@ -263,7 +309,7 @@ public class MainMenuFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        animateNewOrder();
+
 
 
     }

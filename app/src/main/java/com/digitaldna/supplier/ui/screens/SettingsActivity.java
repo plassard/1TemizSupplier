@@ -23,6 +23,7 @@ import com.digitaldna.supplier.ui.screens.settings.ChangeEmailActivity;
 import com.digitaldna.supplier.ui.screens.settings.ChangeLanguageActivity;
 import com.digitaldna.supplier.ui.screens.settings.ChangeNameActivity;
 import com.digitaldna.supplier.ui.screens.settings.ChangePasswordActivity;
+import com.digitaldna.supplier.ui.screens.settings.ChangePhoneActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
@@ -58,6 +59,15 @@ public class SettingsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SettingsActivity.this, ChangeEmailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        RelativeLayout rlPhoneNumber = (RelativeLayout)findViewById(R.id.rl_phone_container);
+        rlPhoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, ChangePhoneActivity.class);
                 startActivity(intent);
             }
         });

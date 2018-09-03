@@ -34,7 +34,7 @@
     <string name="comments">Yorum:</string>
     <string name="comments_no_comments">Yorum: Yok</string>
 
-    <string name="menu_statostocs_title">İSTATİSTİKLER</string>
+    <string name="menu_statostocs_title">İstatistikler</string>
     <string name="settings">Ayarlar</string>
     <string name="settings_title">AYARLAR</string>
     <string name="phone_number">TELEFON NUMARASI</string>
@@ -103,15 +103,15 @@
 
     <string name="pick_up_status">ALMAK</string>
 
-    <string name="reason">Neden:</string>
-    <string name="note">Dikkat</string>
-    <string name="enter_your_note">Notunu yaz</string>
+    <string name="reason">SEBEP</string>
+    <string name="note">NOT</string>
+    <string name="enter_your_note">Not yaz</string>
     <string name="are_you_sure_reject">Bu siparişi reddetmek istediğinden emin misin?</string>
     <string name="yes">Evet</string>
-    <string name="no">yok</string>
-    <string name="send">Göndermek</string>
+    <string name="no">HAYIR</string>
+    <string name="send">GÖNDER</string>
     <string name="warn_select_reason">Lütfen sebebi seçin</string>
-    <string name="select_reason">Nedeni seçin</string>
+    <string name="select_reason">Neden seç</string>
 
     <string name="shop_name">Mağaza adı</string>
 
@@ -141,6 +141,13 @@
 
     <string name="no_orders">Henüz aktif siparişiniz yok</string>
 
-    <string name="change_name">Change name</string>
+    <string name="change_name">DEĞİŞİM MAĞAZASI ADI</string>
+    <string name="official_name">Kısa dükkan adı</string>
+    <string name="change_email">DEĞİŞİM E-POSTA</string>
+    <string name="change_password">ŞİFRE DEĞİŞTİR</string>
+    <string name="change_phone">TELEFON NUMARASI DEĞİŞTİRİN</string>
+
+    <string name="accept">KABUL ET</string>
+    <string name="decline">REDDET</string>
 
 </resources>

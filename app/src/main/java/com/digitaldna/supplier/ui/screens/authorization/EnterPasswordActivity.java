@@ -87,28 +87,46 @@ public class EnterPasswordActivity extends Activity {
         Log.i("LLL", "handleResult" + getLoginBean.toString());
         LoginSupplierBean loginSupplierBean = getLoginBean.getData();
 
-        Log.i("LLL", "handleResult loginSupplierBean.getIsPhoneNumberVerified()" + loginSupplierBean.getIsPhoneNumberVerified());
-        PrefProvider.saveEmail(this, loginSupplierBean.getEmail());
-        PrefProvider.saveTicket(this, loginSupplierBean.getTicket());
-        String mProfilePictureUrl = loginSupplierBean.getProfilePictureURL();
-        PrefProvider.saveProfilePictureURL(this, !TextUtils.isEmpty(mProfilePictureUrl) ? "" + Urls.HOST_URL + "/" + mProfilePictureUrl : "");
-        PrefProvider.saveSupplierTitle(this, loginSupplierBean.getTitle());
-        PrefProvider.saveShopName(this, loginSupplierBean.getShopName());
+        if(loginSupplierBean.getCurrentPage() == 0) {
 
-        PrefProvider.saveCountryID(this, loginSupplierBean.getCountryID());
-        PrefProvider.savePhoneNumber(this, loginSupplierBean.getPhoneNumber());
-        PrefProvider.saveLanguageId(this, loginSupplierBean.getLanguageID());
-        if(loginSupplierBean.getLanguageID() == 0)
-            setLanguage("TR");
-        else
-            setLanguage("EN");
+            Log.i("LLL", "handleResult loginSupplierBean.getIsPhoneNumberVerified()" + loginSupplierBean.getIsPhoneNumberVerified());
+            PrefProvider.saveEmail(this, loginSupplierBean.getEmail());
+            PrefProvider.saveTicket(this, loginSupplierBean.getTicket());
+            String mProfilePictureUrl = loginSupplierBean.getProfilePictureURL();
+            PrefProvider.saveProfilePictureURL(this, !TextUtils.isEmpty(mProfilePictureUrl) ? "" + Urls.HOST_URL + "/" + mProfilePictureUrl : "");
+            PrefProvider.saveSupplierTitle(this, loginSupplierBean.getTitle());
+            PrefProvider.saveShopName(this, loginSupplierBean.getShopName());
 
-        if(loginSupplierBean.getIsPhoneNumberVerified())
-            openMain();
-        else {
-            Intent intent = new Intent(this, SmsVerificationActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.transparency_in_screen, R.anim.transparency_out);
+            PrefProvider.saveCountryID(this, loginSupplierBean.getCountryID());
+            PrefProvider.savePhoneNumber(this, loginSupplierBean.getPhoneNumber());
+            PrefProvider.saveLanguageId(this, loginSupplierBean.getLanguageID());
+            if (loginSupplierBean.getLanguageID() == 0)
+                setLanguage("TR");
+            else
+                setLanguage("EN");
+
+            if (loginSupplierBean.getIsPhoneNumberVerified())
+                openMain();
+            else {
+                Intent intent = new Intent(this, SmsVerificationActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.transparency_in_screen, R.anim.transparency_out);
+            }
+        } else {
+            final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setContentView(R.layout.dialog_info);
+            TextView text = (TextView) dialog.findViewById(R.id.textViewErrorMessage);
+            text.setText("Registration of this account was not finished");
+            Button dialogButton = (Button) dialog.findViewById(R.id.buttonOK);
+            dialogButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
         }
     }
 

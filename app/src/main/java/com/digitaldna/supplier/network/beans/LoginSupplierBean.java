@@ -47,6 +47,11 @@ public class LoginSupplierBean {
     private String mShopName;
 
     @Nullable
+    @JsonProperty("CurrentPage")
+    private Integer mCurrentPage;
+
+
+    @Nullable
     public String getShopName() {
         return mShopName;
     }
@@ -72,7 +77,6 @@ public class LoginSupplierBean {
     public void setEmail(@Nullable String email) {
         mEmail = email;
     }
-
 
 
     @Nullable
@@ -103,6 +107,12 @@ public class LoginSupplierBean {
     }*/
 
     @Nullable
+    public Integer getCurrentPage() {
+        return mCurrentPage;
+    }
+
+
+    @Nullable
     public Integer getCountryID() {
         return mCountryID;
     }
@@ -114,7 +124,6 @@ public class LoginSupplierBean {
         else
             return 1;
     }
-
 
     @Nullable
     public String getPhoneNumber() {

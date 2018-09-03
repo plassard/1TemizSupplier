@@ -109,6 +109,18 @@ public class PrefProvider {
         return mPreferences.getInt(PreferencesContract.Supplier.COUNTRY_ID, -1);
     }
 
+    static public void saveSeenOrderID(Context context, Integer CountryID){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putInt(PreferencesContract.Supplier.LAST_SEEN_ORDER_ID, CountryID)
+                .commit();
+    }
+
+    static public Integer getSeenOrderID(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getInt(PreferencesContract.Supplier.LAST_SEEN_ORDER_ID, -1);
+    }
+
     static public void saveGsmNumberCountryID(Context context, Integer CountryID){
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
         mPreferences.edit()

@@ -127,10 +127,18 @@ public class StatisticsActivity extends Activity {
         tvIncompleted.setText(String.valueOf(incompletedOrders));
         tvPercentage.setText(String.valueOf(new DecimalFormat("##.##").format(percentage)).replace(",", ".") + "%");
 
-        pbAccepted.setProgress(totalOrders);
-        pbCompleted.setProgress(completedOrders);
-        pbIncompleted.setProgress(incompletedOrders);
-        pbPercentage.setProgress(Integer.valueOf(percentage.intValue()));
+        Double percentageOfCompleted = Double.valueOf(completedOrders) / totalOrders * 100;
+        Double percentageOfIncompleted = Double.valueOf(incompletedOrders) / totalOrders * 100;
+        Log.i("EEEEEEEEEEEEE", "1122  " + (completedOrders / totalOrders));
+        Log.i("EEEEEEEEEEEEE", "percentageOfCompleted" + percentageOfCompleted.intValue());
+       // Log.i("EEEEEEEEEEEEE", "percentageOfCompleted nteger.valueOf( " + Integer.valueOf(percentageOfCompleted));
+
+        Log.i("EEEEEEEEEEEEE", "1" + Integer.valueOf((completedOrders / totalOrders) * 100));
+        Log.i("EEEEEEEEEEEEE", "2" + Integer.valueOf((incompletedOrders  / totalOrders) * 100));
+        pbAccepted.setProgress(100);
+        pbCompleted.setProgress(percentageOfCompleted.intValue());
+        pbIncompleted.setProgress(percentageOfIncompleted.intValue());
+        pbPercentage.setProgress(percentage.intValue());
 
     }
 

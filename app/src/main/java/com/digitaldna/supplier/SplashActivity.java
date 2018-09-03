@@ -29,26 +29,23 @@ public class SplashActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        if(PrefProvider.getLanguageId(this) == -1 || PrefProvider.getLanguageId(this) == null){
-            if (Locale.getDefault().getLanguage().equals("tr")  || Locale.getDefault().getLanguage().equals("TR")) {
-                PrefProvider.saveLanguage(this, "tr");
-                PrefProvider.saveLanguageId(this, 0);
-
-            } else {
-                PrefProvider.saveLanguage(this, "en");
-                PrefProvider.saveLanguageId(this, 1);
-            }
-        } else {
-            setLanguage(PrefProvider.getLanguage(this));
-        }
-
-
-
-
         if(PrefProvider.getEmail(this).equals(null) || PrefProvider.getEmail(this).equals("")) {
             Intent intent = new Intent(this, EnterEmailActivity.class);
             startActivity(intent);
         } else {
+            if(PrefProvider.getLanguageId(this) == -1 || PrefProvider.getLanguageId(this) == null){
+                if (Locale.getDefault().getLanguage().equals("tr")  || Locale.getDefault().getLanguage().equals("TR")) {
+                    PrefProvider.saveLanguage(this, "tr");
+                    PrefProvider.saveLanguageId(this, 0);
+
+                } else {
+                    PrefProvider.saveLanguage(this, "en");
+                    PrefProvider.saveLanguageId(this, 1);
+                }
+            } else {
+                setLanguage(PrefProvider.getLanguage(this));
+            }
+
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.transparency_in_screen, R.anim.transparency_out);

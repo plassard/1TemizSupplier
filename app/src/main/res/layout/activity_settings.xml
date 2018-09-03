@@ -171,7 +171,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="24dp"
                             android:layout_marginRight="24dp"
-                            android:src="@drawable/email_icon"/>
+                            android:src="@drawable/email_icon" />
 
                         <TextView
                             android:id="@+id/tv_email"
@@ -217,8 +217,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_phone"
-                        android:layout_marginTop="8dp"
-                        >
+                        android:layout_marginTop="8dp">
+
                         <ImageView
                             android:id="@+id/iv_phonenumber"
                             android:layout_width="24dp"
@@ -226,35 +226,21 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="24dp"
                             android:layout_marginRight="24dp"
-                            android:src="@drawable/phone_icon"/>
-                        <LinearLayout
-                            android:id="@+id/ll_phone_container"
+                            android:src="@drawable/phone_icon" />
+
+
+                        <TextView
+                            android:id="@+id/tv_phonenumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_toRightOf="@+id/iv_phonenumber"
-                            android:orientation="vertical">
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/iv_phonenumber"
+                            android:layout_toRightOf="@+id/iv_phonenumber" />
 
-                            <FrameLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/tv_phonenumber"
-                                    android:layout_width="match_parent"
-                                    android:paddingEnd="30dp"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="textMultiLine" />
-
-                                <ImageView
-                                    android:id="@+id/iv_phonen_arrow"
-                                    style="@style/RightArrowStyle"
-                                    android:layout_gravity="end"
-                                    android:visibility="invisible" />
-
-                            </FrameLayout>
-
-                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/iv_phonenumber_arrow"
+                            style="@style/RightArrowStyle"
+                            android:visibility="visible" />
 
                     </RelativeLayout>
 
