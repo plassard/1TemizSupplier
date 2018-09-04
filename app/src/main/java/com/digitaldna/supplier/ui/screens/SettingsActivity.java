@@ -144,12 +144,13 @@ public class SettingsActivity extends Activity {
         tvSupplierTitle.setText(PrefProvider.getShopName(this));
         tvShopName.setText(PrefProvider.getSupplierTitle(this));
         tvEmail.setText(PrefProvider.getEmail(this));
-        tvPhone.setText(PrefProvider.getPhoneNumber(this));
+
     }
 
     private void handleResult(GetShopInfoBean res){
-        PrefProvider.saveGsmNumberCountryID(this, res.getData().getGsmNumberCountryID());
-        PrefProvider.saveGsmNumber(this, res.getData().getGsmNumber());
+       // PrefProvider.saveA(this, res.getData().getAreaCode());
+        PrefProvider.savePhoneNumber(this, res.getData().getPhoneNumber());
+        tvPhone.setText(PrefProvider.getPhoneNumber(this));
     }
     private void handleError(Throwable t){
 

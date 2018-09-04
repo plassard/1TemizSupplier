@@ -121,7 +121,7 @@ Please enter it below:</string>
 
     <string name="rating_last_year">Rating for the last 12 months</string>
 
-    <string name="accepted_orders">Total</string>
+    <string name="accepted_orders">Total received Orders</string>
     <string name="completed_orders">Completed</string>
     <string name="incompleted_orders">Incompleted</string>
     <string name="percentage">Percentage</string>

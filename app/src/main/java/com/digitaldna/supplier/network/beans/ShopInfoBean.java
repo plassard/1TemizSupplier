@@ -127,10 +127,12 @@ public class ShopInfoBean {
 
     @Nullable
     public String getPhoneNumber() {
-        if(mAreaCode != null)
-            return mAreaCode + mPhoneNumber;
-        else
             return mPhoneNumber;
+    }
+
+    @Nullable
+    public String getAreaCode() {
+        return mAreaCode;
     }
 
     @Nullable
