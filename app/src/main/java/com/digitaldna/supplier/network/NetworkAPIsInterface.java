@@ -5,6 +5,7 @@ import com.digitaldna.supplier.network.beans.AcceptOrderBean;
 import com.digitaldna.supplier.network.beans.EmptyBean;
 import com.digitaldna.supplier.network.beans.GetCancelReasonsListBean;
 import com.digitaldna.supplier.network.beans.GetCommentsBean;
+import com.digitaldna.supplier.network.beans.GetEarningsBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
@@ -26,6 +27,7 @@ import com.digitaldna.supplier.network.requests.RejectOrderRequest;
 import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
 import com.digitaldna.supplier.network.requests.SetShopInfoPasswordRequest;
 import com.digitaldna.supplier.network.requests.SetShopInformationRequest;
+import com.digitaldna.supplier.network.requests.StartDateEndDateRequest;
 import com.digitaldna.supplier.network.requests.VerifyPhoneRequest;
 
 import io.reactivex.Observable;
@@ -120,5 +122,9 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.SET_LANGUAGE)
     Observable<EmptyBean> changeLanguage(@NonNull @Body BaseWithLangIdRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.SUPPLIER_EARNINGS)
+    Observable<GetEarningsBean> getEarnings(@NonNull @Body StartDateEndDateRequest body);
 
 }

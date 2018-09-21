@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.network.NetworkAPIsInterface;
 import com.digitaldna.supplier.network.RestClient;
+import com.digitaldna.supplier.network.beans.GetCommentsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
 import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
 import com.digitaldna.supplier.network.beans.OrdersBean;
@@ -36,6 +37,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -120,6 +122,11 @@ public class MainMenuFragment extends Fragment {
         });
         Log.i("LLL", "MainMenuFragment view pager");
 
+        vMenuEarnings.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), EarningsActivity.class);
+            startActivity(intent);
+        });
+
         vMenuCommentsAndRating.setOnClickListener(view -> {
             Intent intent = new Intent(getContext(), CommentsAndRatingActivity.class);
             startActivity(intent);
@@ -197,11 +204,22 @@ public class MainMenuFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(result -> result != null)
                 .map(GetOrdersBean::getData)
+                .flatMap(s -> {
+                    System.out.println();
+                    List<OrdersBean> ordersBean = s;
+                    ordersBean.add(s.get(0));
+                    return Observable.just(s);
+                })
+                .doOnEach(item -> Log.i("DDDD", "doOnEach " + item.toString()))
+                .doOnNext(item -> Log.i("DDDD", "doOnNext " + item.size()))
                 .subscribe(result -> handleOrdersListResult(result) , e -> handleOrdersListError(e));
     }
 
     int futureLastSeenOrder;
+
     private void handleOrdersListResult(List<OrdersBean> ordersBean){
+
+        Log.i("DDDD", "ordersBean.size()" + ordersBean.size());
         int lastSeenOrder = PrefProvider.getSeenOrderID(getContext());
         int newOrdersCount = 0;
         futureLastSeenOrder = lastSeenOrder;
@@ -215,7 +233,8 @@ public class MainMenuFragment extends Fragment {
             }
         }
         TextView tvOrdersCount = (TextView)vMenuOrders.findViewById(R.id.tv_orders_count);
-        tvOrdersCount.setText(String.valueOf(newOrdersCount));
+        tvOrdersCount.setText(String.valueOf(ordersBean.size()));
+        //tvOrdersCount.setText(String.valueOf(newOrdersCount));
         if(newOrdersCount > 0) {
             ivOrdersCount.setVisibility(View.VISIBLE);
             animateNewOrder();

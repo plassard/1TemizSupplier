@@ -39,5 +39,7 @@ public class Urls {
     public static final String STATISTICS = "RepSupplierSuccessRate";
     public static final String SUPPLIER_ORDERS = "RepSupplierOrders";
 
+    public static final String SUPPLIER_EARNINGS = "RepSupplierEarnings";
+
     public static final Integer PLATFORM = 50;
 }

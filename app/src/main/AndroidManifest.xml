@@ -52,7 +52,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.screens.settings.ChangeEmailActivity" />
         <activity android:name=".ui.screens.settings.ChangePhoneActivity" />
-        <activity android:name=".ui.screens.settings.ChangePasswordActivity"></activity>
+        <activity android:name=".ui.screens.settings.ChangePasswordActivity" />
+        <activity android:name=".ui.screens.EarningsActivity"></activity>
     </application>
 
 </manifest>

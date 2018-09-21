@@ -128,7 +128,7 @@
 
     <string name="cancelled_count">Ret / Sipariş Sayısı</string>
     <string name="late_count">Geç / Görev Sayısı</string>
-    <string name="ontime_count">Zaman / Görev Sayısı</string>
+    <string name="ontime_count">Zamanında/Görev Sayısı</string>
 
     <string name="change_language">DİL SEÇ</string>
 
