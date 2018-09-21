@@ -101,38 +101,6 @@
                         android:id="@+id/graph"
                         />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/last_month"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    style="@style/CharcoalSmallText"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"/>
-
-                <com.jjoe64.graphview.GraphView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:id="@+id/graph2"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/this_year"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    style="@style/CharcoalSmallText"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"/>
-
-                <com.jjoe64.graphview.GraphView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:id="@+id/graph3"
-                    />
-
             </LinearLayout>
         </android.support.v7.widget.CardView>
 

@@ -22,6 +22,7 @@ import com.jjoe64.graphview.series.DataPoint;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,8 +36,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class EarningsActivity extends Activity {
-    GraphView graph, graph2, graph3;
-    private BarGraphSeries<DataPoint> mSeries, mSeriesLastMonth, mSeriesThisYear;
+    GraphView graph;
+    private BarGraphSeries<DataPoint> mSeries;
     private Button btnFrom, btnTo;
     DatePickerDialog datePickerFrom, datePickerTo;
     DatePickerDialog.OnDateSetListener onFromDateSet, onToDateSet;
@@ -48,12 +49,9 @@ public class EarningsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earnings);
 
-
         btnFrom = (Button) findViewById(R.id.buttonEarningsFrom);
         btnTo = (Button) findViewById(R.id.buttonEarningsTo);
         graph = (GraphView) findViewById(R.id.graph);
-        graph2 = (GraphView) findViewById(R.id.graph2);
-        graph3 = (GraphView) findViewById(R.id.graph3);
 
         ImageView ivMenu = (ImageView)findViewById(R.id.iv_toolbar_menu);
         ivMenu.setOnClickListener(view -> {
@@ -78,6 +76,7 @@ public class EarningsActivity extends Activity {
         onFromDateSet = new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 dateFrom.set(year, monthOfYear, dayOfMonth);
+                Log.i("DDDDD", "from month " + monthOfYear);
                 setFrom(dateFrom);
             }
         };
@@ -121,7 +120,6 @@ public class EarningsActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-
     }
 
     private void updateChart(){
@@ -143,18 +141,62 @@ public class EarningsActivity extends Activity {
 
 
    private DataPoint[] generateData(List<EarningsInDayBean> earningsInDayBeans, int daysBetween) {
-       int daysArray[] = new int[daysBetween];
-       for(int item : daysArray){
+       int earningsInDayArray[] = new int[daysBetween];
+       for(int item : earningsInDayArray){
            item = 0;
        }
-       for(EarningsInDayBean dayItem : earningsInDayBeans){
-           daysArray[dayItem.getDay()] = dayItem.getEarnings().intValue();
+       Calendar calendarTemp = Calendar.getInstance();
+       calendarTemp.set(dateFrom.get(Calendar.YEAR), dateFrom.get(Calendar.MONTH), dateFrom.get(Calendar.DAY_OF_MONTH));
+       String datesArray[] = new String[daysBetween];
+
+       //here we convert dates from Calendar to backend format in datesArray
+       String monthString = "";
+       String dayString = "";
+       for(int i = 0; i < daysBetween; i++){
+        if(((calendarTemp.get(Calendar.MONTH) + 1) > 9)){
+            monthString = String.valueOf(calendarTemp.get(Calendar.MONTH) + 1);
+        } else {
+            monthString = "0" + String.valueOf(calendarTemp.get(Calendar.MONTH) + 1);
+        }
+        if(((calendarTemp.get(Calendar.DAY_OF_MONTH)) > 9)){
+               dayString = String.valueOf(calendarTemp.get(Calendar.DAY_OF_MONTH));
+        } else {
+               dayString = "0" + String.valueOf(calendarTemp.get(Calendar.DAY_OF_MONTH));
+        }
+        datesArray[i] = (calendarTemp.get(Calendar.YEAR) + "-" + monthString + "-" + dayString);
+        calendarTemp.add(Calendar.DATE, 1);
        }
+
+
+
+     /*  for(EarningsInDayBean dayItem : earningsInDayBeans){
+           for(String date : datesArray) {
+               if(date.equals(dayItem.getDate())){
+                   earningsInDayArray[date.ind]
+               }
+           }
+           earningsInDayArray[dayItem.getDay()] = dayItem.getEarnings().intValue();
+       }*/
+      /* for(int i = 0; i < daysBetween; i++) {
+           Log.i("GGGGG", i + "da111te" + datesArray[i] + " earnings " + earningsInDayArray[i]);
+       }*/
+
+
+       for(int i = 0; i < daysBetween; i++) {
+           for(int x = 0; x < earningsInDayBeans.size(); x++){
+               if(earningsInDayBeans.get(x).getDate().equals(datesArray[i])){
+                   earningsInDayArray[i] = earningsInDayBeans.get(x).getEarnings().intValue();
+               }
+           }
+
+           Log.i("GGGGG", i + "date" + datesArray[i] + " earnings " + earningsInDayArray[i]);
+       }
+
 
        DataPoint[] values = new DataPoint[daysBetween];
        for (int i=0; i< daysBetween; i++) {
            double x = i;
-           double y = daysArray[i];
+           double y = earningsInDayArray[i];
            DataPoint v = new DataPoint(x, y);
            values[i] = v;
        }
@@ -188,12 +230,6 @@ public class EarningsActivity extends Activity {
     }*/
 
     private void handleStatOrdersResult(List<EarningsInDayBean> earningsInDayBeans) {
-
-        Date dateToday = new Date();
-        Calendar calendarWithTodayDate = Calendar.getInstance();
-        calendarWithTodayDate.setTime(dateToday);
-        int thisMonthNumber = calendarWithTodayDate.get(Calendar.MONTH) + 1;
-        int thisYearNumber = calendarWithTodayDate.get(Calendar.YEAR);
         int daysBetween = (int)TimeUnit.MILLISECONDS.toDays(
                 Math.abs(dateTo.getTimeInMillis() - dateFrom.getTimeInMillis()));
 
@@ -204,10 +240,14 @@ public class EarningsActivity extends Activity {
         //graph.getViewport().setXAxisBoundsManual(false);
         graph.getViewport().setScrollable(true);
         graph.addSeries(mSeries);
+        graph.notifyAll();
+        Log.i("GGGGG", "size " + earningsInDayBeans.size());
     }
 
 
     private void handleError(Throwable t){
-        Log.i("LLL", "ERRRRRR "+ BaseJsonBean.mStatusText);
+        Log.i("GGGGG", "ERRRRRR "+ BaseJsonBean.mStatusText);
+        Log.i("GGGGG", "ERRRRRR "+ t.getMessage());
+        Log.i("GGGGG", "ERRRRRR "+ t.getStackTrace());
     }
 }
