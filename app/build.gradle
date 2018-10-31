@@ -1,20 +1,43 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword '14531453AA'
+            storeFile file('C:/keystoreandroid/customer1temiz.jks')
+            storePassword '14531453AA'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.digitaldna.supplier"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 1
+        versionCode 3
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
+        debug {
+            debuggable true
+            buildConfigField "String", "ENDPOINT", '"https://beta-api.1temiz.com/"'
+        }
+
         release {
             minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildConfigField "String", "ENDPOINT", '"https://api.1temiz.com/"'
         }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

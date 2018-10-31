@@ -40,6 +40,7 @@ final class PreferencesContract {
         static final String LAST_SEEN_ORDER_ID = USER_PREFIX + "last_seen_order_id";
         static final String PUSH_TOKEN = USER_PREFIX + "push_token";
         static final String VERIFIED = USER_PREFIX + "verified";
+        static final String PASSWORD = USER_PREFIX + "verif_code";
 
         static final String MY_COUNTRY_ID = USER_PREFIX + "country_id";
         static final String MY_PHONE_AREA = USER_PREFIX + "phone_area";

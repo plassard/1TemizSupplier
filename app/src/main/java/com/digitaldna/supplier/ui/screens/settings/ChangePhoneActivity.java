@@ -1,13 +1,18 @@
 package com.digitaldna.supplier.ui.screens.settings;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.network.NetworkAPIsInterface;
@@ -33,6 +38,7 @@ public class ChangePhoneActivity extends Activity {
         etPhone = (EditText)findViewById(R.id.et_phone);
 
         etPhone.setText(PrefProvider.getPhoneNumber(this));
+        etPhone.setSelection(etPhone.getText().length());
 
         Button btnSave = (Button)findViewById(R.id.b_save);
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +48,8 @@ public class ChangePhoneActivity extends Activity {
                         PrefProvider.getShopName(getApplicationContext()),
                         PrefProvider.getEmail(getApplicationContext()),
                         PrefProvider.getGsmNumberCountryID(getApplicationContext()),
+                        PrefProvider.getGsmNumber(getApplicationContext()),
+                        PrefProvider.getCountryID(getApplicationContext()),
                         etPhone.getText().toString(),
                         PrefProvider.getEmail(getApplicationContext()),
                         PrefProvider.getTicket(getApplicationContext()));
@@ -57,17 +65,36 @@ public class ChangePhoneActivity extends Activity {
         imageView.setOnClickListener(view -> onBackPressed());
     }
     private void handleResult(GetLoginBean res){
-        PrefProvider.saveTicket(this, res.getData().getTicket());
-        PrefProvider.savePhoneNumber(this, etPhone.getText().toString());
 
-        // PrefProvider.saveShopName(this, etShortName.getText().toString());
-        //  PrefProvider.saveSupplierTitle(this, etFullShopName.getText().toString());
-        Log.i("SSSSSS", "success" + res.getData().getTicket());
+        if(res.getStatusCode() == 100){
+            PrefProvider.saveTicket(this, res.getData().getTicket());
+            PrefProvider.savePhoneNumber(this, etPhone.getText().toString());
 
-        this.finish();
+            // PrefProvider.saveShopName(this, etShortName.getText().toString());
+            //  PrefProvider.saveSupplierTitle(this, etFullShopName.getText().toString());
+            Log.i("SSSSSS", "success" + res.getData().getTicket());
 
-        Intent intent = new Intent(this, SmsVerificationActivity.class);
-        startActivity(intent);
+            //this.finish();
+
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+
+        } else {
+            final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setContentView(R.layout.dialog_info);
+            TextView text = (TextView) dialog.findViewById(R.id.textViewErrorMessage);
+            text.setText(res.getStatusText());
+            Button dialogButton = (Button) dialog.findViewById(R.id.buttonOK);
+            dialogButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
     }
     private void handleError(Throwable t){
         Log.i("SSSSSS", "error" + t.getMessage());

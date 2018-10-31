@@ -106,7 +106,7 @@ public class SettingsActivity extends Activity {
         tvShopName = (TextView)findViewById(R.id.tv_shop_name);
         tvEmail = (TextView)findViewById(R.id.tv_email);
         tvPhone = (TextView)findViewById(R.id.tv_phonenumber);
-
+        tvPhone.setText(PrefProvider.getPhoneNumber(this));
 
         Log.i("LANGGG", " " + PrefProvider.getLanguageId(this));
         TextView tvLanguage = (TextView)findViewById(R.id.tv_language);
@@ -149,9 +149,19 @@ public class SettingsActivity extends Activity {
 
     private void handleResult(GetShopInfoBean res){
        // PrefProvider.saveA(this, res.getData().getAreaCode());
+        Log.i("IIIII", res.getData().getPhoneNumber());
+        Log.i("IIIII", " getGsmNumber " + res.getData().getGsmNumber());
         PrefProvider.savePhoneNumber(this, res.getData().getPhoneNumber());
-        tvPhone.setText(PrefProvider.getPhoneNumber(this));
+        Log.i("IIIII", " 1 " + res.getData().getGsmNumber());
+        PrefProvider.saveCountryID(this, res.getData().getCountryID());
+        Log.i("IIIII", " 2 " + res.getData().getGsmNumber());
+        PrefProvider.saveGsmNumberCountryID(this, res.getData().getGsmNumberCountryID());
+        Log.i("IIIII", " 3 " + res.getData().getGsmNumber());
+        PrefProvider.saveGsmNumber(this, res.getData().getGsmNumber());
+        Log.i("IIIII", "PrefProvider.getPhoneNumber(this)" + PrefProvider.getPhoneNumber(this));
+
     }
+
     private void handleError(Throwable t){
 
     }

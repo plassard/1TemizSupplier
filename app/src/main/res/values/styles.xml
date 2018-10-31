@@ -34,9 +34,10 @@
     </style>
 
     <style name="NameFieldSilver" parent="TextField">
-        <item name="android:drawableLeft">@drawable/svg_ic_language_blue_24dp</item>
-        <item name="android:drawableStart">@drawable/svg_ic_language_blue_24dp</item>
+        <item name="android:drawableLeft">@drawable/shop_icon2</item>
+        <item name="android:drawableStart">@drawable/shop_icon2</item>
     </style>
+
 
     <style name="PhoneFieldSilver" parent="TextField">
         <item name="android:drawableLeft">@drawable/svg_ic_phone_blue_24dp</item>

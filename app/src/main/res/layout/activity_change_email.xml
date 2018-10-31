@@ -91,7 +91,7 @@
 
                             <EditText
                                 android:id="@+id/et_email"
-                                style="@style/NameFieldSilver"
+                                style="@style/EmailFieldSilver"
                                 android:textColor="@color/silver"
                                 android:theme="@style/TemizEditTextGray"/>
 

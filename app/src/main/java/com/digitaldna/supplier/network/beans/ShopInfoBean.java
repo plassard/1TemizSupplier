@@ -27,7 +27,7 @@ public class ShopInfoBean {
     private Integer mLanguageID;
 
     @Nullable
-    @JsonProperty("CountryID")
+    @JsonProperty("PhoneNumberCountryID")
     private Integer mCountryID;
 
     @Nullable

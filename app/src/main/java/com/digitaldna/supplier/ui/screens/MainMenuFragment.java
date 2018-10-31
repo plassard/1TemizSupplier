@@ -204,14 +204,14 @@ public class MainMenuFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(result -> result != null)
                 .map(GetOrdersBean::getData)
-                .flatMap(s -> {
+               /* .flatMap(s -> {
                     System.out.println();
                     List<OrdersBean> ordersBean = s;
                     ordersBean.add(s.get(0));
                     return Observable.just(s);
-                })
-                .doOnEach(item -> Log.i("DDDD", "doOnEach " + item.toString()))
-                .doOnNext(item -> Log.i("DDDD", "doOnNext " + item.size()))
+                })*/
+                //.doOnEach(item -> Log.i("DDDD", "doOnEach " + item.toString()))
+                //.doOnNext(item -> Log.i("DDDD", "doOnNext " + item.size()))
                 .subscribe(result -> handleOrdersListResult(result) , e -> handleOrdersListError(e));
     }
 

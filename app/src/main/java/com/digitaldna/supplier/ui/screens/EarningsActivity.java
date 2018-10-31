@@ -16,7 +16,9 @@ import com.digitaldna.supplier.network.beans.GetEarningsBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.StartDateEndDateRequest;
 import com.digitaldna.supplier.utils.PrefProvider;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
@@ -31,6 +33,9 @@ import java.util.concurrent.TimeUnit;
 import android.app.DatePickerDialog;
 import android.text.format.DateUtils;
 import android.widget.DatePicker;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -105,7 +110,7 @@ public class EarningsActivity extends Activity {
                 date.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
         ));
-        updateChart();
+        //updateChart();
     }
 
     private void setTo(Calendar date){
@@ -230,18 +235,76 @@ public class EarningsActivity extends Activity {
     }*/
 
     private void handleStatOrdersResult(List<EarningsInDayBean> earningsInDayBeans) {
-        int daysBetween = (int)TimeUnit.MILLISECONDS.toDays(
-                Math.abs(dateTo.getTimeInMillis() - dateFrom.getTimeInMillis()));
 
+        TableLayout prices = (TableLayout)findViewById(R.id.tableEarnings);
+        prices.setStretchAllColumns(true);
+        prices.bringToFront();
+
+        TableRow trFirst =  new TableRow(this);
+        TextView c1first = new TextView(this);
+        c1first.setText("Date");
+        c1first.setBackground(this.getResources().getDrawable(R.drawable.cell_in_table_first));
+        c1first.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+        TextView c2first = new TextView(this);
+        c2first.setText("Total Earnings");
+        c2first.setBackground(this.getResources().getDrawable(R.drawable.cell_in_table_first));
+        c2first.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+        trFirst.addView(c1first);
+        trFirst.addView(c2first);
+        prices.addView(trFirst);
+
+        for(int i = 0; i < earningsInDayBeans.size(); i++){
+            TableRow tr =  new TableRow(this);
+
+            TextView c1 = new TextView(this);
+            c1.setText(earningsInDayBeans.get(i).getDate());
+            c1.setBackground(this.getResources().getDrawable(R.drawable.cell_in_table));
+            c1.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+            TextView c2 = new TextView(this);
+            c2.setText(String.valueOf(earningsInDayBeans.get(i).getEarnings()));
+            c2.setBackground(this.getResources().getDrawable(R.drawable.cell_in_table));
+            c2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+            tr.addView(c1);
+            tr.addView(c2);
+            prices.addView(tr);
+        }
+
+
+
+       /* int daysBetween = (int)TimeUnit.MILLISECONDS.toDays(
+                Math.abs(dateTo.getTimeInMillis() - dateFrom.getTimeInMillis()));
+        mSeries = null;
         mSeries = new BarGraphSeries<>(generateData(earningsInDayBeans, daysBetween));
         graph.getViewport().setMaxX(daysBetween);
         graph.getViewport().setScalable(true);
         graph.getViewport().setMaxXAxisSize(daysBetween);
         //graph.getViewport().setXAxisBoundsManual(false);
         graph.getViewport().setScrollable(true);
+        graph.removeAllSeries();
         graph.addSeries(mSeries);
+
+        // use static labels for horizontal and vertical labels
+
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    // show normal x values
+                    return super.formatLabel(value, isValueX);
+                } else {
+                    // show currency for y values
+                    return super.formatLabel(value, isValueX) + "₺";
+                }
+            }
+        });
+
         graph.notifyAll();
         Log.i("GGGGG", "size " + earningsInDayBeans.size());
+        */
     }
 
 

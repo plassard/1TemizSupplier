@@ -2,7 +2,7 @@ package com.digitaldna.supplier.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
+import android.util.Log;
 
 
 /**
@@ -86,6 +86,7 @@ public class PrefProvider {
     }
 
     static public void saveTicket(Context context, String ticket){
+        Log.i("IIIII", "saveGsmNumber " + ticket);
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
         mPreferences.edit()
                 .putString(PreferencesContract.Network.TICKET, ticket)
@@ -93,7 +94,9 @@ public class PrefProvider {
     }
 
     static public String getTicket(Context context) {
+        Log.i("IIIII", "saveGsmNumber getting Ticket");
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        Log.i("IIIII", "saveGsmNumber getting Ticket"  + mPreferences.getString(PreferencesContract.Network.TICKET, ""));
         return mPreferences.getString(PreferencesContract.Network.TICKET, "");
     }
 
@@ -147,6 +150,7 @@ public class PrefProvider {
     }
 
     static public void saveGsmNumber(Context context, String PhoneNumber){
+        Log.i("IIIII", "saveGsmNumber " + PhoneNumber);
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
         mPreferences.edit()
                 .putString(PreferencesContract.Supplier.GSM_NUMBER, PhoneNumber)
@@ -156,6 +160,18 @@ public class PrefProvider {
     static public String getGsmNumber(Context context) {
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
         return mPreferences.getString(PreferencesContract.Supplier.GSM_NUMBER, "");
+    }
+
+    static public void savePassword(Context context, String PhoneNumber){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putString(PreferencesContract.Supplier.PASSWORD, PhoneNumber)
+                .commit();
+    }
+
+    static public String getPassword(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getString(PreferencesContract.Supplier.PASSWORD, "");
     }
 
     static public void logOut(Context context){

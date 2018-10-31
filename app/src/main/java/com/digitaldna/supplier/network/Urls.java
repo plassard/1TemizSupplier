@@ -1,13 +1,15 @@
 package com.digitaldna.supplier.network;
 
+import com.digitaldna.supplier.BuildConfig;
+
 /**
  * Created by yevgen on 3/13/18.
  */
 
 public class Urls {
 
-
-    public static final String HOST_URL = "https://beta-api.1temiz.com";
+    public static final String HOST_URL = BuildConfig.ENDPOINT;
+    //public static final String HOST_URL = "https://beta-api.1temiz.com";
 
     public static final String SUPPLIER = "Supplier.svc";
     public static final String MEMBERSHIP = "Membership.svc";
@@ -40,6 +42,9 @@ public class Urls {
     public static final String SUPPLIER_ORDERS = "RepSupplierOrders";
 
     public static final String SUPPLIER_EARNINGS = "RepSupplierEarnings";
+
+
+    public static final String FORGOT = "ForgotPassword";
 
     public static final Integer PLATFORM = 50;
 }

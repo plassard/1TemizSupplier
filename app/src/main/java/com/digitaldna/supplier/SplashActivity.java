@@ -28,20 +28,19 @@ public class SplashActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        if (Locale.getDefault().getLanguage().equals("tr")  || Locale.getDefault().getLanguage().equals("TR")) {
+            PrefProvider.saveLanguage(this, "tr");
+            PrefProvider.saveLanguageId(this, 0);
+        } else {
+            PrefProvider.saveLanguage(this, "en");
+            PrefProvider.saveLanguageId(this, 1);
+        }
         if(PrefProvider.getEmail(this).equals(null) || PrefProvider.getEmail(this).equals("")) {
             Intent intent = new Intent(this, EnterEmailActivity.class);
             startActivity(intent);
         } else {
             if(PrefProvider.getLanguageId(this) == -1 || PrefProvider.getLanguageId(this) == null){
-                if (Locale.getDefault().getLanguage().equals("tr")  || Locale.getDefault().getLanguage().equals("TR")) {
-                    PrefProvider.saveLanguage(this, "tr");
-                    PrefProvider.saveLanguageId(this, 0);
 
-                } else {
-                    PrefProvider.saveLanguage(this, "en");
-                    PrefProvider.saveLanguageId(this, 1);
-                }
             } else {
                 setLanguage(PrefProvider.getLanguage(this));
             }

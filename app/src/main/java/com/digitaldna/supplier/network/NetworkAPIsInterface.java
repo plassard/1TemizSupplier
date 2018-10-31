@@ -6,6 +6,7 @@ import com.digitaldna.supplier.network.beans.EmptyBean;
 import com.digitaldna.supplier.network.beans.GetCancelReasonsListBean;
 import com.digitaldna.supplier.network.beans.GetCommentsBean;
 import com.digitaldna.supplier.network.beans.GetEarningsBean;
+import com.digitaldna.supplier.network.beans.GetEmptyBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
@@ -16,6 +17,7 @@ import com.digitaldna.supplier.network.beans.GetSupplierSuccessRate;
 import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
 import com.digitaldna.supplier.network.beans.GetVerifCodeBean;
 import com.digitaldna.supplier.network.beans.VerifPhoneNumberBean;
+import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.AcceptOrderRequest;
 import com.digitaldna.supplier.network.requests.BaseWithLangIdRequest;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
@@ -54,6 +56,10 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.LOGIN)
     Observable<GetLoginBean> login(@NonNull @Body LoginRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.MEMBERSHIP +  "/" + Urls.FORGOT)
+    Observable<GetEmptyBean> forgot(@NonNull @Body LoginRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.SET_SHOP_INFO)

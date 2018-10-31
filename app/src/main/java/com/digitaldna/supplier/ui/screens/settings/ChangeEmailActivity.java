@@ -33,7 +33,7 @@ public class ChangeEmailActivity extends Activity {
         etEmail = (EditText)findViewById(R.id.et_email);
 
         etEmail.setText(PrefProvider.getEmail(this));
-
+        etEmail.setSelection(etEmail.getText().length());
         Button btnSave = (Button)findViewById(R.id.b_save);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +43,8 @@ public class ChangeEmailActivity extends Activity {
                         etEmail.getText().toString(),
                         PrefProvider.getGsmNumberCountryID(getApplicationContext()),
                         PrefProvider.getGsmNumber(getApplicationContext()),
+                        PrefProvider.getCountryID(getApplicationContext()),
+                        PrefProvider.getPhoneNumber(getApplicationContext()),
                         PrefProvider.getEmail(getApplicationContext()),
                         PrefProvider.getTicket(getApplicationContext()));
 

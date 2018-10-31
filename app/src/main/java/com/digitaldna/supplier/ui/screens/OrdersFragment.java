@@ -204,7 +204,7 @@ public class OrdersFragment extends Fragment {
     public static List<OrdersBean> ordersThisMonth;
 
     private void handleResult(List<OrdersBean> ordersBean){
-        Log.i("HANDLEE", "hand");
+        Log.i("HANDLEE", "hand ordersBean.size()" + ordersBean.size());
         ordersAll = new ArrayList<OrdersBean>();
         ordersThisWeek = new ArrayList<OrdersBean>();
         ordersThisMonth = new ArrayList<OrdersBean>();

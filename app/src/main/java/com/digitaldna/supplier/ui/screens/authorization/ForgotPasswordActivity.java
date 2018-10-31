@@ -21,6 +21,8 @@ import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.network.NetworkAPIsInterface;
 import com.digitaldna.supplier.network.RestClient;
 import com.digitaldna.supplier.network.Urls;
+import com.digitaldna.supplier.network.beans.EmptyBean;
+import com.digitaldna.supplier.network.beans.GetEmptyBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.LoginSupplierBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
@@ -35,30 +37,27 @@ import java.util.Locale;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 //import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class EnterPasswordActivity extends Activity {
+public class ForgotPasswordActivity extends Activity {
     String email;
     Retrofit retrofit;
-    EditText etPassword;
-    TextView tvError, tvForgot;
+    EditText etEmail;
+    TextView tvError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enter_password);
+        setContentView(R.layout.activity_forgot_password);
 
-        email = getIntent().getExtras().getString("email");
-        etPassword = (EditText)findViewById(R.id.editTextPass);
+        etEmail = (EditText)findViewById(R.id.editTextPass);
         tvError = (TextView)findViewById(R.id.textViewPasswordError);
-        tvForgot = (TextView)findViewById(R.id.textViewForgot);
-        etPassword.addTextChangedListener(new MyTextWatcher(etPassword));
 
-        Button btnNext = (Button)findViewById(R.id.buttonNextPass);
-        btnNext.setOnClickListener(view -> {
+        etEmail.addTextChangedListener(new MyTextWatcher(etEmail));
+
+        Button btnSend = (Button)findViewById(R.id.buttonNextPass);
+        btnSend.setOnClickListener(view -> {
             if(validatePassword()){
                 Log.i("LLL", "validated");
                 connectToServer();
@@ -68,18 +67,13 @@ public class EnterPasswordActivity extends Activity {
 
         });
 
-        tvForgot.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ForgotPasswordActivity.class);
-            startActivity(intent);
-        });
-
     }
 
 
     private void connectToServer(){
-        LoginRequest loginRequest = new LoginRequest(email, etPassword.getText().toString(), PrefProvider.getLanguageId(this));
+        LoginRequest loginRequest = new LoginRequest(etEmail.getText().toString(),"", PrefProvider.getLanguageId(this));
 
-        RestClient.getInstance().create(NetworkAPIsInterface.class).login(loginRequest)
+        RestClient.getInstance().create(NetworkAPIsInterface.class).forgot(loginRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .filter(result -> result != null)
@@ -88,43 +82,17 @@ public class EnterPasswordActivity extends Activity {
 
 
 
-    private void handleResult(GetLoginBean getLoginBean){
-        Log.i("LLL", "handleResult" + getLoginBean.toString());
-        LoginSupplierBean loginSupplierBean = getLoginBean.getData();
-
-        if(loginSupplierBean.getCurrentPage() == 0) {
-            PrefProvider.savePassword(this, etPassword.getText().toString());
-            Log.i("LLL", "handleResult loginSupplierBean.getIsPhoneNumberVerified()" + loginSupplierBean.getIsPhoneNumberVerified());
-            PrefProvider.saveEmail(this, loginSupplierBean.getEmail());
-            PrefProvider.saveTicket(this, loginSupplierBean.getTicket());
-            String mProfilePictureUrl = loginSupplierBean.getProfilePictureURL();
-            PrefProvider.saveProfilePictureURL(this, !TextUtils.isEmpty(mProfilePictureUrl) ? "" + Urls.HOST_URL + "/" + mProfilePictureUrl : "");
-            PrefProvider.saveSupplierTitle(this, loginSupplierBean.getTitle());
-            PrefProvider.saveShopName(this, loginSupplierBean.getShopName());
-
-            PrefProvider.saveCountryID(this, loginSupplierBean.getCountryID());
-            PrefProvider.savePhoneNumber(this, loginSupplierBean.getPhoneNumber());
-
-            PrefProvider.saveLanguageId(this, loginSupplierBean.getLanguageID());
-            if (loginSupplierBean.getLanguageID() == 0)
-                setLanguage("TR");
-            else
-                setLanguage("EN");
-
-            if (loginSupplierBean.getIsPhoneNumberVerified())
-                openMain();
-            else {
-                Intent intent = new Intent(this, SmsVerificationActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.transparency_in_screen, R.anim.transparency_out);
-            }
+    private void handleResult(GetEmptyBean emptyBean){
+        Log.i("LLL", "forgot succ");
+        if(emptyBean.getStatusCode() == 100){
+            finish();
         } else {
             final Dialog dialog = new Dialog(this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setContentView(R.layout.dialog_info);
             TextView text = (TextView) dialog.findViewById(R.id.textViewErrorMessage);
-            text.setText("Registration of this account was not finished");
+            text.setText(emptyBean.getStatusText());
             Button dialogButton = (Button) dialog.findViewById(R.id.buttonOK);
             dialogButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -134,9 +102,11 @@ public class EnterPasswordActivity extends Activity {
             });
             dialog.show();
         }
+
     }
 
     private void handleError(Throwable t){
+        Log.i("LLL", "forgot error" + t);
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -164,7 +134,7 @@ public class EnterPasswordActivity extends Activity {
     }
 
     private boolean validatePassword() {
-        String password = etPassword.getText().toString();
+        String password = etEmail.getText().toString();
         if (password.trim().isEmpty() /*|| password.length() < 6*/) {
             tvError.setText(getResources().getString(R.string.password_error));
             return false;

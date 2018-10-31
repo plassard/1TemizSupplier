@@ -22,19 +22,27 @@ public class SetShopInformationRequest extends BasicRequest {
     @JsonProperty("GsmNumber")
     private String mGsmNumber;
 
+    @JsonProperty("PhoneNumberCountryID")
+    private int mPhoneNumberCountryID;
+
+    @JsonProperty("PhoneNumber")
+    private String mPhoneNumber;
+
     @JsonProperty("DeleteCurrentProfilePicture")
     private boolean mDeleteCurrentProfilePicture = false;
 
     @JsonProperty("DeleteCurrentCoverPicture")
     private boolean mDeleteCurrentCoverPicture = false;
 
-    public SetShopInformationRequest(String title, String ShopName, String email, int countryID, String number, String userId, String ticket) {
+    public SetShopInformationRequest(String title, String ShopName, String email, int GSMcountryID, String GSMnumber, int countryID, String number, String userId, String ticket) {
         super(userId, ticket);
         mTitle = title;
         mShopName = ShopName;
         mEmail = email;
-        mGsmNumberCountryID = countryID;
-        mGsmNumber = number;
+        mGsmNumberCountryID = GSMcountryID;
+        mGsmNumber = GSMnumber;
+        mPhoneNumberCountryID = countryID;
+        mPhoneNumber = number;
     }
 
 

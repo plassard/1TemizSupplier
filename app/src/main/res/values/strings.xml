@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">1Temiz Supplier</string>
+    <string name="app_name">1Temiz - Dry Cleaner Service App</string>
 
 
     <string name="hint_email">Enter your email</string>
@@ -12,7 +12,7 @@
     <string name="password">PASSWORD</string>
     <string name="forgot_password">Forgot your password?</string>
     <string name="hint_password">Enter your password</string>
-    <string name="password_error">Enter a password at least 6 characters</string>
+    <string name="password_error">This field is required</string>
 
     <!--Main activity-->
     <string name="main_menu_title">MAIN MENU</string>
@@ -116,7 +116,7 @@ Please enter it below:</string>
     <string name="select_reason">Select reason</string>
 
 
-    <string name="shop_name">Shop name</string>
+    <string name="shop_name">OFFICIAL COMPANY NAME</string>
 
     <string name="warn_courier_unverified">You cannot choose courier with unverified phone number</string>
 
@@ -147,7 +147,7 @@ Please enter it below:</string>
     <string name="no_orders">There isn\’t any current order yet</string>
 
     <string name="change_name">CHANGE SHOP NAME</string>
-    <string name="official_name">Short shop name</string>
+    <string name="official_name">SHOP NAME</string>
     <string name="change_email">CHANGE EMAIL</string>
     <string name="change_password">CHANGE PASSWORD</string>
     <string name="change_phone">CHANGE PHONE NUMBER</string>
@@ -159,4 +159,16 @@ Please enter it below:</string>
     <string name="last_month">Last month</string>
 
     <string name="this_year">This Year</string>
+
+
+    <string name="enter_current_password">Enter current password</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="click_here">Click here</string>
+    <string name="current_password_is_wrong">Current password that you entered is wrong</string>
+    <string name="new_pass_not_match">New passwords does not match</string>
+    <string name="please_fill_in_all_fields">Please fill in all fields</string>
+
+    <string name="forgot_explain">Please enter your email, we will send you instructions for resetting your password</string>
+
 </resources>

@@ -127,9 +127,9 @@ public class LoginSupplierBean {
 
     @Nullable
     public String getPhoneNumber() {
-        if(mAreaCode != null)
+       /* if(mAreaCode != null)
             return mAreaCode + mPhoneNumber;
-        else
+        else*/
             return mPhoneNumber;
     }
 

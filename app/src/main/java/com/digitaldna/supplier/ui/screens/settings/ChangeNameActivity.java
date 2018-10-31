@@ -36,6 +36,9 @@ public class ChangeNameActivity extends Activity {
         etShortName.setText(PrefProvider.getShopName(this));
         etFullShopName.setText(PrefProvider.getSupplierTitle(this));
 
+        etShortName.setSelection(etShortName.getText().length());
+        etFullShopName.setSelection(etFullShopName.getText().length());
+
         Button btnSave = (Button)findViewById(R.id.b_save);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +48,8 @@ public class ChangeNameActivity extends Activity {
                         PrefProvider.getEmail(getApplicationContext()),
                         PrefProvider.getGsmNumberCountryID(getApplicationContext()),
                         PrefProvider.getGsmNumber(getApplicationContext()),
+                        PrefProvider.getCountryID(getApplicationContext()),
+                        PrefProvider.getPhoneNumber(getApplicationContext()),
                         PrefProvider.getEmail(getApplicationContext()),
                         PrefProvider.getTicket(getApplicationContext()));
 
