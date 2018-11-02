@@ -26,6 +26,8 @@ import com.digitaldna.supplier.network.beans.OrdersBean;
 import com.digitaldna.supplier.network.beans.SupplierSummaryBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.BasicRequest;
+import com.digitaldna.supplier.ui.screens.settings.CapacityActivity;
+import com.digitaldna.supplier.ui.screens.settings.SettingsMenuActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
@@ -138,7 +140,7 @@ public class MainMenuFragment extends Fragment {
         });
 
         vMenuSettings.setOnClickListener(view -> {
-            Intent intent = new Intent(getContext(), SettingsActivity.class);
+            Intent intent = new Intent(getContext(), SettingsMenuActivity.class);
             intent.putExtra("Earnings", earningsAmount);
             startActivity(intent);
         });
@@ -213,6 +215,10 @@ public class MainMenuFragment extends Fragment {
                 //.doOnEach(item -> Log.i("DDDD", "doOnEach " + item.toString()))
                 //.doOnNext(item -> Log.i("DDDD", "doOnNext " + item.size()))
                 .subscribe(result -> handleOrdersListResult(result) , e -> handleOrdersListError(e));
+
+
+        Intent intent = new Intent(getContext(), CapacityActivity.class);
+    //    startActivity(intent);
     }
 
     int futureLastSeenOrder;

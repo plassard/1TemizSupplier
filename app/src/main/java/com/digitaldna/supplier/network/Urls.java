@@ -43,6 +43,7 @@ public class Urls {
 
     public static final String SUPPLIER_EARNINGS = "RepSupplierEarnings";
 
+    public static final String GET_CAPACITY = "GetCapacityFullSettings";
 
     public static final String FORGOT = "ForgotPassword";
 

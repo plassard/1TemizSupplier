@@ -36,8 +36,7 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:padding="16dp"
-                android:src="@drawable/svg_ic_menu_black_24dp"
-                />
+                android:src="@drawable/svg_ic_menu_black_24dp" />
 
         </RelativeLayout>
 

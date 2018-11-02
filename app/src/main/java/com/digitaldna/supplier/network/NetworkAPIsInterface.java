@@ -4,6 +4,7 @@ package com.digitaldna.supplier.network;
 import com.digitaldna.supplier.network.beans.AcceptOrderBean;
 import com.digitaldna.supplier.network.beans.EmptyBean;
 import com.digitaldna.supplier.network.beans.GetCancelReasonsListBean;
+import com.digitaldna.supplier.network.beans.GetCapacityBean;
 import com.digitaldna.supplier.network.beans.GetCommentsBean;
 import com.digitaldna.supplier.network.beans.GetEarningsBean;
 import com.digitaldna.supplier.network.beans.GetEmptyBean;
@@ -96,6 +97,10 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.GET_ORDERS)
     Observable<GetOrdersBean> getSupplierOrders(@NonNull @Body BasicRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.GET_CAPACITY)
+    Observable<GetCapacityBean> getCapacityFullSettings(@NonNull @Body BasicRequest body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.GET_ORDER_DETAILS)

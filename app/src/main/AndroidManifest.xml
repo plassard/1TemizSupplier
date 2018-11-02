@@ -56,7 +56,9 @@
         <activity android:name=".ui.screens.settings.ChangeEmailActivity" />
         <activity android:name=".ui.screens.settings.ChangePhoneActivity" />
         <activity android:name=".ui.screens.settings.ChangePasswordActivity" />
-        <activity android:name=".ui.screens.EarningsActivity"></activity>
+        <activity android:name=".ui.screens.EarningsActivity" />
+        <activity android:name=".ui.screens.settings.SettingsMenuActivity" />
+        <activity android:name=".ui.screens.settings.CapacityActivity"></activity>
     </application>
 
 </manifest>

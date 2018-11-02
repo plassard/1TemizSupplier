@@ -142,7 +142,7 @@ public class OrdersFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("LLL", "onResume");
+
         BasicRequest ordersRequest = new BasicRequest(PrefProvider.getEmail(getContext()), PrefProvider.getTicket(getContext()));
 
         RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
