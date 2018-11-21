@@ -157,4 +157,18 @@
     <string name="current_password_is_wrong">Girdiğiniz mevcut şifre yanlış</string>
     <string name="new_pass_not_match">Yeni şifreler eşleşmiyor</string>
     <string name="please_fill_in_all_fields">lütfen bütün boşlukları doldurun</string>
+
+    <string name="forgot_explain">Please enter your email, we will send you instructions for resetting your password</string>
+
+    <string name="settings_shopinfo">Mağaza Bilgileri</string>
+    <string name="settings_working_hours">Çalışma Saatleri</string>
+    <string name="settings_capacity">Kapasite</string>
+    <string name="settings_holidays">Tatiller</string>
+    <string name="settings_supplier_area">Hizmet Bölgeleri</string>
+    <string name="settings_item_pricing">Ürün Fiyatları</string>
+
+    <string name="settings_capacity_explained">Kapasitenin dolu olduğu zamanları seç</string>
+    <string name="capacity_full">Kapasite dolu</string>
+
+    <string name="changes_saved">Changes were saved successfully</string>
 </resources>

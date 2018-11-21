@@ -27,7 +27,9 @@ import com.digitaldna.supplier.network.beans.SupplierSummaryBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.ui.screens.settings.CapacityActivity;
+import com.digitaldna.supplier.ui.screens.settings.HolidaysActivity;
 import com.digitaldna.supplier.ui.screens.settings.SettingsMenuActivity;
+import com.digitaldna.supplier.ui.screens.settings.WorkingHoursActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.squareup.picasso.Picasso;
@@ -217,8 +219,8 @@ public class MainMenuFragment extends Fragment {
                 .subscribe(result -> handleOrdersListResult(result) , e -> handleOrdersListError(e));
 
 
-        Intent intent = new Intent(getContext(), CapacityActivity.class);
-    //    startActivity(intent);
+        Intent intent = new Intent(getContext(), HolidaysActivity.class);
+        startActivity(intent);
     }
 
     int futureLastSeenOrder;

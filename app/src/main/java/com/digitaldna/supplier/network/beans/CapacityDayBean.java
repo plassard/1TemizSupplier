@@ -16,7 +16,9 @@ public class CapacityDayBean {
     @JsonProperty("DayName")
     private String mDayName;
 
-
+    @Nullable
+    @JsonProperty("Date")
+    private String mDate;
 
     @JsonProperty("TimePeriods")
     private List<TimePeriodsBean> mTimePeriods;
@@ -24,6 +26,11 @@ public class CapacityDayBean {
     @Nullable
     public String getDayName() {
         return mDayName;
+    }
+
+    @Nullable
+    public String getDate() {
+        return mDate;
     }
 
     public List<TimePeriodsBean> getTimePeriods() {

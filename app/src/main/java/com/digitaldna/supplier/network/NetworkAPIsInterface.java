@@ -3,11 +3,13 @@ package com.digitaldna.supplier.network;
 
 import com.digitaldna.supplier.network.beans.AcceptOrderBean;
 import com.digitaldna.supplier.network.beans.EmptyBean;
+import com.digitaldna.supplier.network.beans.EmptyNoDataBean;
 import com.digitaldna.supplier.network.beans.GetCancelReasonsListBean;
 import com.digitaldna.supplier.network.beans.GetCapacityBean;
 import com.digitaldna.supplier.network.beans.GetCommentsBean;
 import com.digitaldna.supplier.network.beans.GetEarningsBean;
 import com.digitaldna.supplier.network.beans.GetEmptyBean;
+import com.digitaldna.supplier.network.beans.GetHolidaysBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
@@ -17,8 +19,10 @@ import com.digitaldna.supplier.network.beans.GetSupplierRateAverageBean;
 import com.digitaldna.supplier.network.beans.GetSupplierSuccessRate;
 import com.digitaldna.supplier.network.beans.GetSupplierSummaryBean;
 import com.digitaldna.supplier.network.beans.GetVerifCodeBean;
+import com.digitaldna.supplier.network.beans.GetWorkingHoursBean;
 import com.digitaldna.supplier.network.beans.VerifPhoneNumberBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
+import com.digitaldna.supplier.network.beans.base.BaseJsonDataBean;
 import com.digitaldna.supplier.network.requests.AcceptOrderRequest;
 import com.digitaldna.supplier.network.requests.BaseWithLangIdRequest;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
@@ -32,6 +36,7 @@ import com.digitaldna.supplier.network.requests.SetShopInfoPasswordRequest;
 import com.digitaldna.supplier.network.requests.SetShopInformationRequest;
 import com.digitaldna.supplier.network.requests.StartDateEndDateRequest;
 import com.digitaldna.supplier.network.requests.VerifyPhoneRequest;
+import com.google.gson.JsonObject;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
@@ -101,6 +106,30 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.GET_CAPACITY)
     Observable<GetCapacityBean> getCapacityFullSettings(@NonNull @Body BasicRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.SET_CAPACITY)
+    Observable<GetEmptyBean> setCapacityFullSettings(@Body JsonObject body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.GET_WORKING_HOURS)
+    Observable<GetWorkingHoursBean> getWorkingHours(@NonNull @Body BasicRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.SET_WORKING_HOURS)
+    Observable<GetEmptyBean> setWorkingHours(@Body JsonObject body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.GET_SUPPLIER_HOLIDAYS)
+    Observable<GetHolidaysBean> getSupplierHolidays(@NonNull @Body BasicRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.ADD_SUPPLIER_HOLIDAYS)
+    Observable<GetEmptyBean> addSupplierHolidays(@Body JsonObject body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.DELETE_SUPPLIER_HOLIDAYS)
+    Observable<GetEmptyBean> deleteSupplierHolidays(@Body JsonObject body);
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.GET_ORDER_DETAILS)

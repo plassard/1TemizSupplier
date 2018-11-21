@@ -1,6 +1,8 @@
-package com.digitaldna.supplier.network;
+package com.digitaldna.supplier;
 
 import android.annotation.SuppressLint;
+
+import com.digitaldna.supplier.network.Urls;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -8,33 +10,34 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okio.Buffer;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
-import okio.Buffer;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Rest client model.
  */
-public class RestClient {
+public class RestClientForGson {
 
     private static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(Urls.HOST_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(createHttpClient())
-            .addConverterFactory(JacksonConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
     private static ObjectMapper sMapper = createObjectMapper();
 
-    private RestClient() {
+    private RestClientForGson() {
     }
 
     public static Retrofit getInstance() {

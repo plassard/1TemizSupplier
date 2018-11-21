@@ -31,7 +31,7 @@ public class SettingsMenuActivity extends Activity implements View.OnClickListen
         vMenuWorkHours.setOnClickListener(this);
         vMenuCapacity.setOnClickListener(this);
         vMenuHolidays.setOnClickListener(this);
-        vMenuItemPricing.setOnClickListener(this);
+      //  vMenuItemPricing.setOnClickListener(this);
 
         ImageView ivMenu = (ImageView)findViewById(R.id.iv_toolbar_menu);
         ivMenu.setOnClickListener(view -> {
@@ -50,20 +50,20 @@ public class SettingsMenuActivity extends Activity implements View.OnClickListen
                 break;
             case R.id.menu_workinghours:
                 //Stop MediaPlayer
-                intent = new Intent(this, CapacityActivity.class);
+                intent = new Intent(this, WorkingHoursActivity.class);
                 break;
             case R.id.menu_capacity:
                 //Stop MediaPlayer
-                intent = new Intent(this, EarningsActivity.class);
+                intent = new Intent(this, CapacityActivity.class);
                 break;
             case R.id.menu_holidays:
                 //Stop MediaPlayer
-                intent = new Intent(this, EarningsActivity.class);
+                intent = new Intent(this, HolidaysActivity.class);
                 break;
-            case R.id.menu_item_pricing:
+           /* case R.id.menu_item_pricing:
                 //Stop MediaPlayer
                 intent = new Intent(this, EarningsActivity.class);
-                break;
+                break;*/
         }
         Log.i("HHHH", "click intent");
         startActivity(intent);

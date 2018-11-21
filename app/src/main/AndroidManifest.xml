@@ -53,12 +53,14 @@
         <activity
             android:name=".ui.screens.settings.ChangeNameActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.screens.settings.ChangeEmailActivity" />
-        <activity android:name=".ui.screens.settings.ChangePhoneActivity" />
-        <activity android:name=".ui.screens.settings.ChangePasswordActivity" />
-        <activity android:name=".ui.screens.EarningsActivity" />
-        <activity android:name=".ui.screens.settings.SettingsMenuActivity" />
-        <activity android:name=".ui.screens.settings.CapacityActivity"></activity>
+        <activity android:name=".ui.screens.settings.ChangeEmailActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.settings.ChangePhoneActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.settings.ChangePasswordActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.EarningsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.settings.SettingsMenuActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.settings.CapacityActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.settings.WorkingHoursActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.settings.HolidaysActivity" android:screenOrientation="portrait" />
     </application>
 
 </manifest>

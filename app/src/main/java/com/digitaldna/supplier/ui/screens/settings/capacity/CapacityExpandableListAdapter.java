@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
+import com.digitaldna.supplier.ui.screens.settings.CapacityActivity;
 
 public class CapacityExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -50,10 +52,23 @@ public class CapacityExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.capacity_list_item, null);
         }
 
+
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.lblListItem);
-
+        TextView txtListFullText = (TextView) convertView
+                .findViewById(R.id.lblListItemFull);
         txtListChild.setText(childText);
+
+        if(CapacityActivity.capacityDayBeansListMain.get(groupPosition).getTimePeriods().get(childPosition).getMemberFull()){
+            txtListChild.setBackground(_context.getResources().getDrawable(R.drawable.button_rounded_pink));
+            txtListFullText.setVisibility(View.VISIBLE);
+            txtListChild.setTextColor(Color.parseColor("#FFFFFF"));
+        } else {
+            txtListChild.setBackground(_context.getResources().getDrawable(R.drawable.button_rounded_empty_pink));
+            txtListFullText.setVisibility(View.INVISIBLE);
+            txtListChild.setTextColor(Color.parseColor("#000000"));
+        }
+
         return convertView;
     }
 

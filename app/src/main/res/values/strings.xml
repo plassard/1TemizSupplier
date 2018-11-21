@@ -171,13 +171,15 @@ Please enter it below:</string>
 
     <string name="forgot_explain">Please enter your email, we will send you instructions for resetting your password</string>
 
-    <string name="settings_shopinfo">Shop information</string>
-    <string name="settings_working_hours">Working hours</string>
+    <string name="settings_shopinfo">Shop Information</string>
+    <string name="settings_working_hours">Working Hours</string>
     <string name="settings_capacity">Capacity</string>
     <string name="settings_holidays">Holidays</string>
     <string name="settings_supplier_area">Supplier Area</string>
     <string name="settings_item_pricing">Item Pricing</string>
 
     <string name="settings_capacity_explained">Choose time periods when your capacity is full</string>
+    <string name="capacity_full">Capacity is full</string>
 
+    <string name="changes_saved">Changes were saved successfully</string>
 </resources>

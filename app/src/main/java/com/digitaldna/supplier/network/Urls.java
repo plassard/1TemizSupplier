@@ -44,6 +44,14 @@ public class Urls {
     public static final String SUPPLIER_EARNINGS = "RepSupplierEarnings";
 
     public static final String GET_CAPACITY = "GetCapacityFullSettings";
+    public static final String SET_CAPACITY = "SetCapacityFullSettings";
+
+    public static final String GET_WORKING_HOURS = "GetWorkingHours";
+    public static final String SET_WORKING_HOURS = "SetWorkingHours";
+
+    public static final String GET_SUPPLIER_HOLIDAYS = "GetSupplierHolidays";
+    public static final String ADD_SUPPLIER_HOLIDAYS = "AddSupplierHolidays";
+    public static final String DELETE_SUPPLIER_HOLIDAYS = "DeleteSupplierHolidays";
 
     public static final String FORGOT = "ForgotPassword";
 

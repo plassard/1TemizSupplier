@@ -1,54 +1,54 @@
 package com.digitaldna.supplier.ui.screens.settings;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.os.Bundle;
 
 import com.digitaldna.supplier.R;
+import com.digitaldna.supplier.RestClientForGson;
 import com.digitaldna.supplier.network.NetworkAPIsInterface;
 import com.digitaldna.supplier.network.RestClient;
 import com.digitaldna.supplier.network.beans.CapacityDayBean;
 import com.digitaldna.supplier.network.beans.GetCapacityBean;
-import com.digitaldna.supplier.network.beans.GetOrdersBean;
-import com.digitaldna.supplier.network.beans.OrdersBean;
+import com.digitaldna.supplier.network.beans.GetEmptyBean;
 import com.digitaldna.supplier.network.beans.TimePeriodsBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.ui.screens.settings.capacity.CapacityExpandableListAdapter;
 import com.digitaldna.supplier.utils.PrefProvider;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import android.app.Activity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class CapacityActivity extends Activity {
-
     CapacityExpandableListAdapter listAdapter;
     ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
+    List<String> listDayHeader;
+    HashMap<String, List<String>> listTimePeriods;
+    Context context;
+    //we get this list from GetCapacity..., we amend it and send it back to SetCapacity in the same format
+    public static List<CapacityDayBean> capacityDayBeansListMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capacity);
-
+        context = this;
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExpandCapacity);
 
@@ -65,133 +65,121 @@ public class CapacityActivity extends Activity {
         ivMenu.setOnClickListener(view -> {
             this.finish();
         });
+
+        Button btnSaveCapacity = (Button)findViewById(R.id.b_save_capacity);
+        btnSaveCapacity.setOnClickListener(view -> {
+            setCapacityCall();
+        });
     }
-    public static List<CapacityDayBean> capacityDayBeansList;
-    private void handleResult(List<CapacityDayBean> capacityDayBeans) {
-        Log.i("HANDLEE", "capacityDayBeansList.size()" + capacityDayBeans.size());
 
-        Log.i("HANDLEE", "capacityDayBeansList.getStartTime()" + capacityDayBeans.get(1).getTimePeriods().get(0).getStartTime());
-        Log.i("HANDLEE", "capacityDayBeansList.getEndTime()" + capacityDayBeans.get(0).getTimePeriods().get(0).getEndTime());
-        Log.i("HANDLEE", "capacityDayBeansList.getMemberFull()" + capacityDayBeans.get(0).getTimePeriods().get(0).getMemberFull());
-        Log.i("HANDLEE", "capacityDayBeansList.getTimePeriodID()" + capacityDayBeans.get(0).getTimePeriods().get(0).getTimePeriodID());
+    public void setCapacityCall(){
+        //compiling complex request for SetCapacityRequest
+        //main - Dates, Ticket, UserID
+        JsonObject jsonObjectMain = new JsonObject();
+        jsonObjectMain.addProperty("Ticket",PrefProvider.getTicket(this));
+        jsonObjectMain.addProperty("UserID",PrefProvider.getEmail(this));
+        //Date, DayName, TimePeriods
+        JsonArray datesArray = new JsonArray();
+        try{
+            for(int i = 0; i < 3; i++) {
+                JsonObject jsonObjectDate = new JsonObject();
+                jsonObjectDate.addProperty("Date", capacityDayBeansListMain.get(i).getDate());
+                jsonObjectDate.addProperty("DayName", capacityDayBeansListMain.get(i).getDayName());
+                JsonArray timePeriodsArray = new JsonArray();
 
-        List<TimePeriodsBean> firstDayTimePeriods = capacityDayBeans.get(0).getTimePeriods();
-        List<TimePeriodsBean> secondDayTimePeriods = capacityDayBeans.get(1).getTimePeriods();
-        // List<TimePeriodsBean> thirdDayTimePeriods = capacityDayBeans.get(2).getTimePeriods();
+                for (int j = 0; j < 7; j++) {
+                    JsonObject jsonObjectTimePeriod = new JsonObject();
+                    jsonObjectTimePeriod.addProperty("TimePeriodID", capacityDayBeansListMain.get(i).getTimePeriods().get(j).getTimePeriodID());
+                    jsonObjectTimePeriod.addProperty("StartTime", capacityDayBeansListMain.get(i).getTimePeriods().get(j).getStartTime());
+                    jsonObjectTimePeriod.addProperty("EndTime", capacityDayBeansListMain.get(i).getTimePeriods().get(j).getEndTime());
+                    jsonObjectTimePeriod.addProperty("MemberFull", capacityDayBeansListMain.get(i).getTimePeriods().get(j).getMemberFull());
+                    jsonObjectDate.add("TimePeriods", timePeriodsArray);
+                    timePeriodsArray.add(jsonObjectTimePeriod);
+                }
+                datesArray.add(jsonObjectDate);
+            }
+        } catch(Exception e) {}
+        jsonObjectMain.add("Dates", datesArray);
+
+        RestClientForGson.getInstance().create(NetworkAPIsInterface.class).setCapacityFullSettings(jsonObjectMain)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(result -> handleResultSet(result) , e -> handleSetError(e));
+    }
+
+    private void handleResultSet(GetEmptyBean capacityDayBeans) {
+        Log.i("HANDLEE", "handleResultSet success" + capacityDayBeans.getStatusText());
+    }
+
+
+
+    public void prepareData(){
 
         // preparing list data
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+        listDayHeader = new ArrayList<String>();
+        listTimePeriods = new HashMap<String, List<String>>();
 
+        // Adding child data
+        listDayHeader.add(capacityDayBeansListMain.get(0).getDayName());
+        listDayHeader.add(capacityDayBeansListMain.get(1).getDayName());
 
+        // Adding child data
+        List<String> firstDay = new ArrayList<String>();
+        List<String> secondDay = new ArrayList<String>();
+        for (int i = 0; i < capacityDayBeansListMain.get(0).getTimePeriods().size(); i++) {
+            firstDay.add(capacityDayBeansListMain.get(0).getTimePeriods().get(i).getStartTime().substring(0, 5) + " - " + capacityDayBeansListMain.get(0).getTimePeriods().get(i).getEndTime().substring(0, 5));
+        }
 
-            // Adding child data
-            listDataHeader.add(capacityDayBeans.get(0).getDayName());
-            listDataHeader.add(capacityDayBeans.get(1).getDayName());
+        for (int i = 0; i < capacityDayBeansListMain.get(1).getTimePeriods().size(); i++) {
+            secondDay.add(capacityDayBeansListMain.get(1).getTimePeriods().get(i).getStartTime().substring(0, 5) + " - " + capacityDayBeansListMain.get(1).getTimePeriods().get(i).getEndTime().substring(0, 5));
+        }
+        listTimePeriods.put(listDayHeader.get(0), firstDay); // Header, Child data
+        listTimePeriods.put(listDayHeader.get(1), secondDay);
 
-            // Adding child data
-            List<String> firstDay = new ArrayList<String>();
-            List<String> secondDay = new ArrayList<String>();
+        if(capacityDayBeansListMain.size() > 2) {
 
-            for (int i = 0; i < capacityDayBeans.get(0).getTimePeriods().size() - 1; i++) {
-                firstDay.add(capacityDayBeans.get(0).getTimePeriods().get(i).getStartTime() + " - " + capacityDayBeans.get(0).getTimePeriods().get(i).getEndTime());
-            }
-
-            for (int i = 0; i < capacityDayBeans.get(1).getTimePeriods().size() - 1; i++) {
-                secondDay.add(capacityDayBeans.get(1).getTimePeriods().get(i).getStartTime() + " - " + capacityDayBeans.get(1).getTimePeriods().get(i).getEndTime());
-            }
-        listDataChild.put(listDataHeader.get(0), firstDay); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), secondDay);
-
-        if(capacityDayBeans.size() > 2) {
+            listDayHeader.add(capacityDayBeansListMain.get(2).getDayName());
             List<String> thirdDay = new ArrayList<String>();
-            for (int i = 0; i < capacityDayBeans.get(2).getTimePeriods().size() - 1; i++) {
-                thirdDay.add(capacityDayBeans.get(2).getTimePeriods().get(i).getStartTime() + " - " + capacityDayBeans.get(2).getTimePeriods().get(i).getEndTime());
+            for (int i = 0; i < capacityDayBeansListMain.get(2).getTimePeriods().size(); i++) {
+                thirdDay.add(capacityDayBeansListMain.get(2).getTimePeriods().get(i).getStartTime().substring(0, 5) + " - " + capacityDayBeansListMain.get(2).getTimePeriods().get(i).getEndTime().substring(0, 5));
             }
-            listDataChild.put(listDataHeader.get(2), thirdDay);
-
+            listTimePeriods.put(listDayHeader.get(2), thirdDay);
 
         }
-        listAdapter = new CapacityExpandableListAdapter(this, listDataHeader, listDataChild);
+    }
 
-        // setting list adapter
+    private void handleResult(List<CapacityDayBean> capacityDayBeans) {
+        capacityDayBeansListMain = null;
+        capacityDayBeansListMain = capacityDayBeans;
+
+        prepareData();
+        listAdapter = new CapacityExpandableListAdapter(this, listDayHeader, listTimePeriods);
+       // setting list adapter
         expListView.setAdapter(listAdapter);
 
         // Listview on child click listener
         expListView.setOnChildClickListener(new OnChildClickListener() {
-
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT)
-                        .show();
+                boolean currentValue = capacityDayBeansListMain.get(groupPosition).getTimePeriods().get(childPosition).getMemberFull();
+                capacityDayBeansListMain.get(groupPosition).getTimePeriods().get(childPosition).setMemberFull(!currentValue);
+                Log.i("HANDLEE", "capacityDayBeansList " + capacityDayBeansListMain.get(groupPosition).getTimePeriods().get(childPosition).getStartTime()
+                        + capacityDayBeansListMain.get(groupPosition).getTimePeriods().get(childPosition).getEndTime());
+                prepareData();
+                listAdapter.notifyDataSetChanged();
                 return false;
             }
         });
-
-
-        // Adding child data
-       /* try {
-            listDataHeader.add(capacityDayBeans.get(2).getDayName());
-        }catch (Exception e) {
-            Log.i("HANDLEE", "capacityDayBeansList.Exception" + e);
-            listDataHeader.add("unavailable");
-        }*/
-
 
     }
     private void handleError(Throwable t) {
         Log.i("HANDLEE", "capacityDayBeansList error)" + t);
         Log.i("HANDLEE", "error" + BaseJsonBean.mStatusText);
     }
+    private void handleSetError(Throwable t) {
+        Log.i("HANDLEE", "SET error)" + t);
 
-        /*
-     * Preparing the list data
-     */
-    private void prepareListData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
-
-        // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
-
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
-
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-        nowShowing.add("Despicable Me 2");
-        nowShowing.add("Turbo");
-        nowShowing.add("Grown Ups 2");
-        nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
-
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
-
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
     }
 
 }

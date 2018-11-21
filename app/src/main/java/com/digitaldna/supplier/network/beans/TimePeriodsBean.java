@@ -15,12 +15,12 @@ public class TimePeriodsBean {
     private Integer mTimePeriodID;
 
 
-
     public String getEndTime() {
-        return mEndTime.substring(0, 5);
+        return mEndTime;
     }
+
     public String getStartTime() {
-        return mStartTime.substring(0, 5);
+        return mStartTime/*.substring(0, 5)*/;
     }
 
     public void setStartTime(String startTime) {
@@ -30,6 +30,11 @@ public class TimePeriodsBean {
     public boolean getMemberFull() {
         return mMemberFull;
     }
+
+    public void setMemberFull(boolean isFull) {
+        mMemberFull = isFull;
+    }
+
 
     public Integer getTimePeriodID() {
         return mTimePeriodID;

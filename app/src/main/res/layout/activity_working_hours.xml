@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:paddingTop="16dp"
-                android:text="@string/settings_capacity"
+                android:text="@string/settings_working_hours"
                 android:textAllCaps="true"
                 />
 
@@ -47,38 +47,25 @@
             android:layout_below="@+id/toolbar_container"
             android:layout_margin="12dp"
             android:id="@+id/cardView">
-
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:orientation="vertical"
-                android:paddingBottom="6dp"
+                android:layout_marginBottom="60dp">
 
-                android:paddingTop="0dp"
-                >
-
-                <TextView
-                    android:id="@+id/tv_full_name"
-                    style="@style/CharcoalMediumText"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="12dp"
-
-                    android:textAlignment="center"
-                    android:text="@string/settings_capacity_explained"/>
-
-
-                <ExpandableListView
-                    android:id="@+id/lvExpandCapacity"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="50dp"/>
+                    android:id="@+id/linLayoutWorkHours"
+                    android:orientation="vertical"
+
+                    >
+                </LinearLayout>
+            </ScrollView>
 
 
 
-            </LinearLayout>
+
+
             <Button
                 android:id="@+id/b_save_capacity"
                 style="@style/TemizButton"
