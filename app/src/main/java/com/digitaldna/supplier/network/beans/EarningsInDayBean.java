@@ -31,7 +31,11 @@ public class EarningsInDayBean {
     }
 
     public String getDate() {
-        return mDate;
+        String year = mDate.substring(0, 4);
+        String month = mDate.substring(5, 7);
+        String day = mDate.substring(8, 10);
+
+        return day + "-" + month + "-" + year;
     }
 
    /* public int getDay2() {

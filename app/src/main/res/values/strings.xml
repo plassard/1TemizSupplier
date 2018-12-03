@@ -182,4 +182,48 @@ Please enter it below:</string>
     <string name="capacity_full">Capacity is full</string>
 
     <string name="changes_saved">Changes were saved successfully</string>
+    <string name="title_activity_add_items">AddItemsActivity</string>
+
+
+    <!--Add item fragment-->
+    <string name="add_items_title">ADD ITEMS</string>
+    <string name="add_item_formatter_item" formatted="false">%s%s item</string>
+    <string name="add_item_formatter_items" formatted="false">%s%s items</string>
+    <string name="add_item_format_total_price">Total price: </string>
+    <string name="add_item_error_message_have_not_any_items">You have not added any items yet.</string>
+    <string name="add_item_no_product_placeholder">Dry cleaner is not serving any product in this category</string>
+    <string name="add_item_no_items_yet_placeholder">There is not items yet</string>
+    <string name="add_item_select_one">please select at least one item</string>
+
+    <!--Basket fragment-->
+    <string name="basket_title_details">BASKET DETAILS</string>
+    <string name="basket_button_add_order_to_orders">Add Items to Order</string>
+    <string name="basket_button_add_new_items">Add New Items</string>
+    <string name="basket_no_data_place_holder">Basket is empty</string>
+
+    <!--Search fragment-->
+    <string name="search_title_details">Search</string>
+    <string name="search_button_add_new_items">Add New Items</string>
+    <string name="search_no_data_place_holder">Search is empty</string>
+
+    <!--Item product-->
+    <string name="title_remove">X</string>
+
+    <string name="cancel_order_title_are_you_sure">Are you sure?</string>
+    <string name="cancel_order_title_want">Are you sure you want to cancel this order?</string>
+    <string name="cancel_order_button_yes">Yes</string>
+    <string name="cancel_order_button_no">No</string>
+    <string name="cancel_order_title">Cancel Order</string>
+    <string name="cancel_order_message_select_reason">Please select reason why you canceling the order.</string>
+    <string name="cancel_order_button_other">Other</string>
+    <string name="items"> Items</string>
+    <string name="ironing"> (ironing)</string>
+
+    <string name="registration_not_finished">Registration of this account was not finished</string>
+    <string name="close_all">Close all</string>
+    <string name="open_all">Open all</string>
+    <string name="holidays">HOLIDAYS</string>
+    <string name="date">Date</string>
+    <string name="total_earnings">Total Earnings</string>
+    <string name="total">TOTAL</string>
 </resources>

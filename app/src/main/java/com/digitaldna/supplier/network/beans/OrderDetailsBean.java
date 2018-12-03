@@ -16,6 +16,11 @@ public class OrderDetailsBean {
     private String mOrderNumber;
 
     @Nullable
+    public Integer getOrderStatusID() {
+        return mOrderStatusID;
+    }
+
+    @Nullable
     @JsonProperty("OrderStatusID")
     private Integer mOrderStatusID;
 
@@ -183,9 +188,6 @@ public class OrderDetailsBean {
         return mCouriers;
     }
 
-    public List<OrderProductBean> getProductsList() {
-        return mProducts;
-    }
 
     public Double getTotalPrice() {
         if(mTotalPrice == null){

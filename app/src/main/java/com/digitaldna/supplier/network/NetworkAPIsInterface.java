@@ -13,6 +13,8 @@ import com.digitaldna.supplier.network.beans.GetHolidaysBean;
 import com.digitaldna.supplier.network.beans.GetLoginBean;
 import com.digitaldna.supplier.network.beans.GetOrderDetailsBean;
 import com.digitaldna.supplier.network.beans.GetOrdersBean;
+import com.digitaldna.supplier.network.beans.GetProductGroupBean;
+import com.digitaldna.supplier.network.beans.GetProductPriceListBean;
 import com.digitaldna.supplier.network.beans.GetShopInfoBean;
 import com.digitaldna.supplier.network.beans.GetStatisticOrdersBean;
 import com.digitaldna.supplier.network.beans.GetSupplierRateAverageBean;
@@ -25,6 +27,7 @@ import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonDataBean;
 import com.digitaldna.supplier.network.requests.AcceptOrderRequest;
 import com.digitaldna.supplier.network.requests.BaseWithLangIdRequest;
+import com.digitaldna.supplier.network.requests.BaseWithSupplierIdRequest;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
 import com.digitaldna.supplier.network.requests.BaseWithFilterRequest;
 import com.digitaldna.supplier.network.requests.GetVerificationCodeRequest;
@@ -32,6 +35,7 @@ import com.digitaldna.supplier.network.requests.LoginRequest;
 import com.digitaldna.supplier.network.requests.BasicRequest;
 import com.digitaldna.supplier.network.requests.RejectOrderRequest;
 import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
+import com.digitaldna.supplier.network.requests.SetOrderProductListRequest;
 import com.digitaldna.supplier.network.requests.SetShopInfoPasswordRequest;
 import com.digitaldna.supplier.network.requests.SetShopInformationRequest;
 import com.digitaldna.supplier.network.requests.StartDateEndDateRequest;
@@ -166,5 +170,17 @@ public interface NetworkAPIsInterface {
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.SUPPLIER_EARNINGS)
     Observable<GetEarningsBean> getEarnings(@NonNull @Body StartDateEndDateRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.PRODUCT +  "/" + Urls.GET_PRODUCT_GROUP_LIST)
+    Observable<GetProductGroupBean> getProductGroupList(@NonNull @Body BasicRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.PRODUCT +  "/" + Urls.GET_PRODUCT_PRICE_LIST)
+    Observable<GetProductPriceListBean> getProductPriceList(@NonNull @Body BaseWithSupplierIdRequest body);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.SET_ORDER_PRODUCT_LIST)
+    Observable<GetEmptyBean> setOrderProductList(@NonNull @Body SetOrderProductListRequest body);
 
 }

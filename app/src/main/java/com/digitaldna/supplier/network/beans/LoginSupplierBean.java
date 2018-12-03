@@ -50,6 +50,18 @@ public class LoginSupplierBean {
     @JsonProperty("CurrentPage")
     private Integer mCurrentPage;
 
+    @Nullable
+    public Integer getSupplierID() {
+        return mID;
+    }
+
+    public void setSupplierID(@Nullable Integer mID) {
+        this.mID = mID;
+    }
+
+    @Nullable
+    @JsonProperty("MemberID")
+    private Integer mID;
 
     @Nullable
     public String getShopName() {

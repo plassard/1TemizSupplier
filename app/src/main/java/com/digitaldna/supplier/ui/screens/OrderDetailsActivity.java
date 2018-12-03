@@ -1,6 +1,7 @@
 package com.digitaldna.supplier.ui.screens;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.digitaldna.supplier.network.beans.OrderProductBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
 import com.digitaldna.supplier.network.requests.SaveOrderDetailsRequest;
+import com.digitaldna.supplier.ui.screens.orders.AddItemsActivity;
 import com.digitaldna.supplier.utils.ImageToCircleTransform;
 import com.digitaldna.supplier.utils.PrefProvider;
 import com.digitaldna.supplier.utils.TextViewUtils;
@@ -42,7 +44,8 @@ import io.reactivex.schedulers.Schedulers;
 public class OrderDetailsActivity extends Activity {
     Spinner spinnerCouriers;
     Integer selectedCourierId = null;
-
+    Button btnSave;
+    public boolean firstDefaultSelection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +67,12 @@ public class OrderDetailsActivity extends Activity {
         ImageView imageView = (ImageView)findViewById(R.id.iv_toolbar_close);
         imageView.setOnClickListener(view -> onBackPressed());
 
-        Button btnCancel = (Button)findViewById(R.id.b_cancel_order);
-        btnCancel.setOnClickListener(view -> finish());
+        Button btnAddItems = (Button)findViewById(R.id.b_add_items);
+        btnAddItems.setOnClickListener(view -> {
+            Intent intent = new Intent(this, AddItemsActivity.class);
+            intent.putExtra("orderID", getIntent().getExtras().getInt("orderID"));
+            startActivity(intent);
+        });
     }
 
 
@@ -152,11 +159,18 @@ public class OrderDetailsActivity extends Activity {
         TextView tvOrderNote = (TextView)findViewById(R.id.tv_notes_to_order);
         tvOrderNote.setText(orderDetailsBean.getOrderNote(this));
 
+        btnSave = (Button)findViewById(R.id.b_save_order);
+        firstDefaultSelection = false;
         TextView tvCourierUnverWarning = (TextView)findViewById(R.id.tv_courier_unverified_warning);
         Log.i("CCCC", "spinner ");
         spinnerCouriers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                if (firstDefaultSelection) {
+                    btnSave.setVisibility(View.VISIBLE);
+                } else {
+                    firstDefaultSelection = true;
+                }
                 for (CouriersBean bean : orderDetailsBean.getmCouriersList()) {
                     if(bean.getCourierName().equals(spinnerCouriers.getSelectedItem().toString()))
                         if(bean.getPhoneVerified()){
@@ -174,8 +188,9 @@ public class OrderDetailsActivity extends Activity {
             }
         });
 
-        Log.i("CCCC", "btnSave ");
-        Button btnSave = (Button)findViewById(R.id.b_save_order);
+
+
+
         btnSave.setOnClickListener(view -> {
             Log.i("CCCC", "click");
             for (CouriersBean bean : orderDetailsBean.getmCouriersList()) {
@@ -209,6 +224,14 @@ public class OrderDetailsActivity extends Activity {
 
 
         });
+        btnSave.setVisibility(View.GONE);
+
+        if(orderDetailsBean.getProducts() == null && orderDetailsBean.getOrderStatusID() >= 400) {
+            LinearLayout bottomLayout = (LinearLayout)findViewById(R.id.bottomLayout);
+            bottomLayout.setVisibility(View.VISIBLE);
+        } else {
+
+        }
 
     }
 

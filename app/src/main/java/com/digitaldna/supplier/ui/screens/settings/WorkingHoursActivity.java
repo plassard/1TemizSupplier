@@ -195,11 +195,11 @@ public class WorkingHoursActivity extends Activity {
             if(workingHoursList.get(0).getmDays().get(dayNumber).getmTimePeriods().get(0).ismMemberUsing()){
                 btnClosed.setBackground(context.getResources().getDrawable(R.drawable.button_work_hours_unavailable));
                 btnClosed.setTextColor(context.getResources().getColor(R.color.gray));
-                btnClosed.setText("Close all");
+                btnClosed.setText(this.getResources().getString(R.string.close_all));
             } else {
                 btnClosed.setBackground(context.getResources().getDrawable(R.drawable.button_work_hours_available));
                 btnClosed.setTextColor(context.getResources().getColor(R.color.blue));
-                btnClosed.setText("Open all");
+                btnClosed.setText(this.getResources().getString(R.string.open_all));
             }
             btn800.setOnClickListener(view -> {
                 workingHoursList.get(0).getmDays().get(dayNumber).getmTimePeriods().get(0).setMemberUsing(!workingHoursList.get(0).getmDays().get(dayNumber).getmTimePeriods().get(0).ismMemberUsing());
@@ -208,11 +208,11 @@ public class WorkingHoursActivity extends Activity {
                 if(workingHoursList.get(0).getmDays().get(dayNumber).getmTimePeriods().get(0).ismMemberUsing()){
                     btnClosed.setBackground(context.getResources().getDrawable(R.drawable.button_work_hours_unavailable));
                     btnClosed.setTextColor(context.getResources().getColor(R.color.gray));
-                    btnClosed.setText("Close all");
+                    btnClosed.setText(this.getResources().getString(R.string.close_all));
                 } else {
                     btnClosed.setBackground(context.getResources().getDrawable(R.drawable.button_work_hours_available));
                     btnClosed.setTextColor(context.getResources().getColor(R.color.blue));
-                    btnClosed.setText("Open all");
+                    btnClosed.setText(this.getResources().getString(R.string.open_all));
                 }
             });
 
@@ -273,11 +273,11 @@ public class WorkingHoursActivity extends Activity {
             if(workingHoursList.get(0).getmDays().get(dayNumber).getmTimePeriods().get(0).ismMemberUsing()){
                 btnClosed.setBackground(context.getResources().getDrawable(R.drawable.button_work_hours_unavailable));
                 btnClosed.setTextColor(context.getResources().getColor(R.color.gray));
-                btnClosed.setText("Close all");
+                btnClosed.setText(this.getResources().getString(R.string.close_all));
             } else {
                 btnClosed.setBackground(context.getResources().getDrawable(R.drawable.button_work_hours_available));
                 btnClosed.setTextColor(context.getResources().getColor(R.color.blue));
-                btnClosed.setText("Open all");
+                btnClosed.setText(this.getResources().getString(R.string.open_all));
             }
             btnClosed.setOnClickListener(view -> {
                 boolean newValueOfUsing = true;
@@ -300,7 +300,7 @@ public class WorkingHoursActivity extends Activity {
                     btn2000.setTextColor(context.getResources().getColor(R.color.gray));
                     btnClosed.setBackground(context.getResources().getDrawable(R.drawable.button_work_hours_available));
                     btnClosed.setTextColor(context.getResources().getColor(R.color.blue));
-                    btnClosed.setText("Open all");
+                    btnClosed.setText(this.getResources().getString(R.string.open_all));
                 } else {
                     btn800.setBackground(context.getResources().getDrawable(R.drawable.button_work_hours_available));
                     btn800.setTextColor(context.getResources().getColor(R.color.blue));
@@ -318,7 +318,7 @@ public class WorkingHoursActivity extends Activity {
                     btn2000.setTextColor(context.getResources().getColor(R.color.blue));
                     btnClosed.setBackground(context.getResources().getDrawable(R.drawable.button_work_hours_unavailable));
                     btnClosed.setTextColor(context.getResources().getColor(R.color.gray));
-                    btnClosed.setText("Close all");
+                    btnClosed.setText(this.getResources().getString(R.string.close_all));
                 }
                 //change values in data list
                 for(int j = 0; j < 7; j++){

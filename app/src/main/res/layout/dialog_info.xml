@@ -29,6 +29,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/loginbutton"
             android:gravity="center"
+            android:textAllCaps="false"
             android:text="@string/ok"
             android:textColor="#fff"
             android:textSize="42px" />

@@ -106,6 +106,7 @@ public class EnterPasswordActivity extends Activity {
             PrefProvider.savePhoneNumber(this, loginSupplierBean.getPhoneNumber());
 
             PrefProvider.saveLanguageId(this, loginSupplierBean.getLanguageID());
+            PrefProvider.saveSupplierID(this, loginSupplierBean.getSupplierID());
             if (loginSupplierBean.getLanguageID() == 0)
                 setLanguage("TR");
             else
@@ -124,7 +125,7 @@ public class EnterPasswordActivity extends Activity {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setContentView(R.layout.dialog_info);
             TextView text = (TextView) dialog.findViewById(R.id.textViewErrorMessage);
-            text.setText("Registration of this account was not finished");
+            text.setText(this.getResources().getString(R.string.registration_not_finished));
             Button dialogButton = (Button) dialog.findViewById(R.id.buttonOK);
             dialogButton.setOnClickListener(new View.OnClickListener() {
                 @Override

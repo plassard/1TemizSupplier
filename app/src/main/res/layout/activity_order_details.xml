@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-
             <TextView
                 android:id="@+id/tv_inside_title"
                 style="@style/Toolbar.TitleText"
@@ -155,38 +153,29 @@
                 android:textAllCaps="false"/>
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/b_cancel_order"
-            style="@style/TemizEmptyButton"
+        <LinearLayout
+            android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_marginBottom="12dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/order_details_button_cancel"
-            android:textAllCaps="false"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-        <Button
-            android:id="@+id/b_save_order"
-            style="@style/TemizButton"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_marginBottom="12dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/button_save"
-            android:textAllCaps="false"/>
-    </LinearLayout>
+            <Button
+                android:id="@+id/b_add_items"
+                style="@style/TemizButton"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="12dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:text="@string/basket_button_add_order_to_orders"
+                android:textAllCaps="false" />
+
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
 

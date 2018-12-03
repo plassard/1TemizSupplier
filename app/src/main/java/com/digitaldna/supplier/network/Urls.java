@@ -55,5 +55,9 @@ public class Urls {
 
     public static final String FORGOT = "ForgotPassword";
 
+    public static final String GET_PRODUCT_GROUP_LIST = "GetProductGroupList";
+    public static final String GET_PRODUCT_PRICE_LIST = "GetProductPriceList ";
+    public static final String SET_ORDER_PRODUCT_LIST = "SetOrderProductList ";
+
     public static final Integer PLATFORM = 50;
 }

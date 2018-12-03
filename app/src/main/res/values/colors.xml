@@ -24,7 +24,7 @@
 
 
     <color name="cornflowerBlue">#FF52A3FF</color>
-
+    <color name="snow">#fafafa</color>
     <color name="textAshGrey">@color/ashGrey</color>
     <color name="ashGrey">#b7b7b7</color>
     <color name="mayaBlue">#FF5BBAFF</color>
@@ -36,4 +36,8 @@
     <color name="buton_gri">#10F2F2F2</color>
 
     <color name="silver">#50000000</color>
+
+    <color name="text_def_gri">#abaeaf</color>
+    <color name="buton_siyah">#3f4753</color>
+    <color name="view_gri">#50cccccc</color>
 </resources>

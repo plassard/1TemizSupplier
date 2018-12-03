@@ -26,8 +26,7 @@
                 android:layout_centerHorizontal="true"
                 android:paddingTop="16dp"
                 android:text="@string/menu_earnings_title"
-                android:textAllCaps="true"
-                />
+                android:textAllCaps="true" />
 
             <ImageView
                 android:id="@+id/iv_toolbar_menu"

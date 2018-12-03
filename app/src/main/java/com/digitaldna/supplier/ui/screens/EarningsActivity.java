@@ -1,6 +1,7 @@
 package com.digitaldna.supplier.ui.screens;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -242,14 +243,16 @@ public class EarningsActivity extends Activity {
 
         TableRow trFirst =  new TableRow(this);
         TextView c1first = new TextView(this);
-        c1first.setText("Date");
+        c1first.setText(this.getResources().getString(R.string.date));
         c1first.setBackground(this.getResources().getDrawable(R.drawable.cell_in_table_first));
         c1first.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        c1first.setTypeface(null, Typeface.BOLD);
 
         TextView c2first = new TextView(this);
-        c2first.setText("Total Earnings");
+        c2first.setText(this.getResources().getString(R.string.total_earnings));
         c2first.setBackground(this.getResources().getDrawable(R.drawable.cell_in_table_first));
         c2first.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        c2first.setTypeface(null, Typeface.BOLD);
 
         trFirst.addView(c1first);
         trFirst.addView(c2first);
@@ -267,6 +270,11 @@ public class EarningsActivity extends Activity {
             c2.setText(String.valueOf(earningsInDayBeans.get(i).getEarnings()));
             c2.setBackground(this.getResources().getDrawable(R.drawable.cell_in_table));
             c2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+
+            if(i == earningsInDayBeans.size() - 1) {
+                c1.setTypeface(null, Typeface.BOLD);
+                c2.setTypeface(null, Typeface.BOLD);
+            }
 
             tr.addView(c1);
             tr.addView(c2);

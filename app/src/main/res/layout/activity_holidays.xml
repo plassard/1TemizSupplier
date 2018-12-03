@@ -23,9 +23,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:paddingTop="16dp"
-                android:text="@string/settings_working_hours"
-                android:textAllCaps="true"
-                />
+                android:text="@string/holidays"
+                android:textAllCaps="true" />
 
             <ImageView
                 android:id="@+id/iv_toolbar_menu"

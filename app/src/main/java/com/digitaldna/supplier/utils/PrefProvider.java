@@ -112,6 +112,19 @@ public class PrefProvider {
         return mPreferences.getInt(PreferencesContract.Supplier.COUNTRY_ID, -1);
     }
 
+    static public void saveSupplierID(Context context, Integer SupplierID){
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        mPreferences.edit()
+                .putInt(PreferencesContract.Supplier.SUPPLIER_ID, SupplierID)
+                .commit();
+    }
+
+    static public Integer getSupplierID(Context context) {
+        mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
+        return mPreferences.getInt(PreferencesContract.Supplier.SUPPLIER_ID, -1);
+    }
+
+
     static public void saveSeenOrderID(Context context, Integer CountryID){
         mPreferences = context.getSharedPreferences(PreferencesContract.PREFS_NAME, Context.MODE_PRIVATE);
         mPreferences.edit()

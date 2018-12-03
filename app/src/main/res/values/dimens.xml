@@ -28,4 +28,5 @@
     <dimen name="padding_text_item_order_history">12dp</dimen>
 
     <dimen name="sign_in_screen_top_padding">32dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

@@ -89,7 +89,7 @@
     <string name="customer_order_title">Müşteri:</string>
     <string name="district_order_title">Mahalle:</string>
 
-    <string name="ok">TAMAM</string>
+    <string name="ok">Tamam</string>
 
     <string name="sms_verification_correctly">Aktivasyon kodunu doğru girdiğine emin misin?</string>
     <string name="resend">Tekrar SMS gönder</string>
@@ -170,5 +170,49 @@
     <string name="settings_capacity_explained">Kapasitenin dolu olduğu zamanları seç</string>
     <string name="capacity_full">Kapasite dolu</string>
 
-    <string name="changes_saved">Changes were saved successfully</string>
+    <string name="changes_saved">Çalışma saatlerini başarıyla güncelledin</string>
+    <string name="menu_earnings_title">KAZANÇLAR</string>
+
+    <!--Add item fragment-->
+    <string name="add_items_title">ÜRÜN EKLE</string>
+    <string name="add_item_formatter_item" formatted="false">%s%s ürün</string>
+    <string name="add_item_formatter_items" formatted="false">%s%s ürün</string>
+    <string name="add_item_format_total_price">Toplam tutar: </string>
+    <string name="add_item_error_message_have_not_any_items">Henüz ürün eklemedin</string>
+    <string name="add_item_no_product_placeholder">Kuru temizleme bu kategoride bir ürün kaydetmedi</string>
+    <string name="add_item_no_items_yet_placeholder">Henüz ürün yok</string>
+    <string name="add_item_select_one">lütfen en az bir öğe seçin</string>
+
+    <!--Basket fragment-->
+    <string name="basket_title_details">SEPET DETAYLARI</string>
+    <string name="basket_button_add_order_to_orders">Ürün ekle</string>
+    <string name="basket_button_add_new_items">Yeni Öğeler Ekle</string>
+    <string name="basket_no_data_place_holder">Sepet boş</string>
+
+    <!--Search fragment-->
+    <string name="search_title_details">Ara</string>
+    <string name="search_button_add_new_items">Ürün ekle</string>
+    <string name="search_no_data_place_holder">Henüz ürün yok</string>
+
+    <!--Item product-->
+    <string name="title_remove">X</string>
+
+    <string name="cancel_order_title_are_you_sure">Emin misin?</string>
+    <string name="cancel_order_title_want">Siparişi iptal etmek istediğine emin misin?</string>
+    <string name="cancel_order_button_yes">Evet</string>
+    <string name="cancel_order_button_no">Hayır</string>
+    <string name="cancel_order_title">Siparişi İptal Et</string>
+    <string name="cancel_order_message_select_reason">Lütfen siparişi iptal etme nedenini seç</string>
+    <string name="cancel_order_button_other">Diğer</string>
+    <string name="items"> Adet</string>
+    <string name="ironing"> (ütüleme)</string>
+
+    <string name="registration_not_finished">Kuru temizleme kayıt işleminizi tamamlamamışsınız. bayi.1temiz.com \'dan giriş yaparak kayıt işleminizi tamamlayabilir ya da 1Temiz yetkilileriyle iletişime geçebilirsiniz.</string>
+    <string name="close_all">Tümünü kapat</string>
+    <string name="open_all">Tümünü aç</string>
+    <string name="holidays">TATİLLER</string>
+
+    <string name="date">Tarih</string>
+    <string name="total_earnings">Toplam Kazanç</string>
+    <string name="total">TOPLAM</string>
 </resources>

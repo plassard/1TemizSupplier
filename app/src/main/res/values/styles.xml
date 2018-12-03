@@ -171,6 +171,7 @@
         <item name="android:textSize">@dimen/text_size_xxsmall</item>
         <item name="android:textColor">@color/textGray</item>
     </style>
+
     <style name="AccentLargeText">
         <item name="android:textColor">@color/textColorAccent</item>
         <item name="android:textSize">@dimen/text_size_large</item>
@@ -197,6 +198,20 @@
         <item name="colorControlActivated">@color/gray</item>
         <item name="android:textColorPrimary">@color/gray</item>
         <item name="android:textColorSecondary">@color/gray</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="WhiteXSmallText">
+        <item name="android:textColor">@color/textWhite</item>
+        <item name="android:textSize">@dimen/text_size_xsmall</item>
+    </style>
+
+    <style name="GrayXXXSmallText">
+        <item name="android:textColor">@color/textGray</item>
+        <item name="android:textSize">@dimen/text_size_xxxsmall</item>
     </style>
 
 </resources>
