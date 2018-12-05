@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.digitaldna.supplier.ui.screens.MainActivity;
 import com.digitaldna.supplier.ui.screens.authorization.EnterEmailActivity;
+import com.digitaldna.supplier.ui.screens.settings.itempricing.ItemPricingActivity;
 import com.digitaldna.supplier.utils.PrefProvider;
 
 import java.util.Locale;
@@ -46,6 +47,10 @@ public class SplashActivity extends Activity {
             }
 
             Intent intent = new Intent(this, MainActivity.class);
+
+          //  Intent intent = new Intent(this, ItemPricingActivity.class);
+         //   intent.putExtra("orderID", 780);
+
             startActivity(intent);
             overridePendingTransition(R.anim.transparency_in_screen, R.anim.transparency_out);
         }

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.ui.screens.EarningsActivity;
 import com.digitaldna.supplier.ui.screens.SettingsActivity;
+import com.digitaldna.supplier.ui.screens.settings.itempricing.ItemPricingActivity;
 
 public class SettingsMenuActivity extends Activity implements View.OnClickListener {
     View vMenuShopInfo, vMenuWorkHours, vMenuCapacity, vMenuHolidays, vMenuItemPricing;
@@ -31,7 +32,7 @@ public class SettingsMenuActivity extends Activity implements View.OnClickListen
         vMenuWorkHours.setOnClickListener(this);
         vMenuCapacity.setOnClickListener(this);
         vMenuHolidays.setOnClickListener(this);
-      //  vMenuItemPricing.setOnClickListener(this);
+        vMenuItemPricing.setOnClickListener(this);
 
         ImageView ivMenu = (ImageView)findViewById(R.id.iv_toolbar_menu);
         ivMenu.setOnClickListener(view -> {
@@ -60,10 +61,11 @@ public class SettingsMenuActivity extends Activity implements View.OnClickListen
                 //Stop MediaPlayer
                 intent = new Intent(this, HolidaysActivity.class);
                 break;
-           /* case R.id.menu_item_pricing:
+            case R.id.menu_item_pricing:
                 //Stop MediaPlayer
-                intent = new Intent(this, EarningsActivity.class);
-                break;*/
+                intent = new Intent(this, ItemPricingActivity.class);
+                intent.putExtra("orderID", 780);
+                break;
         }
         Log.i("HHHH", "click intent");
         startActivity(intent);

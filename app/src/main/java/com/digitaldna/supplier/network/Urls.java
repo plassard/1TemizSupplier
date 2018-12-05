@@ -59,5 +59,8 @@ public class Urls {
     public static final String GET_PRODUCT_PRICE_LIST = "GetProductPriceList ";
     public static final String SET_ORDER_PRODUCT_LIST = "SetOrderProductList ";
 
+    public static final String GET_ITEM_PRICING = "GetItemPricing";
+    public static final String SET_ITEM_PRICING = "SetItemPricing";
+
     public static final Integer PLATFORM = 50;
 }

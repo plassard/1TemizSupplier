@@ -80,6 +80,10 @@
         <activity
             android:name=".ui.screens.orders.AddItemsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.screens.settings.itempricing.ItemPricingActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

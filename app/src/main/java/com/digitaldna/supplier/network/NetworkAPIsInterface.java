@@ -26,6 +26,7 @@ import com.digitaldna.supplier.network.beans.VerifPhoneNumberBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
 import com.digitaldna.supplier.network.beans.base.BaseJsonDataBean;
 import com.digitaldna.supplier.network.requests.AcceptOrderRequest;
+import com.digitaldna.supplier.network.requests.BaseWithGroupIDRequest;
 import com.digitaldna.supplier.network.requests.BaseWithLangIdRequest;
 import com.digitaldna.supplier.network.requests.BaseWithSupplierIdRequest;
 import com.digitaldna.supplier.network.requests.GetOrderDetailsRequest;
@@ -57,11 +58,6 @@ import rx.Observable;*/
 
 public interface NetworkAPIsInterface {
 
-    /**
-     * Authorize with ticket
-     * http://apidocs.1temiz.com/Method/Index/136
-     * Api #50.2
-     */
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST(Urls.SUPPLIER +  "/" + Urls.LOGIN)
@@ -183,4 +179,7 @@ public interface NetworkAPIsInterface {
     @POST(Urls.SUPPLIER +  "/" + Urls.SET_ORDER_PRODUCT_LIST)
     Observable<GetEmptyBean> setOrderProductList(@NonNull @Body SetOrderProductListRequest body);
 
+ /*   @Headers("Content-Type: application/x-www-form-urlencoded")
+    @POST(Urls.SUPPLIER +  "/" + Urls.GET_ITEM_PRICING)
+    Observable<GetProductPriceListBean> getItemPricing(@NonNull @Body BaseWithGroupIDRequest body);*/
 }

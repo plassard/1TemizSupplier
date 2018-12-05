@@ -1,4 +1,4 @@
-package com.digitaldna.supplier.ui.screens.orders;
+package com.digitaldna.supplier.ui.screens.settings.itempricing;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,12 +15,9 @@ import android.widget.TextView;
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.network.Urls;
 import com.digitaldna.supplier.network.beans.ProductGroupBean;
-import com.digitaldna.supplier.utils.ImageToCircleTransform;
+import com.digitaldna.supplier.ui.screens.orders.AddItemsActivity;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,18 +26,16 @@ import java.util.Map;
  * Created by egemen.durmus on 14/08/16.
  * Adapter for category menu at the top of ItemPriceListActivity.
  */
-public class ProductCategoryAdapter extends RecyclerView
-        .Adapter<ProductCategoryAdapter
+public class ProductCategoryForPricingAdapter extends RecyclerView
+        .Adapter<ProductCategoryForPricingAdapter
         .DataObjectHolder> {
     private static List<ProductGroupBean> productCategoryItems;
     Context ctx;
 
     public DataObjectHolder dataObjectHolder;
-    public ProductCategoryAdapter(List<ProductGroupBean> myDataset) {
+    public ProductCategoryForPricingAdapter(List<ProductGroupBean> myDataset) {
         productCategoryItems = myDataset;
     }
-
-
 
     @Override
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
@@ -58,7 +53,7 @@ public class ProductCategoryAdapter extends RecyclerView
         holder.count.setText(String.valueOf(productCategoryItems.get(position).getSelectedProductsCount()));
 
         try {
-            if(AddItemsActivity.selectedGroup == position) {
+            if(ItemPricingActivity.selectedGroup == position) {
                 Picasso.with(ctx)
                         .load(Urls.HOST_URL + "/" + productCategoryItems.get(position).getmGroupActiveImageURL())
                         .into(holder.icon);
@@ -67,7 +62,8 @@ public class ProductCategoryAdapter extends RecyclerView
                         .load(Urls.HOST_URL + "/" + productCategoryItems.get(position).getmGroupInactiveImageURL())
                         .into(holder.icon);
             }
-         } catch (Exception ex) {
+
+        } catch (Exception ex) {
            // StaticMethods.writeExceptionLog(ctx, ex);
         }
     }
@@ -77,7 +73,8 @@ public class ProductCategoryAdapter extends RecyclerView
     }
 
 
-    public class DataObjectHolder extends RecyclerView.ViewHolder {
+    public class DataObjectHolder extends RecyclerView.ViewHolder
+           {
         public ImageView icon;
         TextView label;
         TextView count;
@@ -87,6 +84,7 @@ public class ProductCategoryAdapter extends RecyclerView
             count = (TextView) itemView.findViewById(R.id.tv_group_product_count);
             icon = (ImageView) itemView.findViewById(R.id.iv_icon);
         }
+
 
     }
 }

@@ -96,6 +96,14 @@ public class ProductGroupBean {
         this.mSelectedProductsCount = mSelectedProductsCount;
     }
 
+    double mSelectedTotalPriceInGroup = 0;
+    @Nullable
+    public double getSelectedTotalPriceInGroup() {
+        return mSelectedTotalPriceInGroup;
+    }
+    public void setSelectedTotalPriceInGroup(@Nullable Double mSelected) {
+        this.mSelectedTotalPriceInGroup = mSelected;
+    }
 }
 
 

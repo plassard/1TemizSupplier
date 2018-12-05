@@ -1,4 +1,4 @@
-package com.digitaldna.supplier.ui.screens.orders;
+package com.digitaldna.supplier.ui.screens.settings.itempricing;
 
 import android.content.Context;
 import android.widget.TextView;
@@ -6,31 +6,30 @@ import android.widget.TextView;
 import com.digitaldna.supplier.R;
 import com.digitaldna.supplier.network.beans.ProductBean;
 import com.digitaldna.supplier.network.beans.ProductGroupBean;
-import com.digitaldna.supplier.network.beans.ProductPricingBean;
-import com.digitaldna.supplier.ui.screens.settings.itempricing.ItemPricingActivity;
+import com.digitaldna.supplier.ui.screens.orders.AddItemsActivity;
 
 import java.io.Serializable;
 
 /**
  * Created by egemendurmus on 26/06/16.
  */
-public class SupplierProductPriceItem implements Serializable {
+public class PricingItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String groupName;
+    private String productName;
     private String currency;
     private String price;
     private int count;
     private int productId;
 
 
-    public SupplierProductPriceItem() {
+    public PricingItem() {
 
     }
 
-    public SupplierProductPriceItem(String groupName, String price, int count, int productId, String currency) {
-        this.groupName = groupName;
+    public PricingItem(String productName, String price, int count, int productId, String currency) {
+        this.productName = productName;
         this.price = price;
         this.count = count;
         this.productId = productId;
@@ -39,12 +38,9 @@ public class SupplierProductPriceItem implements Serializable {
 
 
     public String getGroupName() {
-        return groupName;
+        return productName;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
 
     public String getPrice() {
         return price;
@@ -60,38 +56,28 @@ public class SupplierProductPriceItem implements Serializable {
         int idOfGroup = 0;
         int amountOfSelectedItemsTotal = 0;
         double totalPrice = 0;
-        for (ProductBean product : AddItemsActivity.selectedProducts) {
+       /* for (ProductPricingBean product : ItemPricingActivity.products) {
             if(product.getmProductID() == this.productId){
                 product.setSelectedProductsQuantity(value);
                 idOfGroup = product.getmProductGroupID();
             }
             amountOfSelectedItemsTotal = amountOfSelectedItemsTotal + product.getSelectedProductsQuantity();
             totalPrice = totalPrice + product.getmPrice() * product.getSelectedProductsQuantity();
-        }
+        }*/
 
         //calculate items in group to display
         for (ProductGroupBean productGroup : AddItemsActivity.productGroups) {
             if(productGroup.getmProductGroupID() == idOfGroup){
                 int amountOfSelectedItemsInCategory = 0;
-                double sumOfSelectedItemsInCategory = 0;
                 for (ProductBean product : AddItemsActivity.selectedProducts) {
                     if(product.getmProductGroupID() == idOfGroup) {
                         amountOfSelectedItemsInCategory = amountOfSelectedItemsInCategory + product.getSelectedProductsQuantity();
-                        sumOfSelectedItemsInCategory = sumOfSelectedItemsInCategory + product.getSelectedProductsQuantity() * product.getmPrice();
                     }
                 }
-             //   productGroup.setSelectedProductsCount(amountOfSelectedItemsInCategory);
-              //  productGroup.setSelectedTotalPriceInGroup(sumOfSelectedItemsInCategory);
-
+                productGroup.setSelectedProductsCount(amountOfSelectedItemsInCategory);
             }
         }
-
-        for (ProductGroupBean productGroup : AddItemsActivity.productGroups) {
-            amountOfSelectedItemsTotal = productGroup.getSelectedProductsCount() + amountOfSelectedItemsTotal;
-            totalPrice = totalPrice + productGroup.getSelectedTotalPriceInGroup();
-        }
-
-        AddItemsActivity.productCategoryAdapter.notifyDataSetChanged();
+        //ItemPricingActivity.productCategoryAdapter.notifyDataSetChanged();
 
 
         tvTotalItems.setText(amountOfSelectedItemsTotal + " " + context.getResources().getString(R.string.items));

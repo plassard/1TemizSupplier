@@ -118,6 +118,9 @@ public class OrderListAdapter extends BaseAdapter {
                     .into(ivProfileClock);
         }catch (Exception e) {}
 
+        Button btnAddProducts = (Button)convertView.findViewById(R.id.button_add_products);
+        if(orderItem.getmOrderStatusID())
+
         Button btnAccept = (Button)convertView.findViewById(R.id.button_accept);
         Button btnDecline = (Button)convertView.findViewById(R.id.button_decline);
         TextView tvCountdown = (TextView)convertView.findViewById(R.id.textViewCountDown);

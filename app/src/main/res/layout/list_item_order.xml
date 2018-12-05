@@ -121,13 +121,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linlay3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_below="@+id/linlay2"
-            android:id="@+id/linlay3"
-            android:weightSum="4"
-            >
+            android:orientation="horizontal"
+            android:weightSum="4">
 
             <TextView
                 android:id="@+id/tv_order_title"
@@ -135,8 +134,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/order_order_title"
-                />
+                android:text="@string/order_order_title" />
 
             <TextView
                 android:id="@+id/tv_order"
@@ -144,12 +142,43 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                tools:text="#39564"
-                />
+                tools:text="#39564" />
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linlay4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linlay3"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:weightSum="4">
 
+            <Button
+                android:id="@+id/button_add_products"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button_rounded_pink"
+                android:gravity="center"
+                android:text="@string/add_product"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"
+                android:textAllCaps="false"
+                android:textSize="12dp" />
+            <Button
+                android:id="@+id/button_more_info"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:textSize="12dp"
+                android:background="@drawable/button_rounded_empty_pink"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:layout_marginLeft="10dp"
+                android:text="@string/more_info"/>
+
+        </LinearLayout>
         <com.digitaldna.supplier.widgets.OrderStatusView
             android:id="@+id/os_status"
             android:layout_width="100dp"
@@ -175,13 +204,13 @@
             android:id="@+id/button_decline"
             android:layout_width="62dp"
             android:layout_height="22dp"
-            android:textSize="12dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/button_rounded_pink"
             android:gravity="center"
+            android:text="@string/decline"
             android:textColor="@color/white"
-            android:text="@string/decline"/>
+            android:textSize="12dp" />
         <TextView
             android:id="@+id/textViewCountDown"
             android:layout_width="wrap_content"
