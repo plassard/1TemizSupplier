@@ -67,6 +67,27 @@ public class HolidaysActivity extends Activity {
         calendarView.init(new Date(), nextYear.getTime())
                 .inMode(CalendarPickerView.SelectionMode.MULTIPLE);
 
+
+
+        ImageView ivMenu = (ImageView)findViewById(R.id.iv_toolbar_menu);
+        ivMenu.setOnClickListener(view -> {
+            this.finish();
+        });
+
+        Button btnSaveCapacity = (Button)findViewById(R.id.b_save_capacity);
+
+        /*btnSaveCapacity.setOnClickListener(view -> {
+           // setHolidays();
+        });*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getSupplierHolidays();
+    }
+
+    private void getSupplierHolidays(){
         BasicRequest ordersRequest = new BasicRequest(PrefProvider.getEmail(this), PrefProvider.getTicket(this));
 
         RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierHolidays(ordersRequest)
@@ -75,19 +96,7 @@ public class HolidaysActivity extends Activity {
                 .filter(result -> result != null)
                 .map(GetHolidaysBean::getData)
                 .subscribe(result -> handleResult(result) , e -> handleError(e));
-
-        ImageView ivMenu = (ImageView)findViewById(R.id.iv_toolbar_menu);
-        ivMenu.setOnClickListener(view -> {
-            this.finish();
-        });
-
-        Button btnSaveCapacity = (Button)findViewById(R.id.b_save_capacity);
-        btnSaveCapacity.setOnClickListener(view -> {
-           // setHolidays();
-        });
     }
-
-
 
     public void addHoliday(String holidayDay){
         JsonObject jsonObjectMain = new JsonObject();
@@ -129,25 +138,29 @@ public class HolidaysActivity extends Activity {
         Toast toast = Toast.makeText(getApplicationContext(),
                 "Holiday is deleted successfully", Toast.LENGTH_SHORT);
         toast.show();
+        //getSupplierHolidays();
     }
 
     private void handleResult(List<HolidayBean> holidayBeans) {
+        Log.i("HANDLEE", "WorkingHours handle result");
         holidaysList = null;
         holidaysList = holidayBeans;
         ArrayList<Date> dates = new ArrayList<Date>();
-        for(int i = 0; i < holidaysList.size(); i++) {
-            Log.i("HOLIIII", holidaysList.get(i).getDate().substring(0, 10));
-            String dateStringFromBackend = holidaysList.get(i).getDate().substring(0, 10);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = null;
-            try {
-                date = sdf.parse(dateStringFromBackend);
-            } catch (ParseException e) {
-                e.printStackTrace();
+        if (holidayBeans != null) {
+            for (int i = 0; i < holidaysList.size(); i++) {
+                Log.i("HOLIIII", holidaysList.get(i).getDate().substring(0, 10));
+                String dateStringFromBackend = holidaysList.get(i).getDate().substring(0, 10);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                try {
+                    date = sdf.parse(dateStringFromBackend);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                dates.add(cal.getTime());
             }
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(date);
-            dates.add(cal.getTime());
         }
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
@@ -187,10 +200,18 @@ public class HolidaysActivity extends Activity {
     private void handleError(Throwable t) {
         Log.i("HANDLEE", "WorkingHours error)" + t);
         Log.i("HANDLEE", "WorkingHours error" + BaseJsonBean.mStatusText);
+        if(BaseJsonBean.mStatusText.equals("No data found")){
+            Log.i("HANDLEE", "WorkingHours executes");
+            handleResult(null);
+        } else {
+            Log.i("HANDLEE", "WorkingHours else " + BaseJsonBean.STATUS_CODE + BaseJsonBean.STATUS_SUB_CODE);
+        }
     }
     private void handleSetError(Throwable t) {
         Log.i("HANDLEE", "SET error)" + t);
-
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "Holiday is NOT added successfully", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 }

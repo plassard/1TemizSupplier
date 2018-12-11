@@ -1,6 +1,9 @@
 package com.digitaldna.supplier.ui.screens.settings;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.digitaldna.supplier.R;
@@ -24,10 +27,12 @@ import java.util.List;
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONStringer;
@@ -109,6 +114,20 @@ public class CapacityActivity extends Activity {
 
     private void handleResultSet(GetEmptyBean capacityDayBeans) {
         Log.i("HANDLEE", "handleResultSet success" + capacityDayBeans.getStatusText());
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(R.layout.dialog_info);
+        TextView text = (TextView) dialog.findViewById(R.id.textViewErrorMessage);
+        text.setText(context.getResources().getString(R.string.changes_saved));
+        Button dialogButton = (Button) dialog.findViewById(R.id.buttonOK);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
 

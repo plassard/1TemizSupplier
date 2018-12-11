@@ -151,7 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linlay3"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:gravity="center_horizontal"
             android:weightSum="4">
@@ -167,50 +167,65 @@
                 android:layout_marginRight="10dp"
                 android:textAllCaps="false"
                 android:textSize="12dp" />
+
             <Button
                 android:id="@+id/button_more_info"
                 android:layout_width="140dp"
                 android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/button_rounded_empty_pink"
+                android:gravity="center"
+                android:text="@string/more_info"
+                android:textAllCaps="false"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linlay5"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            >
+        <LinearLayout
+            android:id="@+id/linlay7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+           >
+            <Button
+                android:id="@+id/button_accept"
+                android:layout_width="62dp"
+                android:layout_height="22dp"
+                android:layout_marginRight="4dp"
                 android:textSize="12dp"
                 android:background="@drawable/button_rounded_empty_pink"
                 android:gravity="center"
-                android:textAllCaps="false"
-                android:layout_marginLeft="10dp"
-                android:text="@string/more_info"/>
+                android:text="@string/accept"/>
+
+            <Button
+                android:id="@+id/button_decline"
+                android:layout_width="62dp"
+                android:layout_height="22dp"
+                android:gravity="center"
+                android:background="@drawable/button_rounded_pink"
+                android:text="@string/decline"
+                android:textColor="@color/white"
+                android:textSize="12dp" />
+        </LinearLayout>
+            <com.digitaldna.supplier.widgets.OrderStatusView
+                android:id="@+id/os_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:textAlignment="center" />
 
         </LinearLayout>
-        <com.digitaldna.supplier.widgets.OrderStatusView
-            android:id="@+id/os_status"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="end"
-            android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/button_accept"
-            android:layout_width="62dp"
-            android:layout_height="22dp"
-            android:layout_toLeftOf="@+id/button_decline"
-            android:layout_marginRight="4dp"
-            android:layout_alignParentTop="true"
-            android:textSize="12dp"
-            android:background="@drawable/button_rounded_empty_pink"
-            android:gravity="center"
-            android:text="@string/accept"/>
-
-        <Button
-            android:id="@+id/button_decline"
-            android:layout_width="62dp"
-            android:layout_height="22dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/button_rounded_pink"
-            android:gravity="center"
-            android:text="@string/decline"
-            android:textColor="@color/white"
-            android:textSize="12dp" />
         <TextView
             android:id="@+id/textViewCountDown"
             android:layout_width="wrap_content"

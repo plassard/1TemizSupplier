@@ -119,7 +119,20 @@ public class OrderListAdapter extends BaseAdapter {
         }catch (Exception e) {}
 
         Button btnAddProducts = (Button)convertView.findViewById(R.id.button_add_products);
-        if(orderItem.getmOrderStatusID())
+        Button btnMoreInfo = (Button)convertView.findViewById(R.id.button_more_info);
+        btnMoreInfo.setOnClickListener(view -> openOrderDetailsScreen(orderItem));
+        if(orderItem.getmOrderStatusID() >= 400 && !orderItem.isProductsAdded()){
+            btnAddProducts.setVisibility(View.VISIBLE);
+            btnAddProducts.setOnClickListener(view -> {
+                Intent intent = new Intent(context, AddItemsActivity.class);
+                intent.putExtra("orderID", orderItem.getOrderID());
+                context.startActivity(intent);
+            });
+
+        } else {
+            btnAddProducts.setVisibility(View.GONE);
+          //  btnMoreInfo.setVisibility(View.GONE);
+        }
 
         Button btnAccept = (Button)convertView.findViewById(R.id.button_accept);
         Button btnDecline = (Button)convertView.findViewById(R.id.button_decline);
@@ -301,7 +314,7 @@ public class OrderListAdapter extends BaseAdapter {
 
             orderStatusView.setStatusParams(mStatusParams, !orderItem.getWasViewed());
 
-            convertView.setOnClickListener(view -> openOrderDetailsScreen(orderItem));
+            //convertView.setOnClickListener(view -> openOrderDetailsScreen(orderItem));
         }
 
         TextView tvOrderJobDate = (TextView) convertView.findViewById(R.id.tv_date);

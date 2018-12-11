@@ -20,11 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.digitaldna.supplier.R;
-import com.digitaldna.supplier.network.Urls;
-import com.digitaldna.supplier.network.beans.ProductGroupBean;
 import com.digitaldna.supplier.network.beans.ProductPricingBean;
-import com.digitaldna.supplier.network.beans.base.BaseJsonBean;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -70,8 +66,8 @@ public class ProductsForPricingAdapter extends RecyclerView
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setContentView(R.layout.dialog_info);
             TextView text = (TextView) dialog.findViewById(R.id.textViewErrorMessage);
-            text.setText(ctx.getResources().getString(R.string.suggested_price) + " ₺" + productCategoryItems.get(position).getmRecommendedPrice() + "\n" +
-                    ctx.getResources().getString(R.string.recommended_price) + " ₺" + productCategoryItems.get(position).getmRecommendedPrice());
+            text.setText(ctx.getResources().getString(R.string.minimum_price) + " ₺" + productCategoryItems.get(position).getmRecommendedPrice()/* + "\n" +
+                    ctx.getResources().getString(R.string.recommended_price) + " ₺" + productCategoryItems.get(position).getmRecommendedPrice()*/);
             Button dialogButton = (Button) dialog.findViewById(R.id.buttonOK);
             dialogButton.setOnClickListener(v1 -> {
                     dialog.dismiss();
@@ -95,7 +91,11 @@ public class ProductsForPricingAdapter extends RecyclerView
             public void afterTextChanged(Editable s) {
                 ItemPricingActivity.changesMade = true;
                 flBottomContainer.setVisibility(View.VISIBLE);
-                ItemPricingActivity.productsToDisplay.get(position).setmPrice(Double.valueOf(s.toString()));
+                try {
+                    ItemPricingActivity.productsToDisplay.get(position).setmPrice(Double.valueOf(s.toString()));
+                }catch (Exception e) {
+                    ItemPricingActivity.productsToDisplay.get(position).setmPrice(0D);
+                }
             }
         });
     }

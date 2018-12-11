@@ -54,6 +54,15 @@ public class OrdersBean {
     @JsonProperty("CancelCountdown")
     private Integer mCancelCountdown;
 
+    @Nullable
+    @JsonProperty("isProductsAdded")
+    private boolean misProductsAdded;
+
+    @Nullable
+    public boolean isProductsAdded() {
+        return misProductsAdded;
+    }
+
     private boolean wasViewed = false;
 
     @Nullable

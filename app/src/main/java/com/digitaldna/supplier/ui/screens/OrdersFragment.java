@@ -135,14 +135,6 @@ public class OrdersFragment extends Fragment {
                 mMainView.openMainMenu();
             }*/
         });
-
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
         BasicRequest ordersRequest = new BasicRequest(PrefProvider.getEmail(getContext()), PrefProvider.getTicket(getContext()));
 
         RestClient.getInstance().create(NetworkAPIsInterface.class).getSupplierOrders(ordersRequest)
@@ -151,6 +143,14 @@ public class OrdersFragment extends Fragment {
                 .filter(result -> result != null)
                 .map(GetOrdersBean::getData)
                 .subscribe(result -> handleResult(result) , e -> handleError(e));
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
     }
 
 

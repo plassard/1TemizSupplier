@@ -101,7 +101,7 @@
     <string name="information">Doğrulama Kodu Gönderildi.</string>
     <string name="delete">Sil</string>
 
-    <string name="pick_up_status">ALMAK</string>
+    <string name="pick_up_status">ALIM</string>
 
     <string name="reason">SEBEP</string>
     <string name="note">NOT</string>
@@ -218,4 +218,7 @@
 
     <string name="add_product">Ürün Ekle</string>
     <string name="more_info">Daha fazla bilgi</string>
+
+    <string name="item_pricing_title">ÜRÜN FİYATLARI</string>
+    <string name="minimum_price">Minimum fiyat: </string>
 </resources>
