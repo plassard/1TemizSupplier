@@ -66,7 +66,7 @@ public class ProductsForPricingAdapter extends RecyclerView
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setContentView(R.layout.dialog_info);
             TextView text = (TextView) dialog.findViewById(R.id.textViewErrorMessage);
-            text.setText(ctx.getResources().getString(R.string.minimum_price) + " ₺" + productCategoryItems.get(position).getmRecommendedPrice()/* + "\n" +
+            text.setText(ctx.getResources().getString(R.string.minimum_price) + " ₺" + productCategoryItems.get(position).getmMinimumPrice()/* + "\n" +
                     ctx.getResources().getString(R.string.recommended_price) + " ₺" + productCategoryItems.get(position).getmRecommendedPrice()*/);
             Button dialogButton = (Button) dialog.findViewById(R.id.buttonOK);
             dialogButton.setOnClickListener(v1 -> {
@@ -92,7 +92,15 @@ public class ProductsForPricingAdapter extends RecyclerView
                 ItemPricingActivity.changesMade = true;
                 flBottomContainer.setVisibility(View.VISIBLE);
                 try {
+                    if(Double.valueOf(s.toString()) < ItemPricingActivity.productsToDisplay.get(position).getmMinimumPrice()){
+                        //show warning
+                        holder.tvWarnPrice.setText(ctx.getResources().getString(R.string.minimum_price) + " ₺" + ItemPricingActivity.productsToDisplay.get(position).getmMinimumPrice());
+                        holder.tvWarnPrice.setVisibility(View.VISIBLE);
+                    } else {
+                        holder.tvWarnPrice.setVisibility(View.GONE);
+                    }
                     ItemPricingActivity.productsToDisplay.get(position).setmPrice(Double.valueOf(s.toString()));
+
                 }catch (Exception e) {
                     ItemPricingActivity.productsToDisplay.get(position).setmPrice(0D);
                 }
@@ -108,13 +116,14 @@ public class ProductsForPricingAdapter extends RecyclerView
     public class DataObjectHolder extends RecyclerView.ViewHolder
            {
         public ImageView iconInfo;
-        TextView label;
+        TextView label, tvWarnPrice;
         EditText etPrice;
         public DataObjectHolder(View itemView) {
             super(itemView);
             label = (TextView) itemView.findViewById(R.id.tv_title);
             etPrice = (EditText) itemView.findViewById(R.id.et_price);
             iconInfo = (ImageView) itemView.findViewById(R.id.ivInfo);
+            tvWarnPrice = (TextView) itemView.findViewById(R.id.warnPrice);
         }
 
 

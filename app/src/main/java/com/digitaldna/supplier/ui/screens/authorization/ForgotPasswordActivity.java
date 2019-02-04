@@ -133,6 +133,24 @@ public class ForgotPasswordActivity extends Activity {
         overridePendingTransition(R.anim.transparency_in_screen, R.anim.transparency_out);
     }
 
+    private boolean validateEmail() {
+        String email = etEmail.getText().toString().trim();
+        if (email.isEmpty()) {
+            tvError.setText(getResources().getString(R.string.field_required));
+            return false;
+        } else if (!isValidEmail(email)) {
+            tvError.setText(getResources().getString(R.string.mail_error));
+            return false;
+        } else {
+            tvError.setText("");
+        }
+        return true;
+    }
+
+    boolean isValidEmail(String email) {
+        return !android.text.TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
     private boolean validatePassword() {
         String password = etEmail.getText().toString();
         if (password.trim().isEmpty() /*|| password.length() < 6*/) {
@@ -156,7 +174,7 @@ public class ForgotPasswordActivity extends Activity {
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             switch (view.getId()) {
                 case R.id.editTextPass:
-                    validatePassword();
+                    validateEmail();
                     break;
             }
         }

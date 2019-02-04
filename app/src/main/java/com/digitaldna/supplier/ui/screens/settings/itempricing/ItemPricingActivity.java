@@ -238,12 +238,28 @@ public class ItemPricingActivity extends Activity {
 
         Button bSaveItemPricing = (Button)findViewById(R.id.b_save_pricing);
         bSaveItemPricing.setOnClickListener(v -> {
-            setProductPrices();
-            this.finish();
+            if(noWarnings()){
+                setProductPrices();
+                this.finish();
+            }
+
         }
         );
     }
 
+    private boolean noWarnings(){
+        boolean noWarning = true;
+        for (ProductPricingBean product : productsToDisplay) {
+            if(product.getmMinimumPrice() != null){
+                if(product.getmMinimumPrice() > product.getmPrice()){
+                    noWarning = false;
+                    Log.i("ssss", product.getmProductName() + " price " + product.getmPrice() + " min " + product.getmMinimumPrice());
+                }
+            }
+
+        }
+        return noWarning;
+    }
 
     private void setProductPrices(){
         List<ProductBeanForSetItemPricingRequest> productsToSet = new ArrayList<ProductBeanForSetItemPricingRequest>();

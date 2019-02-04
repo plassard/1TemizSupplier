@@ -30,11 +30,10 @@
                 android:id="@+id/ivInfo"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/information_icon"
-                android:layout_toLeftOf="@+id/tv_currency"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                />
+                android:layout_toLeftOf="@+id/tv_currency"
+                android:src="@drawable/information_icon" />
 
 
             <TextView
@@ -63,9 +62,22 @@
                 android:text=""
                 android:textAlignment="textEnd"
                 android:textSize="16dp" />
+
         </RelativeLayout>
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/radicalRed"
+        android:id="@+id/warnPrice"
+        android:textAlignment="textEnd"
+        android:paddingEnd="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="miminum pricee is 1usd"
+        android:visibility="gone"
+        />
         <View
             android:id="@+id/v_divider"
             android:layout_width="match_parent"

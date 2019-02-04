@@ -158,7 +158,7 @@
     <string name="new_pass_not_match">Yeni şifreler eşleşmiyor</string>
     <string name="please_fill_in_all_fields">lütfen bütün boşlukları doldurun</string>
 
-    <string name="forgot_explain">Please enter your email, we will send you instructions for resetting your password</string>
+    <string name="forgot_explain">*Lütfen email adresini gir. Şifreni sıfırlaman için sana bir e-posta göndereceğiz</string>
 
     <string name="settings_shopinfo">Mağaza Bilgileri</string>
     <string name="settings_working_hours">Çalışma Saatleri</string>
@@ -206,6 +206,7 @@
     <string name="cancel_order_button_other">Diğer</string>
     <string name="items"> Adet</string>
     <string name="ironing"> (ütüleme)</string>
+    <string name="gift"> (hediye)</string>
 
     <string name="registration_not_finished">Kuru temizleme kayıt işleminizi tamamlamamışsınız. bayi.1temiz.com \'dan giriş yaparak kayıt işleminizi tamamlayabilir ya da 1Temiz yetkilileriyle iletişime geçebilirsiniz.</string>
     <string name="close_all">Tümünü kapat</string>

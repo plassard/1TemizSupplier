@@ -92,7 +92,7 @@ public class EnterPasswordActivity extends Activity {
         Log.i("LLL", "handleResult" + getLoginBean.toString());
         LoginSupplierBean loginSupplierBean = getLoginBean.getData();
 
-        if(loginSupplierBean.getCurrentPage() == 0) {
+        if(loginSupplierBean.getTicket() != null) {
             PrefProvider.savePassword(this, etPassword.getText().toString());
             Log.i("LLL", "handleResult loginSupplierBean.getIsPhoneNumberVerified()" + loginSupplierBean.getIsPhoneNumberVerified());
             PrefProvider.saveEmail(this, loginSupplierBean.getEmail());

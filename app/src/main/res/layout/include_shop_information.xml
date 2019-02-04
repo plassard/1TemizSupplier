@@ -24,7 +24,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:src="@drawable/statistics_icon"/>
+            android:src="@drawable/shop_info"/>
 
         <LinearLayout
 

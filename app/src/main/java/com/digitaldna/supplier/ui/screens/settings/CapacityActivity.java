@@ -92,7 +92,7 @@ public class CapacityActivity extends Activity {
                 jsonObjectDate.addProperty("DayName", capacityDayBeansListMain.get(i).getDayName());
                 JsonArray timePeriodsArray = new JsonArray();
 
-                for (int j = 0; j < 7; j++) {
+                for (int j = 0; j < capacityDayBeansListMain.get(i).getTimePeriods().size(); j++) {
                     JsonObject jsonObjectTimePeriod = new JsonObject();
                     jsonObjectTimePeriod.addProperty("TimePeriodID", capacityDayBeansListMain.get(i).getTimePeriods().get(j).getTimePeriodID());
                     jsonObjectTimePeriod.addProperty("StartTime", capacityDayBeansListMain.get(i).getTimePeriods().get(j).getStartTime());
@@ -103,9 +103,11 @@ public class CapacityActivity extends Activity {
                 }
                 datesArray.add(jsonObjectDate);
             }
-        } catch(Exception e) {}
+        } catch(Exception e) {
+            Log.i("HANDLEE", "handleResultSet error" + e);
+        }
         jsonObjectMain.add("Dates", datesArray);
-
+        Log.i("HANDLEE", "request capacity " + jsonObjectMain);
         RestClientForGson.getInstance().create(NetworkAPIsInterface.class).setCapacityFullSettings(jsonObjectMain)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -113,7 +115,7 @@ public class CapacityActivity extends Activity {
     }
 
     private void handleResultSet(GetEmptyBean capacityDayBeans) {
-        Log.i("HANDLEE", "handleResultSet success" + capacityDayBeans.getStatusText());
+        Log.i("HANDLEE", "handleResultSetCapacity success" + capacityDayBeans.getStatusText());
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

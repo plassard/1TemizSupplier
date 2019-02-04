@@ -26,6 +26,13 @@ public class OrderProductBean {
     @JsonProperty("Quantity")
     private Double mQuantity;
 
+    public Integer getPriceIndex() {
+        return mPriceIndex;
+    }
+
+    @JsonProperty("PriceIndex")
+    private Integer mPriceIndex;
+
     public String getProductName() {
         return mProductName;
     }

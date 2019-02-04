@@ -176,9 +176,11 @@ public class OrderDetailsActivity extends Activity {
                         if(bean.getPhoneVerified()){
                             selectedCourierId = bean.getCourierID();
                             tvCourierUnverWarning.setVisibility(View.GONE);
+
                         } else {
                             //show unverified warning
                             tvCourierUnverWarning.setVisibility(View.VISIBLE);
+                            btnSave.setVisibility(View.GONE);
                         }
                 }
             }
@@ -217,6 +219,7 @@ public class OrderDetailsActivity extends Activity {
                     } else {
                         //show unverified warning
                         tvCourierUnverWarning.setVisibility(View.VISIBLE);
+                        btnSave.setVisibility(View.GONE);
                     }
                 }
             }
@@ -252,8 +255,15 @@ public class OrderDetailsActivity extends Activity {
                 TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
                 TextView tvSubTitle = (TextView) view.findViewById(R.id.tv_sub_title);
                 TextView tvPrice = (TextView) view.findViewById(R.id.tv_order_price);
-        Log.i("AAAA", "pr name " + model.getProductName());
-                tvTitle.setText(model.getProductName());
+
+                if(model.getPriceIndex() == 2) {
+                    tvTitle.setText(model.getProductName() + this.getResources().getString(R.string.ironing));
+                } else if(model.getPriceIndex() == 0){
+                    tvTitle.setText(model.getProductName() + this.getResources().getString(R.string.order_details_items));
+                } else {
+                    tvTitle.setText(model.getProductName());
+                }
+
                 String items;
                 if(model.getQuantity() > 1) items = this.getResources().getString(R.string.order_details_items);
                 else items = this.getResources().getString(R.string.order_details_item);
